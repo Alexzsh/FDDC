@@ -111,12 +111,17 @@ def getContentFromEveryDiv(filename):
         soup=BeautifulSoup(fr.read(),'html.parser')
         text=""
         for child in soup.descendants:
+            sentence=""
             if isinstance(child,bs4.element.Tag) and child.attrs.get('title'):
                 if 'title' in child.attrs:
-                    text+=re.sub(rule,'',(child['title']))
+                    sentence=clean_text(strQ2B(re.sub(rule,'',(child['title']))))
+                    if not sentence.endswith(':'):
+                        sentence+=':'
             if isinstance(child,bs4.NavigableString) and len(child.string)>2 :
-                text+=re.sub(rule,'',child.string)
-        return clean_text(strQ2B(text))
+                sentence=clean_text(strQ2B(re.sub(rule,'',child.string)))
+
+            text+=sentence
+        return text
 
 
 def getContentWithoutTable(filename):
@@ -137,17 +142,20 @@ def getContentFromHtml2Text(filename):
 
 if __name__ == '__main__':
 
-    text_dirname='../FDDC/textWithParagraph'
+    text_dirname='../FDDC/textWithParagraph1'
     if not os.path.exists(text_dirname):
         os.makedirs(text_dirname)
 
-    # print(list(os.walk(dirname))[0][2][0])
+    print(list(os.walk(dirname)))
+
     for filename in tqdm.tqdm(list(os.walk(dirname))[0][2]):
+    # filename=list(os.walk(dirname))[0][2][0]
         text_filename=filename[:filename.find('.')]+'.txt'
         filename = os.path.join(dirname, filename)
         with open(os.path.join(text_dirname,text_filename),'w') as fw:
             text=getContentFromEveryDiv(filename)
             fw.write(text)
+
 
 
 

@@ -27,15 +27,15 @@ flags.DEFINE_string("tag_schema",   "iobes",    "tagging schema iobes or iob")
 # configurations for training
 flags.DEFINE_float("clip",          5,          "Gradient clip")
 flags.DEFINE_float("dropout",       0.5,        "Dropout rate")
-flags.DEFINE_float("batch_size",    20,         "batch size")
+flags.DEFINE_integer("batch_size",  5,         "batch size")
 flags.DEFINE_float("lr",            0.001,      "Initial learning rate")
 flags.DEFINE_string("optimizer",    "adam",     "Optimizer for training")
 flags.DEFINE_boolean("pre_emb",     True,       "Wither use pre-trained embedding")
 flags.DEFINE_boolean("zeros",       False,      "Wither replace digits with zero")
 flags.DEFINE_boolean("lower",       True,       "Wither lower case")
 
-flags.DEFINE_integer("max_epoch",   100,        "maximum training epochs")
-flags.DEFINE_integer("steps_check", 100,        "steps per checkpoint")
+flags.DEFINE_integer("max_epoch",   80,        "maximum training epochs")
+flags.DEFINE_integer("steps_check", 50,        "steps per checkpoint")
 flags.DEFINE_string("ckpt_path",    "ckpt",      "Path to save model")
 flags.DEFINE_string("summary_path", "summary",      "Path to store summaries")
 flags.DEFINE_string("log_file",     "train.log",    "File for log")
@@ -174,7 +174,7 @@ def train():
         model = create_model(sess, Model, FLAGS.ckpt_path, load_word2vec, config, id_to_char, logger)
         logger.info("start training")
         loss = []
-        for i in range(100):
+        for i in range(FLAGS.max_epoch):
             for batch in train_manager.iter_batch(shuffle=True):
                 step, batch_loss = model.run_step(sess, True, batch)
                 loss.append(batch_loss)
@@ -201,7 +201,7 @@ def evaluate_line():
         char_to_id, id_to_char, tag_to_id, id_to_tag = pickle.load(f)
     with tf.Session(config=tf_config) as sess:
         model = create_model(sess, Model, FLAGS.ckpt_path, load_word2vec, config, id_to_char, logger, False)
-        # wihle True:
+        while True:
             # try:
             #     line = input("请输入测试句子:")
             #     result = model.evaluate_line(sess, input_from_line(line, char_to_id), id_to_tag)
@@ -209,11 +209,9 @@ def evaluate_line():
             # except Exception as e:
             #     logger.info(e)
 
-                # line = input("请输入测试句子:")
-        line='''股票简称：山西证券股票代码：002500编号：临2016-028山西证券股份有限公司关于更正公司非公开发行股份的部分投资者持有数量的公告本公司及董事会全体成员保证信息披露的内容真实、准确、完整，没有虚假记载、误导性陈述或重大遗漏。山西证券股份有限公司（以下简称“公司”、“本公司”）非公开发行股份于2016年1月7日在中国证券登记结算有限责任公司深圳分公司完成股份登记托管手续。由于本次发行的发行对象鹏华资产管理（深圳）有限公司（以下简称“鹏华资管”）工作人员填写错误，导致其提供的股份登记信息与各产品实际认购情况不符，现就拟向中国证券登记结算有限责任公司深圳分公司申请调整股份登记结果的内容做出如下说明：本次发行的发行对象之一鹏华资管共计获配31,974,420股。鹏华资管旗下产品的原股份登记结果如下：证券账户名称证券账户号码（深圳）营业执照注册号/批文号/身份证号股份数量（股）托管席位号鹏华资产-招商银行-开源证券定增1号专项资产管理计划0899079053440030110679644727,977,618280900鹏华资产-招商银行-开源证券定增2号专项资产管理计划089907905244003011067964471,758,593280900鹏华资产-招商银行-开源证券定增3号专项资产管理计划089908308744003011067964471,598,721280900鹏华资产-宁波银行-鹏华资产山西证券定增资产管理计划08990994134400301106796447639,488280900合计31,974,420拟调整后的股份登记结果：证券账户名称证券账户号码（深圳）营业执照注册号/批文号/身份证号股份数量（股）托管席位号鹏华资产-招商银行-开源证券定增1号专项资产管理计划089907905344003011067964471,758,593280900鹏华资产-招商银行-开源证券定增2号专项资产管理计划089907905244003011067964471,598,721280900鹏华资产-招商银行-开源证券定增3号专项资产管理计划08990830874400301106796447639,488280900鹏华资产-宁波银行-鹏华资产山西证券定增资产管理计划0899099413440030110679644727,977,618280900合计31,974,420调整后发行对象鹏华资管获配股数仍为31,974,420股，不影响本次非公开发行鹏华资管的认购股份数量。公司将会同中介机构协助鹏华资管就上述产品向中国证券登记结算有限责任公司深圳分公司提出股份登记数据调整的申请。鹏华资管已承诺，因本次股份登记变更产生的法律纠纷将由鹏华资管自行承担。特此公告。山西证券股份有限公司董事会2016年5月12日'''
-        result = model.evaluate_line(sess, input_from_line(line, char_to_id), id_to_tag)
-        import json
-        print(json.dumps(result['entities'],ensure_ascii=False))
+                line = input("请输入测试句子:")
+                result = model.evaluate_line(sess, input_from_line(line, char_to_id), id_to_tag)
+                print(result)
 
 
 def main(_):

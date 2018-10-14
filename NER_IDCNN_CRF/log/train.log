@@ -1,0 +1,891 @@
+2018-10-14 14:58:03,100 - log\train.log - INFO - model_type     :	idcnn
+2018-10-14 14:58:03,101 - log\train.log - INFO - num_chars      :	1409
+2018-10-14 14:58:03,102 - log\train.log - INFO - char_dim       :	100
+2018-10-14 14:58:03,102 - log\train.log - INFO - num_tags       :	4
+2018-10-14 14:58:03,103 - log\train.log - INFO - seg_dim        :	10
+2018-10-14 14:58:03,103 - log\train.log - INFO - lstm_dim       :	120
+2018-10-14 14:58:03,103 - log\train.log - INFO - batch_size     :	2
+2018-10-14 14:58:03,103 - log\train.log - INFO - emb_file       :	data\vec.txt
+2018-10-14 14:58:03,104 - log\train.log - INFO - clip           :	5.0
+2018-10-14 14:58:03,104 - log\train.log - INFO - dropout_keep   :	0.5
+2018-10-14 14:58:03,104 - log\train.log - INFO - optimizer      :	adam
+2018-10-14 14:58:03,105 - log\train.log - INFO - lr             :	0.001
+2018-10-14 14:58:03,105 - log\train.log - INFO - tag_schema     :	iobes
+2018-10-14 14:58:03,105 - log\train.log - INFO - pre_emb        :	True
+2018-10-14 14:58:03,105 - log\train.log - INFO - zeros          :	False
+2018-10-14 14:58:03,105 - log\train.log - INFO - lower          :	True
+2018-10-14 14:58:05,683 - log\train.log - INFO - Created model with fresh parameters.
+2018-10-14 14:58:06,995 - log\train.log - INFO - Load pre-trained embedding.
+2018-10-14 14:58:06,995 - log\train.log - INFO - start training
+2018-10-14 14:58:27,581 - log\train.log - INFO - iteration:1 step:40/131, NER loss:97.534477
+2018-10-14 14:58:45,544 - log\train.log - INFO - iteration:1 step:80/131, NER loss:64.035728
+2018-10-14 14:59:01,739 - log\train.log - INFO - iteration:1 step:120/131, NER loss:60.840900
+2018-10-14 14:59:06,655 - log\train.log - INFO - evaluate:dev
+2018-10-14 14:59:07,139 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 3 phrases; correct: 0.
+
+2018-10-14 14:59:07,140 - log\train.log - INFO - accuracy:  93.73%; precision:   0.00%; recall:   0.00%; FB1:   0.00
+
+2018-10-14 14:59:07,140 - log\train.log - INFO -               KEY: precision:   0.00%; recall:   0.00%; FB1:   0.00  3
+
+2018-10-14 14:59:07,155 - log\train.log - INFO - evaluate:test
+2018-10-14 14:59:07,863 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 5 phrases; correct: 0.
+
+2018-10-14 14:59:07,864 - log\train.log - INFO - accuracy:  94.19%; precision:   0.00%; recall:   0.00%; FB1:   0.00
+
+2018-10-14 14:59:07,865 - log\train.log - INFO -               KEY: precision:   0.00%; recall:   0.00%; FB1:   0.00  5
+
+2018-10-14 14:59:16,335 - log\train.log - INFO - iteration:2 step:29/131, NER loss:62.305824
+2018-10-14 14:59:28,031 - log\train.log - INFO - iteration:2 step:69/131, NER loss:58.492393
+2018-10-14 14:59:41,151 - log\train.log - INFO - iteration:2 step:109/131, NER loss:55.986744
+2018-10-14 14:59:47,809 - log\train.log - INFO - evaluate:dev
+2018-10-14 14:59:48,156 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 14 phrases; correct: 0.
+
+2018-10-14 14:59:48,158 - log\train.log - INFO - accuracy:  93.75%; precision:   0.00%; recall:   0.00%; FB1:   0.00
+
+2018-10-14 14:59:48,158 - log\train.log - INFO -               KEY: precision:   0.00%; recall:   0.00%; FB1:   0.00  14
+
+2018-10-14 14:59:48,159 - log\train.log - INFO - evaluate:test
+2018-10-14 14:59:48,852 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 21 phrases; correct: 0.
+
+2018-10-14 14:59:48,853 - log\train.log - INFO - accuracy:  94.23%; precision:   0.00%; recall:   0.00%; FB1:   0.00
+
+2018-10-14 14:59:48,854 - log\train.log - INFO -               KEY: precision:   0.00%; recall:   0.00%; FB1:   0.00  21
+
+2018-10-14 14:59:54,485 - log\train.log - INFO - iteration:3 step:18/131, NER loss:52.412163
+2018-10-14 15:00:07,124 - log\train.log - INFO - iteration:3 step:58/131, NER loss:49.195629
+2018-10-14 15:00:19,019 - log\train.log - INFO - iteration:3 step:98/131, NER loss:45.833359
+2018-10-14 15:00:28,800 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:00:29,150 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 5 phrases; correct: 0.
+
+2018-10-14 15:00:29,151 - log\train.log - INFO - accuracy:  93.71%; precision:   0.00%; recall:   0.00%; FB1:   0.00
+
+2018-10-14 15:00:29,152 - log\train.log - INFO -               KEY: precision:   0.00%; recall:   0.00%; FB1:   0.00  5
+
+2018-10-14 15:00:29,153 - log\train.log - INFO - evaluate:test
+2018-10-14 15:00:29,840 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 7 phrases; correct: 0.
+
+2018-10-14 15:00:29,841 - log\train.log - INFO - accuracy:  94.21%; precision:   0.00%; recall:   0.00%; FB1:   0.00
+
+2018-10-14 15:00:29,842 - log\train.log - INFO -               KEY: precision:   0.00%; recall:   0.00%; FB1:   0.00  7
+
+2018-10-14 15:00:32,154 - log\train.log - INFO - iteration:4 step:7/131, NER loss:50.163231
+2018-10-14 15:00:44,292 - log\train.log - INFO - iteration:4 step:47/131, NER loss:42.458374
+2018-10-14 15:00:56,967 - log\train.log - INFO - iteration:4 step:87/131, NER loss:43.524040
+2018-10-14 15:01:08,929 - log\train.log - INFO - iteration:4 step:127/131, NER loss:38.392906
+2018-10-14 15:01:09,802 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:01:10,151 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 51 phrases; correct: 11.
+
+2018-10-14 15:01:10,152 - log\train.log - INFO - accuracy:  94.11%; precision:  21.57%; recall:   4.76%; FB1:   7.80
+
+2018-10-14 15:01:10,153 - log\train.log - INFO -               KEY: precision:  21.57%; recall:   4.76%; FB1:   7.80  51
+
+2018-10-14 15:01:10,204 - log\train.log - INFO - new best dev f1 score:7.800
+2018-10-14 15:01:10,625 - log\train.log - INFO - model saved
+2018-10-14 15:01:10,626 - log\train.log - INFO - evaluate:test
+2018-10-14 15:01:11,334 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 122 phrases; correct: 22.
+
+2018-10-14 15:01:11,336 - log\train.log - INFO - accuracy:  94.57%; precision:  18.03%; recall:   5.05%; FB1:   7.89
+
+2018-10-14 15:01:11,337 - log\train.log - INFO -               KEY: precision:  18.03%; recall:   5.05%; FB1:   7.89  122
+
+2018-10-14 15:01:11,390 - log\train.log - INFO - new best test f1 score:7.890
+2018-10-14 15:01:23,483 - log\train.log - INFO - iteration:5 step:36/131, NER loss:36.000160
+2018-10-14 15:01:35,314 - log\train.log - INFO - iteration:5 step:76/131, NER loss:35.806862
+2018-10-14 15:01:46,232 - log\train.log - INFO - iteration:5 step:116/131, NER loss:35.651226
+2018-10-14 15:01:51,372 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:01:51,720 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 5 phrases; correct: 1.
+
+2018-10-14 15:01:51,721 - log\train.log - INFO - accuracy:  93.71%; precision:  20.00%; recall:   0.43%; FB1:   0.85
+
+2018-10-14 15:01:51,722 - log\train.log - INFO -               KEY: precision:  20.00%; recall:   0.43%; FB1:   0.85  5
+
+2018-10-14 15:01:51,723 - log\train.log - INFO - evaluate:test
+2018-10-14 15:01:52,416 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 16 phrases; correct: 2.
+
+2018-10-14 15:01:52,417 - log\train.log - INFO - accuracy:  94.28%; precision:  12.50%; recall:   0.46%; FB1:   0.88
+
+2018-10-14 15:01:52,417 - log\train.log - INFO -               KEY: precision:  12.50%; recall:   0.46%; FB1:   0.88  16
+
+2018-10-14 15:01:59,650 - log\train.log - INFO - iteration:6 step:25/131, NER loss:39.607197
+2018-10-14 15:02:12,337 - log\train.log - INFO - iteration:6 step:65/131, NER loss:33.450718
+2018-10-14 15:02:24,976 - log\train.log - INFO - iteration:6 step:105/131, NER loss:31.950977
+2018-10-14 15:02:32,415 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:02:32,761 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 50 phrases; correct: 18.
+
+2018-10-14 15:02:32,763 - log\train.log - INFO - accuracy:  94.14%; precision:  36.00%; recall:   7.79%; FB1:  12.81
+
+2018-10-14 15:02:32,764 - log\train.log - INFO -               KEY: precision:  36.00%; recall:   7.79%; FB1:  12.81  50
+
+2018-10-14 15:02:32,815 - log\train.log - INFO - new best dev f1 score:12.810
+2018-10-14 15:02:33,136 - log\train.log - INFO - model saved
+2018-10-14 15:02:33,138 - log\train.log - INFO - evaluate:test
+2018-10-14 15:02:33,839 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 112 phrases; correct: 38.
+
+2018-10-14 15:02:33,841 - log\train.log - INFO - accuracy:  94.69%; precision:  33.93%; recall:   8.72%; FB1:  13.87
+
+2018-10-14 15:02:33,842 - log\train.log - INFO -               KEY: precision:  33.93%; recall:   8.72%; FB1:  13.87  112
+
+2018-10-14 15:02:33,893 - log\train.log - INFO - new best test f1 score:13.870
+2018-10-14 15:02:37,447 - log\train.log - INFO - iteration:7 step:14/131, NER loss:28.201099
+2018-10-14 15:02:50,305 - log\train.log - INFO - iteration:7 step:54/131, NER loss:30.504925
+2018-10-14 15:03:01,777 - log\train.log - INFO - iteration:7 step:94/131, NER loss:27.304642
+2018-10-14 15:03:13,884 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:03:14,230 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 25 phrases; correct: 10.
+
+2018-10-14 15:03:14,231 - log\train.log - INFO - accuracy:  93.98%; precision:  40.00%; recall:   4.33%; FB1:   7.81
+
+2018-10-14 15:03:14,232 - log\train.log - INFO -               KEY: precision:  40.00%; recall:   4.33%; FB1:   7.81  25
+
+2018-10-14 15:03:14,233 - log\train.log - INFO - evaluate:test
+2018-10-14 15:03:14,930 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 78 phrases; correct: 28.
+
+2018-10-14 15:03:14,932 - log\train.log - INFO - accuracy:  94.48%; precision:  35.90%; recall:   6.42%; FB1:  10.89
+
+2018-10-14 15:03:14,933 - log\train.log - INFO -               KEY: precision:  35.90%; recall:   6.42%; FB1:  10.89  78
+
+2018-10-14 15:03:16,182 - log\train.log - INFO - iteration:8 step:3/131, NER loss:29.390865
+2018-10-14 15:03:27,642 - log\train.log - INFO - iteration:8 step:43/131, NER loss:25.023504
+2018-10-14 15:03:41,624 - log\train.log - INFO - iteration:8 step:83/131, NER loss:30.173147
+2018-10-14 15:03:52,599 - log\train.log - INFO - iteration:8 step:123/131, NER loss:24.608812
+2018-10-14 15:03:54,921 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:03:55,270 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 5 phrases; correct: 4.
+
+2018-10-14 15:03:55,271 - log\train.log - INFO - accuracy:  93.86%; precision:  80.00%; recall:   1.73%; FB1:   3.39
+
+2018-10-14 15:03:55,272 - log\train.log - INFO -               KEY: precision:  80.00%; recall:   1.73%; FB1:   3.39  5
+
+2018-10-14 15:03:55,273 - log\train.log - INFO - evaluate:test
+2018-10-14 15:03:55,975 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 20 phrases; correct: 5.
+
+2018-10-14 15:03:55,977 - log\train.log - INFO - accuracy:  94.24%; precision:  25.00%; recall:   1.15%; FB1:   2.19
+
+2018-10-14 15:03:55,980 - log\train.log - INFO -               KEY: precision:  25.00%; recall:   1.15%; FB1:   2.19  20
+
+2018-10-14 15:04:05,580 - log\train.log - INFO - iteration:9 step:32/131, NER loss:25.087452
+2018-10-14 15:04:17,894 - log\train.log - INFO - iteration:9 step:72/131, NER loss:24.302738
+2018-10-14 15:04:29,504 - log\train.log - INFO - iteration:9 step:112/131, NER loss:22.739130
+2018-10-14 15:04:36,050 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:04:36,399 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 29 phrases; correct: 11.
+
+2018-10-14 15:04:36,400 - log\train.log - INFO - accuracy:  93.96%; precision:  37.93%; recall:   4.76%; FB1:   8.46
+
+2018-10-14 15:04:36,401 - log\train.log - INFO -               KEY: precision:  37.93%; recall:   4.76%; FB1:   8.46  29
+
+2018-10-14 15:04:36,402 - log\train.log - INFO - evaluate:test
+2018-10-14 15:04:37,097 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 73 phrases; correct: 25.
+
+2018-10-14 15:04:37,099 - log\train.log - INFO - accuracy:  94.56%; precision:  34.25%; recall:   5.73%; FB1:   9.82
+
+2018-10-14 15:04:37,100 - log\train.log - INFO -               KEY: precision:  34.25%; recall:   5.73%; FB1:   9.82  73
+
+2018-10-14 15:04:43,672 - log\train.log - INFO - iteration:10 step:21/131, NER loss:22.046465
+2018-10-14 15:04:56,573 - log\train.log - INFO - iteration:10 step:61/131, NER loss:22.828876
+2018-10-14 15:05:08,873 - log\train.log - INFO - iteration:10 step:101/131, NER loss:21.932306
+2018-10-14 15:05:17,079 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:05:17,423 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 27 phrases; correct: 11.
+
+2018-10-14 15:05:17,425 - log\train.log - INFO - accuracy:  93.88%; precision:  40.74%; recall:   4.76%; FB1:   8.53
+
+2018-10-14 15:05:17,426 - log\train.log - INFO -               KEY: precision:  40.74%; recall:   4.76%; FB1:   8.53  27
+
+2018-10-14 15:05:17,427 - log\train.log - INFO - evaluate:test
+2018-10-14 15:05:18,119 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 73 phrases; correct: 28.
+
+2018-10-14 15:05:18,120 - log\train.log - INFO - accuracy:  94.59%; precision:  38.36%; recall:   6.42%; FB1:  11.00
+
+2018-10-14 15:05:18,121 - log\train.log - INFO -               KEY: precision:  38.36%; recall:   6.42%; FB1:  11.00  73
+
+2018-10-14 15:05:21,512 - log\train.log - INFO - iteration:11 step:10/131, NER loss:17.717670
+2018-10-14 15:05:33,255 - log\train.log - INFO - iteration:11 step:50/131, NER loss:19.202408
+2018-10-14 15:05:46,385 - log\train.log - INFO - iteration:11 step:90/131, NER loss:19.733475
+2018-10-14 15:05:57,987 - log\train.log - INFO - iteration:11 step:130/131, NER loss:19.711620
+2018-10-14 15:05:58,144 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:05:58,496 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 21 phrases; correct: 5.
+
+2018-10-14 15:05:58,497 - log\train.log - INFO - accuracy:  93.65%; precision:  23.81%; recall:   2.16%; FB1:   3.97
+
+2018-10-14 15:05:58,498 - log\train.log - INFO -               KEY: precision:  23.81%; recall:   2.16%; FB1:   3.97  21
+
+2018-10-14 15:05:58,499 - log\train.log - INFO - evaluate:test
+2018-10-14 15:05:59,193 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 53 phrases; correct: 20.
+
+2018-10-14 15:05:59,195 - log\train.log - INFO - accuracy:  94.37%; precision:  37.74%; recall:   4.59%; FB1:   8.18
+
+2018-10-14 15:05:59,196 - log\train.log - INFO -               KEY: precision:  37.74%; recall:   4.59%; FB1:   8.18  53
+
+2018-10-14 15:06:11,079 - log\train.log - INFO - iteration:12 step:39/131, NER loss:18.017035
+2018-10-14 15:06:22,680 - log\train.log - INFO - iteration:12 step:79/131, NER loss:16.692142
+2018-10-14 15:06:35,584 - log\train.log - INFO - iteration:12 step:119/131, NER loss:18.385645
+2018-10-14 15:06:39,164 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:06:39,505 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 57 phrases; correct: 17.
+
+2018-10-14 15:06:39,507 - log\train.log - INFO - accuracy:  93.89%; precision:  29.82%; recall:   7.36%; FB1:  11.81
+
+2018-10-14 15:06:39,508 - log\train.log - INFO -               KEY: precision:  29.82%; recall:   7.36%; FB1:  11.81  57
+
+2018-10-14 15:06:39,509 - log\train.log - INFO - evaluate:test
+2018-10-14 15:06:40,203 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 121 phrases; correct: 33.
+
+2018-10-14 15:06:40,204 - log\train.log - INFO - accuracy:  94.46%; precision:  27.27%; recall:   7.57%; FB1:  11.85
+
+2018-10-14 15:06:40,205 - log\train.log - INFO -               KEY: precision:  27.27%; recall:   7.57%; FB1:  11.85  121
+
+2018-10-14 15:06:48,647 - log\train.log - INFO - iteration:13 step:28/131, NER loss:17.816107
+2018-10-14 15:07:00,136 - log\train.log - INFO - iteration:13 step:68/131, NER loss:14.070608
+2018-10-14 15:07:12,767 - log\train.log - INFO - iteration:13 step:108/131, NER loss:17.219357
+2018-10-14 15:07:20,171 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:07:20,520 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 24 phrases; correct: 8.
+
+2018-10-14 15:07:20,521 - log\train.log - INFO - accuracy:  93.86%; precision:  33.33%; recall:   3.46%; FB1:   6.27
+
+2018-10-14 15:07:20,522 - log\train.log - INFO -               KEY: precision:  33.33%; recall:   3.46%; FB1:   6.27  24
+
+2018-10-14 15:07:20,524 - log\train.log - INFO - evaluate:test
+2018-10-14 15:07:21,219 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 62 phrases; correct: 17.
+
+2018-10-14 15:07:21,221 - log\train.log - INFO - accuracy:  94.25%; precision:  27.42%; recall:   3.90%; FB1:   6.83
+
+2018-10-14 15:07:21,222 - log\train.log - INFO -               KEY: precision:  27.42%; recall:   3.90%; FB1:   6.83  62
+
+2018-10-14 15:07:25,565 - log\train.log - INFO - iteration:14 step:17/131, NER loss:15.427236
+2018-10-14 15:07:37,570 - log\train.log - INFO - iteration:14 step:57/131, NER loss:16.085537
+2018-10-14 15:07:50,186 - log\train.log - INFO - iteration:14 step:97/131, NER loss:16.323755
+2018-10-14 15:08:01,167 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:08:01,517 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 31 phrases; correct: 11.
+
+2018-10-14 15:08:01,519 - log\train.log - INFO - accuracy:  93.95%; precision:  35.48%; recall:   4.76%; FB1:   8.40
+
+2018-10-14 15:08:01,520 - log\train.log - INFO -               KEY: precision:  35.48%; recall:   4.76%; FB1:   8.40  31
+
+2018-10-14 15:08:01,521 - log\train.log - INFO - evaluate:test
+2018-10-14 15:08:02,215 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 98 phrases; correct: 36.
+
+2018-10-14 15:08:02,217 - log\train.log - INFO - accuracy:  94.51%; precision:  36.73%; recall:   8.26%; FB1:  13.48
+
+2018-10-14 15:08:02,218 - log\train.log - INFO -               KEY: precision:  36.73%; recall:   8.26%; FB1:  13.48  98
+
+2018-10-14 15:08:03,909 - log\train.log - INFO - iteration:15 step:6/131, NER loss:14.959229
+2018-10-14 15:08:16,223 - log\train.log - INFO - iteration:15 step:46/131, NER loss:14.655928
+2018-10-14 15:08:28,902 - log\train.log - INFO - iteration:15 step:86/131, NER loss:15.282793
+2018-10-14 15:08:40,440 - log\train.log - INFO - iteration:15 step:126/131, NER loss:12.909037
+2018-10-14 15:08:42,152 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:08:42,501 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 55 phrases; correct: 17.
+
+2018-10-14 15:08:42,502 - log\train.log - INFO - accuracy:  93.83%; precision:  30.91%; recall:   7.36%; FB1:  11.89
+
+2018-10-14 15:08:42,503 - log\train.log - INFO -               KEY: precision:  30.91%; recall:   7.36%; FB1:  11.89  55
+
+2018-10-14 15:08:42,504 - log\train.log - INFO - evaluate:test
+2018-10-14 15:08:43,199 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 137 phrases; correct: 42.
+
+2018-10-14 15:08:43,200 - log\train.log - INFO - accuracy:  94.40%; precision:  30.66%; recall:   9.63%; FB1:  14.66
+
+2018-10-14 15:08:43,201 - log\train.log - INFO -               KEY: precision:  30.66%; recall:   9.63%; FB1:  14.66  137
+
+2018-10-14 15:08:43,251 - log\train.log - INFO - new best test f1 score:14.660
+2018-10-14 15:08:53,799 - log\train.log - INFO - iteration:16 step:35/131, NER loss:13.563678
+2018-10-14 15:09:05,812 - log\train.log - INFO - iteration:16 step:75/131, NER loss:12.833277
+2018-10-14 15:09:17,380 - log\train.log - INFO - iteration:16 step:115/131, NER loss:12.972235
+2018-10-14 15:09:23,659 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:09:24,009 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 23 phrases; correct: 8.
+
+2018-10-14 15:09:24,010 - log\train.log - INFO - accuracy:  93.69%; precision:  34.78%; recall:   3.46%; FB1:   6.30
+
+2018-10-14 15:09:24,011 - log\train.log - INFO -               KEY: precision:  34.78%; recall:   3.46%; FB1:   6.30  23
+
+2018-10-14 15:09:24,012 - log\train.log - INFO - evaluate:test
+2018-10-14 15:09:24,704 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 80 phrases; correct: 18.
+
+2018-10-14 15:09:24,706 - log\train.log - INFO - accuracy:  94.28%; precision:  22.50%; recall:   4.13%; FB1:   6.98
+
+2018-10-14 15:09:24,707 - log\train.log - INFO -               KEY: precision:  22.50%; recall:   4.13%; FB1:   6.98  80
+
+2018-10-14 15:09:31,761 - log\train.log - INFO - iteration:17 step:24/131, NER loss:12.875216
+2018-10-14 15:09:43,759 - log\train.log - INFO - iteration:17 step:64/131, NER loss:13.330591
+2018-10-14 15:09:55,820 - log\train.log - INFO - iteration:17 step:104/131, NER loss:12.859924
+2018-10-14 15:10:04,707 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:10:05,055 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 31 phrases; correct: 12.
+
+2018-10-14 15:10:05,056 - log\train.log - INFO - accuracy:  93.84%; precision:  38.71%; recall:   5.19%; FB1:   9.16
+
+2018-10-14 15:10:05,056 - log\train.log - INFO -               KEY: precision:  38.71%; recall:   5.19%; FB1:   9.16  31
+
+2018-10-14 15:10:05,058 - log\train.log - INFO - evaluate:test
+2018-10-14 15:10:05,752 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 97 phrases; correct: 26.
+
+2018-10-14 15:10:05,753 - log\train.log - INFO - accuracy:  94.36%; precision:  26.80%; recall:   5.96%; FB1:   9.76
+
+2018-10-14 15:10:05,755 - log\train.log - INFO -               KEY: precision:  26.80%; recall:   5.96%; FB1:   9.76  97
+
+2018-10-14 15:10:10,096 - log\train.log - INFO - iteration:18 step:13/131, NER loss:12.493314
+2018-10-14 15:10:22,818 - log\train.log - INFO - iteration:18 step:53/131, NER loss:11.956362
+2018-10-14 15:10:34,841 - log\train.log - INFO - iteration:18 step:93/131, NER loss:11.607640
+2018-10-14 15:10:45,735 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:10:46,082 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 28 phrases; correct: 12.
+
+2018-10-14 15:10:46,084 - log\train.log - INFO - accuracy:  93.95%; precision:  42.86%; recall:   5.19%; FB1:   9.27
+
+2018-10-14 15:10:46,085 - log\train.log - INFO -               KEY: precision:  42.86%; recall:   5.19%; FB1:   9.27  28
+
+2018-10-14 15:10:46,086 - log\train.log - INFO - evaluate:test
+2018-10-14 15:10:46,782 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 94 phrases; correct: 28.
+
+2018-10-14 15:10:46,783 - log\train.log - INFO - accuracy:  94.40%; precision:  29.79%; recall:   6.42%; FB1:  10.57
+
+2018-10-14 15:10:46,784 - log\train.log - INFO -               KEY: precision:  29.79%; recall:   6.42%; FB1:  10.57  94
+
+2018-10-14 15:10:47,427 - log\train.log - INFO - iteration:19 step:2/131, NER loss:12.197981
+2018-10-14 15:11:00,108 - log\train.log - INFO - iteration:19 step:42/131, NER loss:10.701612
+2018-10-14 15:11:12,430 - log\train.log - INFO - iteration:19 step:82/131, NER loss:11.829743
+2018-10-14 15:11:24,564 - log\train.log - INFO - iteration:19 step:122/131, NER loss:11.421879
+2018-10-14 15:11:27,278 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:11:27,628 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 24 phrases; correct: 9.
+
+2018-10-14 15:11:27,629 - log\train.log - INFO - accuracy:  93.87%; precision:  37.50%; recall:   3.90%; FB1:   7.06
+
+2018-10-14 15:11:27,630 - log\train.log - INFO -               KEY: precision:  37.50%; recall:   3.90%; FB1:   7.06  24
+
+2018-10-14 15:11:27,631 - log\train.log - INFO - evaluate:test
+2018-10-14 15:11:28,327 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 84 phrases; correct: 32.
+
+2018-10-14 15:11:28,329 - log\train.log - INFO - accuracy:  94.50%; precision:  38.10%; recall:   7.34%; FB1:  12.31
+
+2018-10-14 15:11:28,330 - log\train.log - INFO -               KEY: precision:  38.10%; recall:   7.34%; FB1:  12.31  84
+
+2018-10-14 15:11:36,513 - log\train.log - INFO - iteration:20 step:31/131, NER loss: 9.326291
+2018-10-14 15:11:49,813 - log\train.log - INFO - iteration:20 step:71/131, NER loss:10.391454
+2018-10-14 15:12:02,525 - log\train.log - INFO - iteration:20 step:111/131, NER loss:11.463050
+2018-10-14 15:12:08,320 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:12:08,665 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 43 phrases; correct: 12.
+
+2018-10-14 15:12:08,666 - log\train.log - INFO - accuracy:  93.91%; precision:  27.91%; recall:   5.19%; FB1:   8.76
+
+2018-10-14 15:12:08,667 - log\train.log - INFO -               KEY: precision:  27.91%; recall:   5.19%; FB1:   8.76  43
+
+2018-10-14 15:12:08,669 - log\train.log - INFO - evaluate:test
+2018-10-14 15:12:09,358 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 118 phrases; correct: 36.
+
+2018-10-14 15:12:09,360 - log\train.log - INFO - accuracy:  94.46%; precision:  30.51%; recall:   8.26%; FB1:  13.00
+
+2018-10-14 15:12:09,361 - log\train.log - INFO -               KEY: precision:  30.51%; recall:   8.26%; FB1:  13.00  118
+
+2018-10-14 15:12:15,584 - log\train.log - INFO - iteration:21 step:20/131, NER loss:10.215769
+2018-10-14 15:12:27,692 - log\train.log - INFO - iteration:21 step:60/131, NER loss: 9.158716
+2018-10-14 15:12:40,239 - log\train.log - INFO - iteration:21 step:100/131, NER loss: 9.400531
+2018-10-14 15:12:49,322 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:12:49,671 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 51 phrases; correct: 13.
+
+2018-10-14 15:12:49,672 - log\train.log - INFO - accuracy:  93.73%; precision:  25.49%; recall:   5.63%; FB1:   9.22
+
+2018-10-14 15:12:49,673 - log\train.log - INFO -               KEY: precision:  25.49%; recall:   5.63%; FB1:   9.22  51
+
+2018-10-14 15:12:49,674 - log\train.log - INFO - evaluate:test
+2018-10-14 15:12:50,369 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 155 phrases; correct: 39.
+
+2018-10-14 15:12:50,371 - log\train.log - INFO - accuracy:  93.93%; precision:  25.16%; recall:   8.94%; FB1:  13.20
+
+2018-10-14 15:12:50,372 - log\train.log - INFO -               KEY: precision:  25.16%; recall:   8.94%; FB1:  13.20  155
+
+2018-10-14 15:12:52,836 - log\train.log - INFO - iteration:22 step:9/131, NER loss: 9.745525
+2018-10-14 15:13:05,227 - log\train.log - INFO - iteration:22 step:49/131, NER loss: 9.633806
+2018-10-14 15:13:17,423 - log\train.log - INFO - iteration:22 step:89/131, NER loss: 8.912519
+2018-10-14 15:13:30,231 - log\train.log - INFO - iteration:22 step:129/131, NER loss: 9.499402
+2018-10-14 15:13:30,798 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:13:31,145 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 25 phrases; correct: 10.
+
+2018-10-14 15:13:31,146 - log\train.log - INFO - accuracy:  93.81%; precision:  40.00%; recall:   4.33%; FB1:   7.81
+
+2018-10-14 15:13:31,146 - log\train.log - INFO -               KEY: precision:  40.00%; recall:   4.33%; FB1:   7.81  25
+
+2018-10-14 15:13:31,148 - log\train.log - INFO - evaluate:test
+2018-10-14 15:13:31,842 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 67 phrases; correct: 23.
+
+2018-10-14 15:13:31,844 - log\train.log - INFO - accuracy:  94.36%; precision:  34.33%; recall:   5.28%; FB1:   9.15
+
+2018-10-14 15:13:31,845 - log\train.log - INFO -               KEY: precision:  34.33%; recall:   5.28%; FB1:   9.15  67
+
+2018-10-14 15:13:43,690 - log\train.log - INFO - iteration:23 step:38/131, NER loss: 8.466002
+2018-10-14 15:13:55,582 - log\train.log - INFO - iteration:23 step:78/131, NER loss: 8.169465
+2018-10-14 15:14:08,203 - log\train.log - INFO - iteration:23 step:118/131, NER loss: 9.483543
+2018-10-14 15:14:12,054 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:14:12,404 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 49 phrases; correct: 12.
+
+2018-10-14 15:14:12,406 - log\train.log - INFO - accuracy:  93.51%; precision:  24.49%; recall:   5.19%; FB1:   8.57
+
+2018-10-14 15:14:12,407 - log\train.log - INFO -               KEY: precision:  24.49%; recall:   5.19%; FB1:   8.57  49
+
+2018-10-14 15:14:12,408 - log\train.log - INFO - evaluate:test
+2018-10-14 15:14:13,106 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 133 phrases; correct: 34.
+
+2018-10-14 15:14:13,107 - log\train.log - INFO - accuracy:  93.98%; precision:  25.56%; recall:   7.80%; FB1:  11.95
+
+2018-10-14 15:14:13,109 - log\train.log - INFO -               KEY: precision:  25.56%; recall:   7.80%; FB1:  11.95  133
+
+2018-10-14 15:14:22,040 - log\train.log - INFO - iteration:24 step:27/131, NER loss: 9.356077
+2018-10-14 15:14:33,806 - log\train.log - INFO - iteration:24 step:67/131, NER loss: 7.819206
+2018-10-14 15:14:45,433 - log\train.log - INFO - iteration:24 step:107/131, NER loss: 8.145868
+2018-10-14 15:14:53,155 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:14:53,503 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 54 phrases; correct: 10.
+
+2018-10-14 15:14:53,504 - log\train.log - INFO - accuracy:  93.37%; precision:  18.52%; recall:   4.33%; FB1:   7.02
+
+2018-10-14 15:14:53,505 - log\train.log - INFO -               KEY: precision:  18.52%; recall:   4.33%; FB1:   7.02  54
+
+2018-10-14 15:14:53,506 - log\train.log - INFO - evaluate:test
+2018-10-14 15:14:54,203 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 136 phrases; correct: 33.
+
+2018-10-14 15:14:54,205 - log\train.log - INFO - accuracy:  94.14%; precision:  24.26%; recall:   7.57%; FB1:  11.54
+
+2018-10-14 15:14:54,206 - log\train.log - INFO -               KEY: precision:  24.26%; recall:   7.57%; FB1:  11.54  136
+
+2018-10-14 15:14:58,451 - log\train.log - INFO - iteration:25 step:16/131, NER loss: 7.489658
+2018-10-14 15:15:11,085 - log\train.log - INFO - iteration:25 step:56/131, NER loss: 7.469870
+2018-10-14 15:15:23,540 - log\train.log - INFO - iteration:25 step:96/131, NER loss: 7.716014
+2018-10-14 15:15:34,243 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:15:34,588 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 39 phrases; correct: 8.
+
+2018-10-14 15:15:34,590 - log\train.log - INFO - accuracy:  93.71%; precision:  20.51%; recall:   3.46%; FB1:   5.93
+
+2018-10-14 15:15:34,591 - log\train.log - INFO -               KEY: precision:  20.51%; recall:   3.46%; FB1:   5.93  39
+
+2018-10-14 15:15:34,593 - log\train.log - INFO - evaluate:test
+2018-10-14 15:15:35,292 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 129 phrases; correct: 40.
+
+2018-10-14 15:15:35,293 - log\train.log - INFO - accuracy:  94.19%; precision:  31.01%; recall:   9.17%; FB1:  14.16
+
+2018-10-14 15:15:35,293 - log\train.log - INFO -               KEY: precision:  31.01%; recall:   9.17%; FB1:  14.16  129
+
+2018-10-14 15:15:36,919 - log\train.log - INFO - iteration:26 step:5/131, NER loss: 7.888669
+2018-10-14 15:15:49,636 - log\train.log - INFO - iteration:26 step:45/131, NER loss: 7.798947
+2018-10-14 15:16:00,574 - log\train.log - INFO - iteration:26 step:85/131, NER loss: 6.547537
+2018-10-14 15:16:13,514 - log\train.log - INFO - iteration:26 step:125/131, NER loss: 8.593969
+2018-10-14 15:16:15,297 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:16:15,651 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 46 phrases; correct: 8.
+
+2018-10-14 15:16:15,652 - log\train.log - INFO - accuracy:  93.49%; precision:  17.39%; recall:   3.46%; FB1:   5.78
+
+2018-10-14 15:16:15,653 - log\train.log - INFO -               KEY: precision:  17.39%; recall:   3.46%; FB1:   5.78  46
+
+2018-10-14 15:16:15,654 - log\train.log - INFO - evaluate:test
+2018-10-14 15:16:16,361 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 119 phrases; correct: 29.
+
+2018-10-14 15:16:16,363 - log\train.log - INFO - accuracy:  93.87%; precision:  24.37%; recall:   6.65%; FB1:  10.45
+
+2018-10-14 15:16:16,364 - log\train.log - INFO -               KEY: precision:  24.37%; recall:   6.65%; FB1:  10.45  119
+
+2018-10-14 15:16:27,337 - log\train.log - INFO - iteration:27 step:34/131, NER loss: 7.229090
+2018-10-14 15:16:38,693 - log\train.log - INFO - iteration:27 step:74/131, NER loss: 6.895462
+2018-10-14 15:16:51,379 - log\train.log - INFO - iteration:27 step:114/131, NER loss: 6.836314
+2018-10-14 15:16:56,443 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:16:56,790 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 57 phrases; correct: 14.
+
+2018-10-14 15:16:56,791 - log\train.log - INFO - accuracy:  93.43%; precision:  24.56%; recall:   6.06%; FB1:   9.72
+
+2018-10-14 15:16:56,792 - log\train.log - INFO -               KEY: precision:  24.56%; recall:   6.06%; FB1:   9.72  57
+
+2018-10-14 15:16:56,794 - log\train.log - INFO - evaluate:test
+2018-10-14 15:16:57,486 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 123 phrases; correct: 30.
+
+2018-10-14 15:16:57,488 - log\train.log - INFO - accuracy:  94.15%; precision:  24.39%; recall:   6.88%; FB1:  10.73
+
+2018-10-14 15:16:57,489 - log\train.log - INFO -               KEY: precision:  24.39%; recall:   6.88%; FB1:  10.73  123
+
+2018-10-14 15:17:04,699 - log\train.log - INFO - iteration:28 step:23/131, NER loss: 6.471171
+2018-10-14 15:17:15,592 - log\train.log - INFO - iteration:28 step:63/131, NER loss: 6.715025
+2018-10-14 15:17:28,205 - log\train.log - INFO - iteration:28 step:103/131, NER loss: 7.671482
+2018-10-14 15:17:37,537 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:17:37,888 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 72 phrases; correct: 18.
+
+2018-10-14 15:17:37,889 - log\train.log - INFO - accuracy:  93.49%; precision:  25.00%; recall:   7.79%; FB1:  11.88
+
+2018-10-14 15:17:37,889 - log\train.log - INFO -               KEY: precision:  25.00%; recall:   7.79%; FB1:  11.88  72
+
+2018-10-14 15:17:37,890 - log\train.log - INFO - evaluate:test
+2018-10-14 15:17:38,581 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 172 phrases; correct: 43.
+
+2018-10-14 15:17:38,583 - log\train.log - INFO - accuracy:  93.72%; precision:  25.00%; recall:   9.86%; FB1:  14.14
+
+2018-10-14 15:17:38,584 - log\train.log - INFO -               KEY: precision:  25.00%; recall:   9.86%; FB1:  14.14  172
+
+2018-10-14 15:17:41,709 - log\train.log - INFO - iteration:29 step:12/131, NER loss: 6.291183
+2018-10-14 15:17:53,177 - log\train.log - INFO - iteration:29 step:52/131, NER loss: 6.042948
+2018-10-14 15:18:05,372 - log\train.log - INFO - iteration:29 step:92/131, NER loss: 6.543811
+2018-10-14 15:18:18,618 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:18:18,967 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 19 phrases; correct: 1.
+
+2018-10-14 15:18:18,968 - log\train.log - INFO - accuracy:  93.46%; precision:   5.26%; recall:   0.43%; FB1:   0.80
+
+2018-10-14 15:18:18,969 - log\train.log - INFO -               KEY: precision:   5.26%; recall:   0.43%; FB1:   0.80  19
+
+2018-10-14 15:18:18,970 - log\train.log - INFO - evaluate:test
+2018-10-14 15:18:19,669 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 37 phrases; correct: 13.
+
+2018-10-14 15:18:19,670 - log\train.log - INFO - accuracy:  94.34%; precision:  35.14%; recall:   2.98%; FB1:   5.50
+
+2018-10-14 15:18:19,672 - log\train.log - INFO -               KEY: precision:  35.14%; recall:   2.98%; FB1:   5.50  37
+
+2018-10-14 15:18:19,903 - log\train.log - INFO - iteration:30 step:1/131, NER loss: 7.420548
+2018-10-14 15:18:32,475 - log\train.log - INFO - iteration:30 step:41/131, NER loss: 6.918272
+2018-10-14 15:18:43,822 - log\train.log - INFO - iteration:30 step:81/131, NER loss: 5.942358
+2018-10-14 15:18:55,833 - log\train.log - INFO - iteration:30 step:121/131, NER loss: 5.709622
+2018-10-14 15:18:59,750 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:19:00,100 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 60 phrases; correct: 15.
+
+2018-10-14 15:19:00,101 - log\train.log - INFO - accuracy:  93.62%; precision:  25.00%; recall:   6.49%; FB1:  10.31
+
+2018-10-14 15:19:00,101 - log\train.log - INFO -               KEY: precision:  25.00%; recall:   6.49%; FB1:  10.31  60
+
+2018-10-14 15:19:00,102 - log\train.log - INFO - evaluate:test
+2018-10-14 15:19:00,799 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 129 phrases; correct: 38.
+
+2018-10-14 15:19:00,800 - log\train.log - INFO - accuracy:  94.14%; precision:  29.46%; recall:   8.72%; FB1:  13.45
+
+2018-10-14 15:19:00,802 - log\train.log - INFO -               KEY: precision:  29.46%; recall:   8.72%; FB1:  13.45  129
+
+2018-10-14 15:19:10,265 - log\train.log - INFO - iteration:31 step:30/131, NER loss: 6.018149
+2018-10-14 15:19:23,155 - log\train.log - INFO - iteration:31 step:70/131, NER loss: 5.924003
+2018-10-14 15:19:34,981 - log\train.log - INFO - iteration:31 step:110/131, NER loss: 6.128388
+2018-10-14 15:19:40,849 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:19:41,195 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 51 phrases; correct: 14.
+
+2018-10-14 15:19:41,196 - log\train.log - INFO - accuracy:  93.76%; precision:  27.45%; recall:   6.06%; FB1:   9.93
+
+2018-10-14 15:19:41,197 - log\train.log - INFO -               KEY: precision:  27.45%; recall:   6.06%; FB1:   9.93  51
+
+2018-10-14 15:19:41,198 - log\train.log - INFO - evaluate:test
+2018-10-14 15:19:41,892 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 135 phrases; correct: 45.
+
+2018-10-14 15:19:41,893 - log\train.log - INFO - accuracy:  94.48%; precision:  33.33%; recall:  10.32%; FB1:  15.76
+
+2018-10-14 15:19:41,894 - log\train.log - INFO -               KEY: precision:  33.33%; recall:  10.32%; FB1:  15.76  135
+
+2018-10-14 15:19:41,944 - log\train.log - INFO - new best test f1 score:15.760
+2018-10-14 15:19:47,339 - log\train.log - INFO - iteration:32 step:19/131, NER loss: 5.479426
+2018-10-14 15:19:59,255 - log\train.log - INFO - iteration:32 step:59/131, NER loss: 5.914855
+2018-10-14 15:20:12,168 - log\train.log - INFO - iteration:32 step:99/131, NER loss: 6.932098
+2018-10-14 15:20:21,993 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:20:22,338 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 84 phrases; correct: 12.
+
+2018-10-14 15:20:22,339 - log\train.log - INFO - accuracy:  93.13%; precision:  14.29%; recall:   5.19%; FB1:   7.62
+
+2018-10-14 15:20:22,340 - log\train.log - INFO -               KEY: precision:  14.29%; recall:   5.19%; FB1:   7.62  84
+
+2018-10-14 15:20:22,341 - log\train.log - INFO - evaluate:test
+2018-10-14 15:20:23,048 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 212 phrases; correct: 51.
+
+2018-10-14 15:20:23,049 - log\train.log - INFO - accuracy:  93.78%; precision:  24.06%; recall:  11.70%; FB1:  15.74
+
+2018-10-14 15:20:23,051 - log\train.log - INFO -               KEY: precision:  24.06%; recall:  11.70%; FB1:  15.74  212
+
+2018-10-14 15:20:25,956 - log\train.log - INFO - iteration:33 step:8/131, NER loss: 5.081603
+2018-10-14 15:20:37,701 - log\train.log - INFO - iteration:33 step:48/131, NER loss: 4.739705
+2018-10-14 15:20:49,645 - log\train.log - INFO - iteration:33 step:88/131, NER loss: 5.571906
+2018-10-14 15:21:02,053 - log\train.log - INFO - iteration:33 step:128/131, NER loss: 4.903911
+2018-10-14 15:21:03,089 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:21:03,438 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 100 phrases; correct: 15.
+
+2018-10-14 15:21:03,440 - log\train.log - INFO - accuracy:  92.84%; precision:  15.00%; recall:   6.49%; FB1:   9.06
+
+2018-10-14 15:21:03,441 - log\train.log - INFO -               KEY: precision:  15.00%; recall:   6.49%; FB1:   9.06  100
+
+2018-10-14 15:21:03,442 - log\train.log - INFO - evaluate:test
+2018-10-14 15:21:04,134 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 220 phrases; correct: 45.
+
+2018-10-14 15:21:04,136 - log\train.log - INFO - accuracy:  93.49%; precision:  20.45%; recall:  10.32%; FB1:  13.72
+
+2018-10-14 15:21:04,137 - log\train.log - INFO -               KEY: precision:  20.45%; recall:  10.32%; FB1:  13.72  220
+
+2018-10-14 15:21:15,523 - log\train.log - INFO - iteration:34 step:37/131, NER loss: 4.979365
+2018-10-14 15:21:28,103 - log\train.log - INFO - iteration:34 step:77/131, NER loss: 5.033711
+2018-10-14 15:21:40,469 - log\train.log - INFO - iteration:34 step:117/131, NER loss: 4.974393
+2018-10-14 15:21:44,189 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:21:44,537 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 77 phrases; correct: 17.
+
+2018-10-14 15:21:44,538 - log\train.log - INFO - accuracy:  93.52%; precision:  22.08%; recall:   7.36%; FB1:  11.04
+
+2018-10-14 15:21:44,538 - log\train.log - INFO -               KEY: precision:  22.08%; recall:   7.36%; FB1:  11.04  77
+
+2018-10-14 15:21:44,540 - log\train.log - INFO - evaluate:test
+2018-10-14 15:21:45,231 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 194 phrases; correct: 48.
+
+2018-10-14 15:21:45,232 - log\train.log - INFO - accuracy:  93.89%; precision:  24.74%; recall:  11.01%; FB1:  15.24
+
+2018-10-14 15:21:45,233 - log\train.log - INFO -               KEY: precision:  24.74%; recall:  11.01%; FB1:  15.24  194
+
+2018-10-14 15:21:53,899 - log\train.log - INFO - iteration:35 step:26/131, NER loss: 4.328523
+2018-10-14 15:22:06,116 - log\train.log - INFO - iteration:35 step:66/131, NER loss: 5.725616
+2018-10-14 15:22:17,403 - log\train.log - INFO - iteration:35 step:106/131, NER loss: 5.308134
+2018-10-14 15:22:25,288 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:22:25,637 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 36 phrases; correct: 7.
+
+2018-10-14 15:22:25,637 - log\train.log - INFO - accuracy:  93.42%; precision:  19.44%; recall:   3.03%; FB1:   5.24
+
+2018-10-14 15:22:25,638 - log\train.log - INFO -               KEY: precision:  19.44%; recall:   3.03%; FB1:   5.24  36
+
+2018-10-14 15:22:25,640 - log\train.log - INFO - evaluate:test
+2018-10-14 15:22:26,337 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 93 phrases; correct: 20.
+
+2018-10-14 15:22:26,338 - log\train.log - INFO - accuracy:  94.10%; precision:  21.51%; recall:   4.59%; FB1:   7.56
+
+2018-10-14 15:22:26,340 - log\train.log - INFO -               KEY: precision:  21.51%; recall:   4.59%; FB1:   7.56  93
+
+2018-10-14 15:22:31,202 - log\train.log - INFO - iteration:36 step:15/131, NER loss: 5.113758
+2018-10-14 15:22:42,410 - log\train.log - INFO - iteration:36 step:55/131, NER loss: 4.182853
+2018-10-14 15:22:54,780 - log\train.log - INFO - iteration:36 step:95/131, NER loss: 5.288597
+2018-10-14 15:23:06,362 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:23:06,711 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 97 phrases; correct: 20.
+
+2018-10-14 15:23:06,712 - log\train.log - INFO - accuracy:  93.19%; precision:  20.62%; recall:   8.66%; FB1:  12.20
+
+2018-10-14 15:23:06,713 - log\train.log - INFO -               KEY: precision:  20.62%; recall:   8.66%; FB1:  12.20  97
+
+2018-10-14 15:23:06,714 - log\train.log - INFO - evaluate:test
+2018-10-14 15:23:07,406 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 237 phrases; correct: 40.
+
+2018-10-14 15:23:07,408 - log\train.log - INFO - accuracy:  93.19%; precision:  16.88%; recall:   9.17%; FB1:  11.89
+
+2018-10-14 15:23:07,409 - log\train.log - INFO -               KEY: precision:  16.88%; recall:   9.17%; FB1:  11.89  237
+
+2018-10-14 15:23:08,747 - log\train.log - INFO - iteration:37 step:4/131, NER loss: 5.270090
+2018-10-14 15:23:21,042 - log\train.log - INFO - iteration:37 step:44/131, NER loss: 4.216215
+2018-10-14 15:23:33,996 - log\train.log - INFO - iteration:37 step:84/131, NER loss: 4.552250
+2018-10-14 15:23:45,917 - log\train.log - INFO - iteration:37 step:124/131, NER loss: 4.585312
+2018-10-14 15:23:47,454 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:23:47,806 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 94 phrases; correct: 19.
+
+2018-10-14 15:23:47,807 - log\train.log - INFO - accuracy:  93.15%; precision:  20.21%; recall:   8.23%; FB1:  11.69
+
+2018-10-14 15:23:47,807 - log\train.log - INFO -               KEY: precision:  20.21%; recall:   8.23%; FB1:  11.69  94
+
+2018-10-14 15:23:47,808 - log\train.log - INFO - evaluate:test
+2018-10-14 15:23:48,499 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 216 phrases; correct: 43.
+
+2018-10-14 15:23:48,501 - log\train.log - INFO - accuracy:  93.37%; precision:  19.91%; recall:   9.86%; FB1:  13.19
+
+2018-10-14 15:23:48,502 - log\train.log - INFO -               KEY: precision:  19.91%; recall:   9.86%; FB1:  13.19  216
+
+2018-10-14 15:23:58,805 - log\train.log - INFO - iteration:38 step:33/131, NER loss: 4.480674
+2018-10-14 15:24:09,889 - log\train.log - INFO - iteration:38 step:73/131, NER loss: 4.068324
+2018-10-14 15:24:22,897 - log\train.log - INFO - iteration:38 step:113/131, NER loss: 4.160096
+2018-10-14 15:24:28,697 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:24:29,043 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 63 phrases; correct: 10.
+
+2018-10-14 15:24:29,044 - log\train.log - INFO - accuracy:  93.66%; precision:  15.87%; recall:   4.33%; FB1:   6.80
+
+2018-10-14 15:24:29,045 - log\train.log - INFO -               KEY: precision:  15.87%; recall:   4.33%; FB1:   6.80  63
+
+2018-10-14 15:24:29,046 - log\train.log - INFO - evaluate:test
+2018-10-14 15:24:29,749 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 165 phrases; correct: 37.
+
+2018-10-14 15:24:29,751 - log\train.log - INFO - accuracy:  93.88%; precision:  22.42%; recall:   8.49%; FB1:  12.31
+
+2018-10-14 15:24:29,752 - log\train.log - INFO -               KEY: precision:  22.42%; recall:   8.49%; FB1:  12.31  165
+
+2018-10-14 15:24:36,588 - log\train.log - INFO - iteration:39 step:22/131, NER loss: 3.647175
+2018-10-14 15:24:49,107 - log\train.log - INFO - iteration:39 step:62/131, NER loss: 4.578580
+2018-10-14 15:25:01,491 - log\train.log - INFO - iteration:39 step:102/131, NER loss: 4.259575
+2018-10-14 15:25:09,856 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:25:10,202 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 88 phrases; correct: 13.
+
+2018-10-14 15:25:10,204 - log\train.log - INFO - accuracy:  92.65%; precision:  14.77%; recall:   5.63%; FB1:   8.15
+
+2018-10-14 15:25:10,205 - log\train.log - INFO -               KEY: precision:  14.77%; recall:   5.63%; FB1:   8.15  88
+
+2018-10-14 15:25:10,206 - log\train.log - INFO - evaluate:test
+2018-10-14 15:25:10,899 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 192 phrases; correct: 35.
+
+2018-10-14 15:25:10,901 - log\train.log - INFO - accuracy:  93.31%; precision:  18.23%; recall:   8.03%; FB1:  11.15
+
+2018-10-14 15:25:10,902 - log\train.log - INFO -               KEY: precision:  18.23%; recall:   8.03%; FB1:  11.15  192
+
+2018-10-14 15:25:14,344 - log\train.log - INFO - iteration:40 step:11/131, NER loss: 4.010980
+2018-10-14 15:25:26,617 - log\train.log - INFO - iteration:40 step:51/131, NER loss: 3.582181
+2018-10-14 15:25:38,190 - log\train.log - INFO - iteration:40 step:91/131, NER loss: 4.445424
+2018-10-14 15:25:50,944 - log\train.log - INFO - iteration:41 step:0/131, NER loss: 4.090058
+2018-10-14 15:25:50,945 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:25:51,291 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 73 phrases; correct: 16.
+
+2018-10-14 15:25:51,292 - log\train.log - INFO - accuracy:  93.29%; precision:  21.92%; recall:   6.93%; FB1:  10.53
+
+2018-10-14 15:25:51,293 - log\train.log - INFO -               KEY: precision:  21.92%; recall:   6.93%; FB1:  10.53  73
+
+2018-10-14 15:25:51,294 - log\train.log - INFO - evaluate:test
+2018-10-14 15:25:51,980 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 178 phrases; correct: 36.
+
+2018-10-14 15:25:51,981 - log\train.log - INFO - accuracy:  93.73%; precision:  20.22%; recall:   8.26%; FB1:  11.73
+
+2018-10-14 15:25:51,983 - log\train.log - INFO -               KEY: precision:  20.22%; recall:   8.26%; FB1:  11.73  178
+
+2018-10-14 15:26:04,603 - log\train.log - INFO - iteration:41 step:40/131, NER loss: 3.523763
+2018-10-14 15:26:16,520 - log\train.log - INFO - iteration:41 step:80/131, NER loss: 3.715932
+2018-10-14 15:26:29,010 - log\train.log - INFO - iteration:41 step:120/131, NER loss: 4.378951
+2018-10-14 15:26:32,030 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:26:32,376 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 44 phrases; correct: 9.
+
+2018-10-14 15:26:32,378 - log\train.log - INFO - accuracy:  93.64%; precision:  20.45%; recall:   3.90%; FB1:   6.55
+
+2018-10-14 15:26:32,378 - log\train.log - INFO -               KEY: precision:  20.45%; recall:   3.90%; FB1:   6.55  44
+
+2018-10-14 15:26:32,379 - log\train.log - INFO - evaluate:test
+2018-10-14 15:26:33,076 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 130 phrases; correct: 28.
+
+2018-10-14 15:26:33,078 - log\train.log - INFO - accuracy:  93.92%; precision:  21.54%; recall:   6.42%; FB1:   9.89
+
+2018-10-14 15:26:33,079 - log\train.log - INFO -               KEY: precision:  21.54%; recall:   6.42%; FB1:   9.89  130
+
+2018-10-14 15:26:41,522 - log\train.log - INFO - iteration:42 step:29/131, NER loss: 3.193356
+2018-10-14 15:26:55,083 - log\train.log - INFO - iteration:42 step:69/131, NER loss: 4.936715
+2018-10-14 15:27:07,423 - log\train.log - INFO - iteration:42 step:109/131, NER loss: 4.080860
+2018-10-14 15:27:13,115 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:27:13,461 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 46 phrases; correct: 7.
+
+2018-10-14 15:27:13,463 - log\train.log - INFO - accuracy:  93.31%; precision:  15.22%; recall:   3.03%; FB1:   5.05
+
+2018-10-14 15:27:13,464 - log\train.log - INFO -               KEY: precision:  15.22%; recall:   3.03%; FB1:   5.05  46
+
+2018-10-14 15:27:13,465 - log\train.log - INFO - evaluate:test
+2018-10-14 15:27:14,158 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 112 phrases; correct: 25.
+
+2018-10-14 15:27:14,160 - log\train.log - INFO - accuracy:  93.88%; precision:  22.32%; recall:   5.73%; FB1:   9.12
+
+2018-10-14 15:27:14,161 - log\train.log - INFO -               KEY: precision:  22.32%; recall:   5.73%; FB1:   9.12  112
+
+2018-10-14 15:27:19,579 - log\train.log - INFO - iteration:43 step:18/131, NER loss: 4.348457
+2018-10-14 15:27:31,004 - log\train.log - INFO - iteration:43 step:58/131, NER loss: 3.732684
+2018-10-14 15:27:43,784 - log\train.log - INFO - iteration:43 step:98/131, NER loss: 3.406355
+2018-10-14 15:27:54,172 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:27:54,516 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 78 phrases; correct: 16.
+
+2018-10-14 15:27:54,517 - log\train.log - INFO - accuracy:  93.57%; precision:  20.51%; recall:   6.93%; FB1:  10.36
+
+2018-10-14 15:27:54,518 - log\train.log - INFO -               KEY: precision:  20.51%; recall:   6.93%; FB1:  10.36  78
+
+2018-10-14 15:27:54,520 - log\train.log - INFO - evaluate:test
+2018-10-14 15:27:55,208 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 193 phrases; correct: 37.
+
+2018-10-14 15:27:55,210 - log\train.log - INFO - accuracy:  93.66%; precision:  19.17%; recall:   8.49%; FB1:  11.76
+
+2018-10-14 15:27:55,211 - log\train.log - INFO -               KEY: precision:  19.17%; recall:   8.49%; FB1:  11.76  193
+
+2018-10-14 15:27:56,908 - log\train.log - INFO - iteration:44 step:7/131, NER loss: 3.481110
+2018-10-14 15:28:08,158 - log\train.log - INFO - iteration:44 step:47/131, NER loss: 3.268411
+2018-10-14 15:28:21,821 - log\train.log - INFO - iteration:44 step:87/131, NER loss: 3.774833
+2018-10-14 15:28:34,352 - log\train.log - INFO - iteration:44 step:127/131, NER loss: 3.659898
+2018-10-14 15:28:35,249 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:28:35,597 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 56 phrases; correct: 9.
+
+2018-10-14 15:28:35,599 - log\train.log - INFO - accuracy:  93.44%; precision:  16.07%; recall:   3.90%; FB1:   6.27
+
+2018-10-14 15:28:35,600 - log\train.log - INFO -               KEY: precision:  16.07%; recall:   3.90%; FB1:   6.27  56
+
+2018-10-14 15:28:35,601 - log\train.log - INFO - evaluate:test
+2018-10-14 15:28:36,291 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 133 phrases; correct: 32.
+
+2018-10-14 15:28:36,293 - log\train.log - INFO - accuracy:  93.92%; precision:  24.06%; recall:   7.34%; FB1:  11.25
+
+2018-10-14 15:28:36,294 - log\train.log - INFO -               KEY: precision:  24.06%; recall:   7.34%; FB1:  11.25  133
+
+2018-10-14 15:28:46,905 - log\train.log - INFO - iteration:45 step:36/131, NER loss: 2.883231
+2018-10-14 15:29:00,304 - log\train.log - INFO - iteration:45 step:76/131, NER loss: 3.146832
+2018-10-14 15:29:12,230 - log\train.log - INFO - iteration:45 step:116/131, NER loss: 3.687092
+2018-10-14 15:29:16,447 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:29:16,792 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 28 phrases; correct: 6.
+
+2018-10-14 15:29:16,793 - log\train.log - INFO - accuracy:  93.65%; precision:  21.43%; recall:   2.60%; FB1:   4.63
+
+2018-10-14 15:29:16,795 - log\train.log - INFO -               KEY: precision:  21.43%; recall:   2.60%; FB1:   4.63  28
+
+2018-10-14 15:29:16,796 - log\train.log - INFO - evaluate:test
+2018-10-14 15:29:17,492 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 93 phrases; correct: 19.
+
+2018-10-14 15:29:17,494 - log\train.log - INFO - accuracy:  93.95%; precision:  20.43%; recall:   4.36%; FB1:   7.18
+
+2018-10-14 15:29:17,495 - log\train.log - INFO -               KEY: precision:  20.43%; recall:   4.36%; FB1:   7.18  93
+
+2018-10-14 15:29:24,637 - log\train.log - INFO - iteration:46 step:25/131, NER loss: 3.264179
+2018-10-14 15:29:37,292 - log\train.log - INFO - iteration:46 step:65/131, NER loss: 4.184541
+2018-10-14 15:29:49,743 - log\train.log - INFO - iteration:46 step:105/131, NER loss: 3.595683
+2018-10-14 15:29:57,527 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:29:57,874 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 29 phrases; correct: 6.
+
+2018-10-14 15:29:57,875 - log\train.log - INFO - accuracy:  93.69%; precision:  20.69%; recall:   2.60%; FB1:   4.62
+
+2018-10-14 15:29:57,875 - log\train.log - INFO -               KEY: precision:  20.69%; recall:   2.60%; FB1:   4.62  29
+
+2018-10-14 15:29:57,876 - log\train.log - INFO - evaluate:test
+2018-10-14 15:29:58,570 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 92 phrases; correct: 20.
+
+2018-10-14 15:29:58,572 - log\train.log - INFO - accuracy:  93.95%; precision:  21.74%; recall:   4.59%; FB1:   7.58
+
+2018-10-14 15:29:58,573 - log\train.log - INFO -               KEY: precision:  21.74%; recall:   4.59%; FB1:   7.58  92
+
+2018-10-14 15:30:03,058 - log\train.log - INFO - iteration:47 step:14/131, NER loss: 3.289797
+2018-10-14 15:30:14,899 - log\train.log - INFO - iteration:47 step:54/131, NER loss: 3.610352
+2018-10-14 15:30:27,448 - log\train.log - INFO - iteration:47 step:94/131, NER loss: 3.029027
+2018-10-14 15:30:38,941 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:30:39,289 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 41 phrases; correct: 9.
+
+2018-10-14 15:30:39,291 - log\train.log - INFO - accuracy:  93.88%; precision:  21.95%; recall:   3.90%; FB1:   6.62
+
+2018-10-14 15:30:39,292 - log\train.log - INFO -               KEY: precision:  21.95%; recall:   3.90%; FB1:   6.62  41
+
+2018-10-14 15:30:39,293 - log\train.log - INFO - evaluate:test
+2018-10-14 15:30:39,980 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 93 phrases; correct: 29.
+
+2018-10-14 15:30:39,982 - log\train.log - INFO - accuracy:  94.10%; precision:  31.18%; recall:   6.65%; FB1:  10.96
+
+2018-10-14 15:30:39,983 - log\train.log - INFO -               KEY: precision:  31.18%; recall:   6.65%; FB1:  10.96  93
+
+2018-10-14 15:30:41,063 - log\train.log - INFO - iteration:48 step:3/131, NER loss: 3.792200
+2018-10-14 15:30:52,861 - log\train.log - INFO - iteration:48 step:43/131, NER loss: 2.870540
+2018-10-14 15:31:04,403 - log\train.log - INFO - iteration:48 step:83/131, NER loss: 3.292590
+2018-10-14 15:31:16,796 - log\train.log - INFO - iteration:48 step:123/131, NER loss: 3.302510
+2018-10-14 15:31:20,002 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:31:20,350 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 32 phrases; correct: 7.
+
+2018-10-14 15:31:20,351 - log\train.log - INFO - accuracy:  93.69%; precision:  21.88%; recall:   3.03%; FB1:   5.32
+
+2018-10-14 15:31:20,352 - log\train.log - INFO -               KEY: precision:  21.88%; recall:   3.03%; FB1:   5.32  32
+
+2018-10-14 15:31:20,353 - log\train.log - INFO - evaluate:test
+2018-10-14 15:31:21,045 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 124 phrases; correct: 29.
+
+2018-10-14 15:31:21,046 - log\train.log - INFO - accuracy:  93.93%; precision:  23.39%; recall:   6.65%; FB1:  10.36
+
+2018-10-14 15:31:21,047 - log\train.log - INFO -               KEY: precision:  23.39%; recall:   6.65%; FB1:  10.36  124
+
+2018-10-14 15:31:31,171 - log\train.log - INFO - iteration:49 step:32/131, NER loss: 2.841048
+2018-10-14 15:31:44,154 - log\train.log - INFO - iteration:49 step:72/131, NER loss: 3.205240
+2018-10-14 15:31:55,367 - log\train.log - INFO - iteration:49 step:112/131, NER loss: 2.754300
+2018-10-14 15:32:01,046 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:32:01,400 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 106 phrases; correct: 18.
+
+2018-10-14 15:32:01,402 - log\train.log - INFO - accuracy:  92.82%; precision:  16.98%; recall:   7.79%; FB1:  10.68
+
+2018-10-14 15:32:01,403 - log\train.log - INFO -               KEY: precision:  16.98%; recall:   7.79%; FB1:  10.68  106
+
+2018-10-14 15:32:01,404 - log\train.log - INFO - evaluate:test
+2018-10-14 15:32:02,097 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 279 phrases; correct: 58.
+
+2018-10-14 15:32:02,099 - log\train.log - INFO - accuracy:  92.98%; precision:  20.79%; recall:  13.30%; FB1:  16.22
+
+2018-10-14 15:32:02,100 - log\train.log - INFO -               KEY: precision:  20.79%; recall:  13.30%; FB1:  16.22  279
+
+2018-10-14 15:32:02,149 - log\train.log - INFO - new best test f1 score:16.220
+2018-10-14 15:32:08,732 - log\train.log - INFO - iteration:50 step:21/131, NER loss: 2.852154
+2018-10-14 15:32:20,511 - log\train.log - INFO - iteration:50 step:61/131, NER loss: 3.443918
+2018-10-14 15:32:32,187 - log\train.log - INFO - iteration:50 step:101/131, NER loss: 3.268981
+2018-10-14 15:32:42,189 - log\train.log - INFO - evaluate:dev
+2018-10-14 15:32:42,536 - log\train.log - INFO - processed 12973 tokens with 231 phrases; found: 44 phrases; correct: 9.
+
+2018-10-14 15:32:42,538 - log\train.log - INFO - accuracy:  93.56%; precision:  20.45%; recall:   3.90%; FB1:   6.55
+
+2018-10-14 15:32:42,539 - log\train.log - INFO -               KEY: precision:  20.45%; recall:   3.90%; FB1:   6.55  44
+
+2018-10-14 15:32:42,541 - log\train.log - INFO - evaluate:test
+2018-10-14 15:32:43,233 - log\train.log - INFO - processed 26862 tokens with 436 phrases; found: 106 phrases; correct: 27.
+
+2018-10-14 15:32:43,234 - log\train.log - INFO - accuracy:  94.27%; precision:  25.47%; recall:   6.19%; FB1:   9.96
+
+2018-10-14 15:32:43,234 - log\train.log - INFO -               KEY: precision:  25.47%; recall:   6.19%; FB1:   9.96  106
+

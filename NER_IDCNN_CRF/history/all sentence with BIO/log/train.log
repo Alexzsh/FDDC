@@ -1,0 +1,1965 @@
+2018-09-11 15:18:43,349 - log\train.log - INFO - model_type     :	bilstm
+2018-09-11 15:18:43,349 - log\train.log - INFO - num_chars      :	3404
+2018-09-11 15:18:43,349 - log\train.log - INFO - char_dim       :	100
+2018-09-11 15:18:43,349 - log\train.log - INFO - num_tags       :	13
+2018-09-11 15:18:43,350 - log\train.log - INFO - seg_dim        :	20
+2018-09-11 15:18:43,350 - log\train.log - INFO - lstm_dim       :	100
+2018-09-11 15:18:43,350 - log\train.log - INFO - batch_size     :	5
+2018-09-11 15:18:43,350 - log\train.log - INFO - emb_file       :	data\vec.txt
+2018-09-11 15:18:43,351 - log\train.log - INFO - clip           :	5.0
+2018-09-11 15:18:43,351 - log\train.log - INFO - dropout_keep   :	0.5
+2018-09-11 15:18:43,351 - log\train.log - INFO - optimizer      :	adam
+2018-09-11 15:18:43,352 - log\train.log - INFO - lr             :	0.001
+2018-09-11 15:18:43,352 - log\train.log - INFO - tag_schema     :	iobes
+2018-09-11 15:18:43,352 - log\train.log - INFO - pre_emb        :	True
+2018-09-11 15:18:43,353 - log\train.log - INFO - zeros          :	False
+2018-09-11 15:18:43,353 - log\train.log - INFO - lower          :	True
+2018-09-11 15:18:48,730 - log\train.log - INFO - Created model with fresh parameters.
+2018-09-11 15:18:50,305 - log\train.log - INFO - Load pre-trained embedding.
+2018-09-11 15:18:50,306 - log\train.log - INFO - start training
+2018-09-11 15:24:13,684 - log\train.log - INFO - iteration:1 step:50/840, NER loss:771.423462
+2018-09-11 15:28:39,165 - log\train.log - INFO - iteration:1 step:100/840, NER loss:216.786362
+2018-09-11 15:32:22,337 - log\train.log - INFO - iteration:1 step:150/840, NER loss:183.891022
+2018-09-11 15:37:13,948 - log\train.log - INFO - iteration:1 step:200/840, NER loss:159.609467
+2018-09-11 15:42:27,341 - log\train.log - INFO - iteration:1 step:250/840, NER loss:152.197220
+2018-09-11 15:46:37,192 - log\train.log - INFO - iteration:1 step:300/840, NER loss:130.075623
+2018-09-11 15:51:35,457 - log\train.log - INFO - iteration:1 step:350/840, NER loss:115.466331
+2018-09-11 15:55:15,051 - log\train.log - INFO - iteration:1 step:400/840, NER loss:99.343094
+2018-09-11 15:59:34,017 - log\train.log - INFO - iteration:1 step:450/840, NER loss:82.911179
+2018-09-11 16:03:40,493 - log\train.log - INFO - iteration:1 step:500/840, NER loss:75.552048
+2018-09-11 16:08:04,226 - log\train.log - INFO - iteration:1 step:550/840, NER loss:79.341438
+2018-09-11 16:12:20,792 - log\train.log - INFO - iteration:1 step:600/840, NER loss:75.164680
+2018-09-11 16:16:33,074 - log\train.log - INFO - iteration:1 step:650/840, NER loss:69.007896
+2018-09-11 16:21:23,655 - log\train.log - INFO - iteration:1 step:700/840, NER loss:63.225693
+2018-09-11 16:26:11,252 - log\train.log - INFO - iteration:1 step:750/840, NER loss:57.541382
+2018-09-11 16:30:29,810 - log\train.log - INFO - iteration:1 step:800/840, NER loss:52.373871
+2018-09-11 16:33:40,860 - log\train.log - INFO - evaluate:dev
+2018-09-11 16:34:14,621 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2022 phrases; correct: 867.
+
+2018-09-11 16:34:14,622 - log\train.log - INFO - accuracy:  95.88%; precision:  42.88%; recall:  36.83%; FB1:  39.63
+
+2018-09-11 16:34:14,622 - log\train.log - INFO -            hetong: precision:  15.42%; recall:  15.21%; FB1:  15.31  214
+
+2018-09-11 16:34:14,623 - log\train.log - INFO -           jiafang: precision:  47.16%; recall:  36.14%; FB1:  40.92  528
+
+2018-09-11 16:34:14,624 - log\train.log - INFO -           xiangmu: precision:  25.84%; recall:  11.51%; FB1:  15.93  209
+
+2018-09-11 16:34:14,624 - log\train.log - INFO -            yifang: precision:  49.58%; recall:  54.24%; FB1:  51.80  1071
+
+2018-09-11 16:34:14,743 - log\train.log - INFO - new best dev f1 score:39.630
+2018-09-11 16:34:15,433 - log\train.log - INFO - model saved
+2018-09-11 16:34:15,433 - log\train.log - INFO - evaluate:test
+2018-09-11 16:35:07,297 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3213 phrases; correct: 1289.
+
+2018-09-11 16:35:07,298 - log\train.log - INFO - accuracy:  96.56%; precision:  40.12%; recall:  40.43%; FB1:  40.27
+
+2018-09-11 16:35:07,298 - log\train.log - INFO -            hetong: precision:  11.03%; recall:  13.65%; FB1:  12.20  390
+
+2018-09-11 16:35:07,298 - log\train.log - INFO -           jiafang: precision:  50.41%; recall:  39.91%; FB1:  44.55  738
+
+2018-09-11 16:35:07,298 - log\train.log - INFO -           xiangmu: precision:  25.00%; recall:  11.22%; FB1:  15.49  284
+
+2018-09-11 16:35:07,298 - log\train.log - INFO -            yifang: precision:  44.59%; recall:  61.39%; FB1:  51.66  1801
+
+2018-09-11 16:35:07,415 - log\train.log - INFO - new best test f1 score:40.270
+2018-09-11 16:35:59,700 - log\train.log - INFO - iteration:2 step:10/840, NER loss:47.985249
+2018-09-11 16:40:13,619 - log\train.log - INFO - iteration:2 step:60/840, NER loss:47.186256
+2018-09-11 16:45:00,095 - log\train.log - INFO - iteration:2 step:110/840, NER loss:44.522263
+2018-09-11 16:48:49,818 - log\train.log - INFO - iteration:2 step:160/840, NER loss:37.852100
+2018-09-11 16:53:35,676 - log\train.log - INFO - iteration:2 step:210/840, NER loss:45.355049
+2018-09-11 16:58:36,764 - log\train.log - INFO - iteration:2 step:260/840, NER loss:41.046024
+2018-09-11 17:03:19,395 - log\train.log - INFO - iteration:2 step:310/840, NER loss:37.405472
+2018-09-11 17:08:14,931 - log\train.log - INFO - iteration:2 step:360/840, NER loss:34.396591
+2018-09-11 17:13:32,871 - log\train.log - INFO - iteration:2 step:410/840, NER loss:35.406567
+2018-09-11 17:17:56,898 - log\train.log - INFO - iteration:2 step:460/840, NER loss:33.608288
+2018-09-11 17:21:54,505 - log\train.log - INFO - iteration:2 step:510/840, NER loss:30.500404
+2018-09-11 17:26:45,778 - log\train.log - INFO - iteration:2 step:560/840, NER loss:32.277428
+2018-09-11 17:30:49,757 - log\train.log - INFO - iteration:2 step:610/840, NER loss:28.799322
+2018-09-11 17:35:35,874 - log\train.log - INFO - iteration:2 step:660/840, NER loss:29.667542
+2018-09-11 17:40:22,443 - log\train.log - INFO - iteration:2 step:710/840, NER loss:31.091425
+2018-09-11 17:43:53,040 - log\train.log - INFO - iteration:2 step:760/840, NER loss:24.947842
+2018-09-11 17:48:14,179 - log\train.log - INFO - iteration:2 step:810/840, NER loss:25.870562
+2018-09-11 17:50:21,645 - log\train.log - INFO - evaluate:dev
+2018-09-11 17:50:54,025 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1373 phrases; correct: 886.
+
+2018-09-11 17:50:54,026 - log\train.log - INFO - accuracy:  96.31%; precision:  64.53%; recall:  37.64%; FB1:  47.54
+
+2018-09-11 17:50:54,028 - log\train.log - INFO -            hetong: precision:  81.08%; recall:  27.65%; FB1:  41.24  74
+
+2018-09-11 17:50:54,028 - log\train.log - INFO -           jiafang: precision:  71.80%; recall:  39.91%; FB1:  51.31  383
+
+2018-09-11 17:50:54,028 - log\train.log - INFO -           xiangmu: precision:  58.65%; recall:  13.01%; FB1:  21.29  104
+
+2018-09-11 17:50:54,028 - log\train.log - INFO -            yifang: precision:  60.34%; recall:  50.05%; FB1:  54.72  812
+
+2018-09-11 17:50:54,120 - log\train.log - INFO - new best dev f1 score:47.540
+2018-09-11 17:50:54,588 - log\train.log - INFO - model saved
+2018-09-11 17:50:54,589 - log\train.log - INFO - evaluate:test
+2018-09-11 17:51:45,637 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2081 phrases; correct: 1265.
+
+2018-09-11 17:51:45,638 - log\train.log - INFO - accuracy:  97.03%; precision:  60.79%; recall:  39.68%; FB1:  48.02
+
+2018-09-11 17:51:45,639 - log\train.log - INFO -            hetong: precision:  78.26%; recall:  22.86%; FB1:  35.38  92
+
+2018-09-11 17:51:45,640 - log\train.log - INFO -           jiafang: precision:  74.39%; recall:  42.38%; FB1:  54.00  531
+
+2018-09-11 17:51:45,640 - log\train.log - INFO -           xiangmu: precision:  57.96%; recall:  14.38%; FB1:  23.04  157
+
+2018-09-11 17:51:45,641 - log\train.log - INFO -            yifang: precision:  54.34%; recall:  54.05%; FB1:  54.20  1301
+
+2018-09-11 17:51:45,734 - log\train.log - INFO - new best test f1 score:48.020
+2018-09-11 17:53:36,757 - log\train.log - INFO - iteration:3 step:20/840, NER loss:24.845154
+2018-09-11 17:57:58,032 - log\train.log - INFO - iteration:3 step:70/840, NER loss:23.806780
+2018-09-11 18:03:26,356 - log\train.log - INFO - iteration:3 step:120/840, NER loss:23.797623
+2018-09-11 18:08:06,486 - log\train.log - INFO - iteration:3 step:170/840, NER loss:21.302248
+2018-09-11 18:12:33,810 - log\train.log - INFO - iteration:3 step:220/840, NER loss:22.739342
+2018-09-11 18:17:32,645 - log\train.log - INFO - iteration:3 step:270/840, NER loss:23.069447
+2018-09-11 18:22:30,677 - log\train.log - INFO - iteration:3 step:320/840, NER loss:20.905411
+2018-09-11 18:26:38,792 - log\train.log - INFO - iteration:3 step:370/840, NER loss:18.567598
+2018-09-11 18:30:46,047 - log\train.log - INFO - iteration:3 step:420/840, NER loss:20.849401
+2018-09-11 18:35:32,654 - log\train.log - INFO - iteration:3 step:470/840, NER loss:21.787922
+2018-09-11 18:39:37,519 - log\train.log - INFO - iteration:3 step:520/840, NER loss:20.193319
+2018-09-11 18:45:14,047 - log\train.log - INFO - iteration:3 step:570/840, NER loss:19.862190
+2018-09-11 18:49:25,668 - log\train.log - INFO - iteration:3 step:620/840, NER loss:17.531958
+2018-09-11 18:53:22,893 - log\train.log - INFO - iteration:3 step:670/840, NER loss:16.326017
+2018-09-11 18:57:38,703 - log\train.log - INFO - iteration:3 step:720/840, NER loss:17.311041
+2018-09-11 19:01:50,271 - log\train.log - INFO - iteration:3 step:770/840, NER loss:18.267254
+2018-09-11 19:06:01,997 - log\train.log - INFO - iteration:3 step:820/840, NER loss:16.722261
+2018-09-11 19:07:43,715 - log\train.log - INFO - evaluate:dev
+2018-09-11 19:08:16,404 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2081 phrases; correct: 1171.
+
+2018-09-11 19:08:16,405 - log\train.log - INFO - accuracy:  96.24%; precision:  56.27%; recall:  49.75%; FB1:  52.81
+
+2018-09-11 19:08:16,406 - log\train.log - INFO -            hetong: precision:  53.36%; recall:  58.53%; FB1:  55.82  238
+
+2018-09-11 19:08:16,407 - log\train.log - INFO -           jiafang: precision:  61.62%; recall:  65.02%; FB1:  63.28  727
+
+2018-09-11 19:08:16,408 - log\train.log - INFO -           xiangmu: precision:  40.85%; recall:  49.47%; FB1:  44.74  568
+
+2018-09-11 19:08:16,408 - log\train.log - INFO -            yifang: precision:  66.42%; recall:  37.18%; FB1:  47.68  548
+
+2018-09-11 19:08:16,501 - log\train.log - INFO - new best dev f1 score:52.810
+2018-09-11 19:08:17,271 - log\train.log - INFO - model saved
+2018-09-11 19:08:17,272 - log\train.log - INFO - evaluate:test
+2018-09-11 19:09:07,924 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3091 phrases; correct: 1607.
+
+2018-09-11 19:09:07,925 - log\train.log - INFO - accuracy:  96.79%; precision:  51.99%; recall:  50.41%; FB1:  51.19
+
+2018-09-11 19:09:07,925 - log\train.log - INFO -            hetong: precision:  44.86%; recall:  56.83%; FB1:  50.14  399
+
+2018-09-11 19:09:07,925 - log\train.log - INFO -           jiafang: precision:  59.52%; recall:  66.09%; FB1:  62.63  1035
+
+2018-09-11 19:09:07,926 - log\train.log - INFO -           xiangmu: precision:  35.47%; recall:  44.55%; FB1:  39.50  795
+
+2018-09-11 19:09:07,926 - log\train.log - INFO -            yifang: precision:  61.48%; recall:  40.52%; FB1:  48.85  862
+
+2018-09-11 19:09:08,020 - log\train.log - INFO - new best test f1 score:51.190
+2018-09-11 19:11:44,225 - log\train.log - INFO - iteration:4 step:30/840, NER loss:17.347996
+2018-09-11 19:16:35,837 - log\train.log - INFO - iteration:4 step:80/840, NER loss:16.488363
+2018-09-11 19:21:10,071 - log\train.log - INFO - iteration:4 step:130/840, NER loss:16.531960
+2018-09-11 19:25:23,378 - log\train.log - INFO - iteration:4 step:180/840, NER loss:14.616332
+2018-09-11 19:29:44,666 - log\train.log - INFO - iteration:4 step:230/840, NER loss:15.469007
+2018-09-11 19:34:19,426 - log\train.log - INFO - iteration:4 step:280/840, NER loss:14.950277
+2018-09-11 19:39:10,962 - log\train.log - INFO - iteration:4 step:330/840, NER loss:14.556109
+2018-09-11 19:43:50,935 - log\train.log - INFO - iteration:4 step:380/840, NER loss:15.889279
+2018-09-11 19:48:13,417 - log\train.log - INFO - iteration:4 step:430/840, NER loss:14.325240
+2018-09-11 19:52:21,386 - log\train.log - INFO - iteration:4 step:480/840, NER loss:15.225067
+2018-09-11 19:56:59,271 - log\train.log - INFO - iteration:4 step:530/840, NER loss:14.559175
+2018-09-11 20:00:59,580 - log\train.log - INFO - iteration:4 step:580/840, NER loss:13.330775
+2018-09-11 20:05:44,362 - log\train.log - INFO - iteration:4 step:630/840, NER loss:13.881150
+2018-09-11 20:10:31,461 - log\train.log - INFO - iteration:4 step:680/840, NER loss:14.701753
+2018-09-11 20:14:20,648 - log\train.log - INFO - iteration:4 step:730/840, NER loss:11.865273
+2018-09-11 20:18:42,671 - log\train.log - INFO - iteration:4 step:780/840, NER loss:13.042081
+2018-09-11 20:23:27,694 - log\train.log - INFO - iteration:4 step:830/840, NER loss:12.979276
+2018-09-11 20:24:26,592 - log\train.log - INFO - evaluate:dev
+2018-09-11 20:24:59,652 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2425 phrases; correct: 1398.
+
+2018-09-11 20:24:59,654 - log\train.log - INFO - accuracy:  96.54%; precision:  57.65%; recall:  59.39%; FB1:  58.51
+
+2018-09-11 20:24:59,655 - log\train.log - INFO -            hetong: precision:  62.50%; recall:  57.60%; FB1:  59.95  200
+
+2018-09-11 20:24:59,656 - log\train.log - INFO -           jiafang: precision:  58.74%; recall:  69.23%; FB1:  63.56  812
+
+2018-09-11 20:24:59,656 - log\train.log - INFO -           xiangmu: precision:  44.36%; recall:  49.47%; FB1:  46.77  523
+
+2018-09-11 20:24:59,657 - log\train.log - INFO -            yifang: precision:  63.37%; recall:  57.61%; FB1:  60.35  890
+
+2018-09-11 20:24:59,755 - log\train.log - INFO - new best dev f1 score:58.510
+2018-09-11 20:25:00,264 - log\train.log - INFO - model saved
+2018-09-11 20:25:00,265 - log\train.log - INFO - evaluate:test
+2018-09-11 20:25:51,932 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3516 phrases; correct: 1892.
+
+2018-09-11 20:25:51,933 - log\train.log - INFO - accuracy:  96.95%; precision:  53.81%; recall:  59.35%; FB1:  56.44
+
+2018-09-11 20:25:51,933 - log\train.log - INFO -            hetong: precision:  54.38%; recall:  57.14%; FB1:  55.73  331
+
+2018-09-11 20:25:51,934 - log\train.log - INFO -           jiafang: precision:  57.33%; recall:  71.78%; FB1:  63.74  1167
+
+2018-09-11 20:25:51,934 - log\train.log - INFO -           xiangmu: precision:  39.57%; recall:  43.76%; FB1:  41.56  700
+
+2018-09-11 20:25:51,935 - log\train.log - INFO -            yifang: precision:  58.12%; recall:  58.56%; FB1:  58.34  1318
+
+2018-09-11 20:25:52,030 - log\train.log - INFO - new best test f1 score:56.440
+2018-09-11 20:29:28,908 - log\train.log - INFO - iteration:5 step:40/840, NER loss:12.804379
+2018-09-11 20:33:42,897 - log\train.log - INFO - iteration:5 step:90/840, NER loss:10.687160
+2018-09-11 20:40:13,450 - log\train.log - INFO - iteration:5 step:140/840, NER loss:13.208596
+2018-09-11 20:44:09,808 - log\train.log - INFO - iteration:5 step:190/840, NER loss:12.008773
+2018-09-11 20:48:40,479 - log\train.log - INFO - iteration:5 step:240/840, NER loss: 9.945803
+2018-09-11 20:53:41,664 - log\train.log - INFO - iteration:5 step:290/840, NER loss:13.290122
+2018-09-11 20:58:50,907 - log\train.log - INFO - iteration:5 step:340/840, NER loss:12.262676
+2018-09-11 21:03:23,486 - log\train.log - INFO - iteration:5 step:390/840, NER loss:11.487616
+2018-09-11 21:08:20,516 - log\train.log - INFO - iteration:5 step:440/840, NER loss:11.020846
+2018-09-11 21:12:05,609 - log\train.log - INFO - iteration:5 step:490/840, NER loss:11.308331
+2018-09-11 21:16:38,559 - log\train.log - INFO - iteration:5 step:540/840, NER loss:11.307997
+2018-09-11 21:20:30,671 - log\train.log - INFO - iteration:5 step:590/840, NER loss:10.335810
+2018-09-11 21:25:29,301 - log\train.log - INFO - iteration:5 step:640/840, NER loss:11.501437
+2018-09-11 21:29:28,345 - log\train.log - INFO - iteration:5 step:690/840, NER loss:10.720057
+2018-09-11 21:33:17,358 - log\train.log - INFO - iteration:5 step:740/840, NER loss:11.073559
+2018-09-11 21:37:42,652 - log\train.log - INFO - iteration:5 step:790/840, NER loss:11.280862
+2018-09-11 21:41:28,646 - log\train.log - INFO - iteration:6 step:0/840, NER loss: 8.990608
+2018-09-11 21:41:28,647 - log\train.log - INFO - evaluate:dev
+2018-09-11 21:42:01,506 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1092 phrases; correct: 850.
+
+2018-09-11 21:42:01,507 - log\train.log - INFO - accuracy:  96.76%; precision:  77.84%; recall:  36.11%; FB1:  49.33
+
+2018-09-11 21:42:01,507 - log\train.log - INFO -            hetong: precision:  76.69%; recall:  47.00%; FB1:  58.29  133
+
+2018-09-11 21:42:01,508 - log\train.log - INFO -           jiafang: precision:  75.70%; recall:  50.65%; FB1:  60.70  461
+
+2018-09-11 21:42:01,508 - log\train.log - INFO -           xiangmu: precision:  68.99%; recall:  23.24%; FB1:  34.77  158
+
+2018-09-11 21:42:01,508 - log\train.log - INFO -            yifang: precision:  85.29%; recall:  29.62%; FB1:  43.97  340
+
+2018-09-11 21:42:01,524 - log\train.log - INFO - evaluate:test
+2018-09-11 21:42:53,226 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 1523 phrases; correct: 1185.
+
+2018-09-11 21:42:53,227 - log\train.log - INFO - accuracy:  97.44%; precision:  77.81%; recall:  37.17%; FB1:  50.31
+
+2018-09-11 21:42:53,228 - log\train.log - INFO -            hetong: precision:  68.88%; recall:  42.86%; FB1:  52.84  196
+
+2018-09-11 21:42:53,228 - log\train.log - INFO -           jiafang: precision:  76.25%; recall:  48.93%; FB1:  59.61  598
+
+2018-09-11 21:42:53,229 - log\train.log - INFO -           xiangmu: precision:  65.05%; recall:  21.17%; FB1:  31.94  206
+
+2018-09-11 21:42:53,229 - log\train.log - INFO -            yifang: precision:  87.95%; recall:  35.17%; FB1:  50.25  523
+
+2018-09-11 21:47:06,972 - log\train.log - INFO - iteration:6 step:50/840, NER loss: 9.153221
+2018-09-11 21:51:38,629 - log\train.log - INFO - iteration:6 step:100/840, NER loss: 9.887591
+2018-09-11 21:56:40,220 - log\train.log - INFO - iteration:6 step:150/840, NER loss:10.012727
+2018-09-11 22:02:03,826 - log\train.log - INFO - iteration:6 step:200/840, NER loss:10.314184
+2018-09-11 22:05:45,714 - log\train.log - INFO - iteration:6 step:250/840, NER loss:10.075255
+2018-09-11 22:09:36,775 - log\train.log - INFO - iteration:6 step:300/840, NER loss: 8.643678
+2018-09-11 22:13:59,422 - log\train.log - INFO - iteration:6 step:350/840, NER loss: 9.211279
+2018-09-11 22:17:57,684 - log\train.log - INFO - iteration:6 step:400/840, NER loss: 9.314672
+2018-09-11 22:22:23,400 - log\train.log - INFO - iteration:6 step:450/840, NER loss: 9.228958
+2018-09-11 22:26:40,350 - log\train.log - INFO - iteration:6 step:500/840, NER loss: 8.660962
+2018-09-11 22:31:04,356 - log\train.log - INFO - iteration:6 step:550/840, NER loss: 9.315605
+2018-09-11 22:35:54,547 - log\train.log - INFO - iteration:6 step:600/840, NER loss: 9.197978
+2018-09-11 22:40:59,280 - log\train.log - INFO - iteration:6 step:650/840, NER loss: 9.341513
+2018-09-11 22:45:00,341 - log\train.log - INFO - iteration:6 step:700/840, NER loss: 9.119238
+2018-09-11 22:49:49,865 - log\train.log - INFO - iteration:6 step:750/840, NER loss: 8.464100
+2018-09-11 22:54:55,793 - log\train.log - INFO - iteration:6 step:800/840, NER loss: 9.545070
+2018-09-11 22:58:40,651 - log\train.log - INFO - evaluate:dev
+2018-09-11 22:59:13,719 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2252 phrases; correct: 1482.
+
+2018-09-11 22:59:13,721 - log\train.log - INFO - accuracy:  97.18%; precision:  65.81%; recall:  62.96%; FB1:  64.35
+
+2018-09-11 22:59:13,722 - log\train.log - INFO -            hetong: precision:  64.25%; recall:  61.29%; FB1:  62.74  207
+
+2018-09-11 22:59:13,722 - log\train.log - INFO -           jiafang: precision:  59.82%; recall:  75.62%; FB1:  66.79  871
+
+2018-09-11 22:59:13,722 - log\train.log - INFO -           xiangmu: precision:  53.85%; recall:  47.76%; FB1:  50.62  416
+
+2018-09-11 22:59:13,723 - log\train.log - INFO -            yifang: precision:  79.68%; recall:  61.70%; FB1:  69.55  758
+
+2018-09-11 22:59:13,819 - log\train.log - INFO - new best dev f1 score:64.350
+2018-09-11 22:59:14,307 - log\train.log - INFO - model saved
+2018-09-11 22:59:14,307 - log\train.log - INFO - evaluate:test
+2018-09-11 23:00:06,150 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3126 phrases; correct: 1994.
+
+2018-09-11 23:00:06,151 - log\train.log - INFO - accuracy:  97.55%; precision:  63.79%; recall:  62.55%; FB1:  63.16
+
+2018-09-11 23:00:06,152 - log\train.log - INFO -            hetong: precision:  57.66%; recall:  60.95%; FB1:  59.26  333
+
+2018-09-11 23:00:06,152 - log\train.log - INFO -           jiafang: precision:  58.90%; recall:  73.82%; FB1:  65.52  1168
+
+2018-09-11 23:00:06,153 - log\train.log - INFO -           xiangmu: precision:  47.00%; recall:  42.02%; FB1:  44.37  566
+
+2018-09-11 23:00:06,154 - log\train.log - INFO -            yifang: precision:  80.08%; recall:  64.83%; FB1:  71.65  1059
+
+2018-09-11 23:00:06,251 - log\train.log - INFO - new best test f1 score:63.160
+2018-09-11 23:00:53,591 - log\train.log - INFO - iteration:7 step:10/840, NER loss: 7.843509
+2018-09-11 23:05:39,535 - log\train.log - INFO - iteration:7 step:60/840, NER loss: 8.189639
+2018-09-11 23:10:25,274 - log\train.log - INFO - iteration:7 step:110/840, NER loss: 7.943449
+2018-09-11 23:14:52,800 - log\train.log - INFO - iteration:7 step:160/840, NER loss: 7.923117
+2018-09-11 23:19:20,359 - log\train.log - INFO - iteration:7 step:210/840, NER loss: 7.832556
+2018-09-11 23:23:59,653 - log\train.log - INFO - iteration:7 step:260/840, NER loss: 8.721642
+2018-09-11 23:28:17,910 - log\train.log - INFO - iteration:7 step:310/840, NER loss: 7.707933
+2018-09-11 23:32:37,794 - log\train.log - INFO - iteration:7 step:360/840, NER loss: 7.884456
+2018-09-11 23:37:18,148 - log\train.log - INFO - iteration:7 step:410/840, NER loss: 8.215064
+2018-09-11 23:41:53,689 - log\train.log - INFO - iteration:7 step:460/840, NER loss: 7.764481
+2018-09-11 23:45:51,474 - log\train.log - INFO - iteration:7 step:510/840, NER loss: 7.691720
+2018-09-11 23:50:34,624 - log\train.log - INFO - iteration:7 step:560/840, NER loss: 8.565350
+2018-09-11 23:54:31,588 - log\train.log - INFO - iteration:7 step:610/840, NER loss: 7.078822
+2018-09-11 23:59:10,132 - log\train.log - INFO - iteration:7 step:660/840, NER loss: 7.291486
+2018-09-12 00:03:58,838 - log\train.log - INFO - iteration:7 step:710/840, NER loss: 7.929253
+2018-09-12 00:09:12,167 - log\train.log - INFO - iteration:7 step:760/840, NER loss: 7.377213
+2018-09-12 00:13:06,930 - log\train.log - INFO - iteration:7 step:810/840, NER loss: 7.277393
+2018-09-12 00:15:58,722 - log\train.log - INFO - evaluate:dev
+2018-09-12 00:16:31,848 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2669 phrases; correct: 1578.
+
+2018-09-12 00:16:31,849 - log\train.log - INFO - accuracy:  96.56%; precision:  59.12%; recall:  67.03%; FB1:  62.83
+
+2018-09-12 00:16:31,850 - log\train.log - INFO -            hetong: precision:  58.91%; recall:  70.05%; FB1:  64.00  258
+
+2018-09-12 00:16:31,851 - log\train.log - INFO -           jiafang: precision:  64.59%; recall:  67.78%; FB1:  66.15  723
+
+2018-09-12 00:16:31,851 - log\train.log - INFO -           xiangmu: precision:  35.67%; recall:  67.16%; FB1:  46.60  883
+
+2018-09-12 00:16:31,851 - log\train.log - INFO -            yifang: precision:  80.00%; recall:  65.78%; FB1:  72.20  805
+
+2018-09-12 00:16:31,866 - log\train.log - INFO - evaluate:test
+2018-09-12 00:17:23,787 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3741 phrases; correct: 2129.
+
+2018-09-12 00:17:23,788 - log\train.log - INFO - accuracy:  96.93%; precision:  56.91%; recall:  66.78%; FB1:  61.45
+
+2018-09-12 00:17:23,789 - log\train.log - INFO -            hetong: precision:  51.11%; recall:  65.71%; FB1:  57.50  405
+
+2018-09-12 00:17:23,789 - log\train.log - INFO -           jiafang: precision:  67.16%; recall:  67.60%; FB1:  67.38  938
+
+2018-09-12 00:17:23,790 - log\train.log - INFO -           xiangmu: precision:  30.29%; recall:  59.24%; FB1:  40.09  1238
+
+2018-09-12 00:17:23,790 - log\train.log - INFO -            yifang: precision:  79.05%; recall:  70.11%; FB1:  74.31  1160
+
+2018-09-12 00:18:57,389 - log\train.log - INFO - iteration:8 step:20/840, NER loss: 6.682630
+2018-09-12 00:23:03,112 - log\train.log - INFO - iteration:8 step:70/840, NER loss: 6.995417
+2018-09-12 00:28:11,761 - log\train.log - INFO - iteration:8 step:120/840, NER loss: 6.758137
+2018-09-12 00:33:33,936 - log\train.log - INFO - iteration:8 step:170/840, NER loss: 7.676577
+2018-09-12 00:37:51,639 - log\train.log - INFO - iteration:8 step:220/840, NER loss: 7.421247
+2018-09-12 00:42:03,260 - log\train.log - INFO - iteration:8 step:270/840, NER loss: 6.974977
+2018-09-12 00:45:41,315 - log\train.log - INFO - iteration:8 step:320/840, NER loss: 6.334052
+2018-09-12 00:49:55,415 - log\train.log - INFO - iteration:8 step:370/840, NER loss: 5.933040
+2018-09-12 00:54:03,829 - log\train.log - INFO - iteration:8 step:420/840, NER loss: 6.641626
+2018-09-12 00:58:07,568 - log\train.log - INFO - iteration:8 step:470/840, NER loss: 6.688539
+2018-09-12 01:02:12,834 - log\train.log - INFO - iteration:8 step:520/840, NER loss: 6.446506
+2018-09-12 01:06:51,445 - log\train.log - INFO - iteration:8 step:570/840, NER loss: 7.107409
+2018-09-12 01:11:25,317 - log\train.log - INFO - iteration:8 step:620/840, NER loss: 6.843550
+2018-09-12 01:16:27,085 - log\train.log - INFO - iteration:8 step:670/840, NER loss: 7.264682
+2018-09-12 01:21:26,645 - log\train.log - INFO - iteration:8 step:720/840, NER loss: 6.670862
+2018-09-12 01:26:38,124 - log\train.log - INFO - iteration:8 step:770/840, NER loss: 6.413934
+2018-09-12 01:31:03,555 - log\train.log - INFO - iteration:8 step:820/840, NER loss: 6.413502
+2018-09-12 01:33:10,420 - log\train.log - INFO - evaluate:dev
+2018-09-12 01:33:43,505 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1638 phrases; correct: 1247.
+
+2018-09-12 01:33:43,507 - log\train.log - INFO - accuracy:  97.07%; precision:  76.13%; recall:  52.97%; FB1:  62.47
+
+2018-09-12 01:33:43,508 - log\train.log - INFO -            hetong: precision:  79.56%; recall:  50.23%; FB1:  61.58  137
+
+2018-09-12 01:33:43,512 - log\train.log - INFO -           jiafang: precision:  71.41%; recall:  63.43%; FB1:  67.18  612
+
+2018-09-12 01:33:43,512 - log\train.log - INFO -           xiangmu: precision:  87.27%; recall:  10.23%; FB1:  18.32  55
+
+2018-09-12 01:33:43,512 - log\train.log - INFO -            yifang: precision:  78.30%; recall:  66.70%; FB1:  72.04  834
+
+2018-09-12 01:33:43,530 - log\train.log - INFO - evaluate:test
+2018-09-12 01:34:35,415 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2312 phrases; correct: 1737.
+
+2018-09-12 01:34:35,416 - log\train.log - INFO - accuracy:  97.69%; precision:  75.13%; recall:  54.49%; FB1:  63.16
+
+2018-09-12 01:34:35,417 - log\train.log - INFO -            hetong: precision:  76.72%; recall:  46.03%; FB1:  57.54  189
+
+2018-09-12 01:34:35,418 - log\train.log - INFO -           jiafang: precision:  72.93%; recall:  62.45%; FB1:  67.28  798
+
+2018-09-12 01:34:35,419 - log\train.log - INFO -           xiangmu: precision:  71.95%; recall:   9.32%; FB1:  16.50  82
+
+2018-09-12 01:34:35,419 - log\train.log - INFO -            yifang: precision:  76.51%; recall:  72.71%; FB1:  74.56  1243
+
+2018-09-12 01:34:35,519 - log\train.log - INFO - new best test f1 score:63.160
+2018-09-12 01:37:24,138 - log\train.log - INFO - iteration:9 step:30/840, NER loss: 5.908057
+2018-09-12 01:41:47,208 - log\train.log - INFO - iteration:9 step:80/840, NER loss: 5.971725
+2018-09-12 01:46:29,014 - log\train.log - INFO - iteration:9 step:130/840, NER loss: 5.738453
+2018-09-12 01:52:06,113 - log\train.log - INFO - iteration:9 step:180/840, NER loss: 6.262480
+2018-09-12 01:58:15,427 - log\train.log - INFO - iteration:9 step:230/840, NER loss: 7.067409
+2018-09-12 02:02:28,739 - log\train.log - INFO - iteration:9 step:280/840, NER loss: 5.631794
+2018-09-12 02:06:08,111 - log\train.log - INFO - iteration:9 step:330/840, NER loss: 6.115069
+2018-09-12 02:10:47,410 - log\train.log - INFO - iteration:9 step:380/840, NER loss: 5.521132
+2018-09-12 02:15:13,994 - log\train.log - INFO - iteration:9 step:430/840, NER loss: 5.851629
+2018-09-12 02:18:52,325 - log\train.log - INFO - iteration:9 step:480/840, NER loss: 5.957415
+2018-09-12 02:23:20,343 - log\train.log - INFO - iteration:9 step:530/840, NER loss: 6.429743
+2018-09-12 02:27:17,725 - log\train.log - INFO - iteration:9 step:580/840, NER loss: 5.777276
+2018-09-12 02:32:12,714 - log\train.log - INFO - iteration:9 step:630/840, NER loss: 5.825408
+2018-09-12 02:37:28,821 - log\train.log - INFO - iteration:9 step:680/840, NER loss: 5.939241
+2018-09-12 02:41:25,641 - log\train.log - INFO - iteration:9 step:730/840, NER loss: 5.678467
+2018-09-12 02:45:57,441 - log\train.log - INFO - iteration:9 step:780/840, NER loss: 6.325446
+2018-09-12 02:49:51,145 - log\train.log - INFO - iteration:9 step:830/840, NER loss: 5.353992
+2018-09-12 02:50:32,557 - log\train.log - INFO - evaluate:dev
+2018-09-12 02:51:05,805 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2366 phrases; correct: 1538.
+
+2018-09-12 02:51:05,806 - log\train.log - INFO - accuracy:  97.21%; precision:  65.00%; recall:  65.34%; FB1:  65.17
+
+2018-09-12 02:51:05,807 - log\train.log - INFO -            hetong: precision:  84.55%; recall:  47.93%; FB1:  61.18  123
+
+2018-09-12 02:51:05,808 - log\train.log - INFO -           jiafang: precision:  51.48%; recall:  80.99%; FB1:  62.94  1084
+
+2018-09-12 02:51:05,808 - log\train.log - INFO -           xiangmu: precision:  63.87%; recall:  42.22%; FB1:  50.83  310
+
+2018-09-12 02:51:05,808 - log\train.log - INFO -            yifang: precision:  79.86%; recall:  69.25%; FB1:  74.18  849
+
+2018-09-12 02:51:05,908 - log\train.log - INFO - new best dev f1 score:65.170
+2018-09-12 02:51:06,399 - log\train.log - INFO - model saved
+2018-09-12 02:51:06,400 - log\train.log - INFO - evaluate:test
+2018-09-12 02:51:58,210 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3368 phrases; correct: 2085.
+
+2018-09-12 02:51:58,211 - log\train.log - INFO - accuracy:  97.52%; precision:  61.91%; recall:  65.40%; FB1:  63.61
+
+2018-09-12 02:51:58,212 - log\train.log - INFO -            hetong: precision:  79.53%; recall:  43.17%; FB1:  55.97  171
+
+2018-09-12 02:51:58,212 - log\train.log - INFO -           jiafang: precision:  49.46%; recall:  83.05%; FB1:  61.99  1565
+
+2018-09-12 02:51:58,213 - log\train.log - INFO -           xiangmu: precision:  53.59%; recall:  37.76%; FB1:  44.30  446
+
+2018-09-12 02:51:58,213 - log\train.log - INFO -            yifang: precision:  78.92%; recall:  71.56%; FB1:  75.06  1186
+
+2018-09-12 02:51:58,311 - log\train.log - INFO - new best test f1 score:63.610
+2018-09-12 02:56:23,981 - log\train.log - INFO - iteration:10 step:40/840, NER loss: 5.072958
+2018-09-12 03:00:09,880 - log\train.log - INFO - iteration:10 step:90/840, NER loss: 4.911671
+2018-09-12 03:04:34,227 - log\train.log - INFO - iteration:10 step:140/840, NER loss: 4.990715
+2018-09-12 03:08:02,351 - log\train.log - INFO - iteration:10 step:190/840, NER loss: 5.508796
+2018-09-12 03:13:09,450 - log\train.log - INFO - iteration:10 step:240/840, NER loss: 5.914365
+2018-09-12 03:17:26,228 - log\train.log - INFO - iteration:10 step:290/840, NER loss: 5.747027
+2018-09-12 03:22:04,499 - log\train.log - INFO - iteration:10 step:340/840, NER loss: 5.246739
+2018-09-12 03:26:37,859 - log\train.log - INFO - iteration:10 step:390/840, NER loss: 5.649318
+2018-09-12 03:31:44,775 - log\train.log - INFO - iteration:10 step:440/840, NER loss: 5.424236
+2018-09-12 03:36:32,804 - log\train.log - INFO - iteration:10 step:490/840, NER loss: 5.040857
+2018-09-12 03:41:15,770 - log\train.log - INFO - iteration:10 step:540/840, NER loss: 5.215168
+2018-09-12 03:46:11,853 - log\train.log - INFO - iteration:10 step:590/840, NER loss: 5.971099
+2018-09-12 03:50:31,352 - log\train.log - INFO - iteration:10 step:640/840, NER loss: 5.659030
+2018-09-12 03:55:09,936 - log\train.log - INFO - iteration:10 step:690/840, NER loss: 5.275107
+2018-09-12 03:59:39,204 - log\train.log - INFO - iteration:10 step:740/840, NER loss: 5.017535
+2018-09-12 04:03:26,736 - log\train.log - INFO - iteration:10 step:790/840, NER loss: 5.342060
+2018-09-12 04:07:54,076 - log\train.log - INFO - iteration:11 step:0/840, NER loss: 4.969804
+2018-09-12 04:07:54,077 - log\train.log - INFO - evaluate:dev
+2018-09-12 04:08:27,356 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2909 phrases; correct: 1655.
+
+2018-09-12 04:08:27,356 - log\train.log - INFO - accuracy:  95.98%; precision:  56.89%; recall:  70.31%; FB1:  62.89
+
+2018-09-12 04:08:27,357 - log\train.log - INFO -            hetong: precision:  38.09%; recall:  82.49%; FB1:  52.11  470
+
+2018-09-12 04:08:27,357 - log\train.log - INFO -           jiafang: precision:  69.87%; recall:  70.68%; FB1:  70.27  697
+
+2018-09-12 04:08:27,357 - log\train.log - INFO -           xiangmu: precision:  35.28%; recall:  71.00%; FB1:  47.13  944
+
+2018-09-12 04:08:27,358 - log\train.log - INFO -            yifang: precision:  82.21%; recall:  67.01%; FB1:  73.83  798
+
+2018-09-12 04:08:27,373 - log\train.log - INFO - evaluate:test
+2018-09-12 04:09:19,357 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 4303 phrases; correct: 2236.
+
+2018-09-12 04:09:19,358 - log\train.log - INFO - accuracy:  96.29%; precision:  51.96%; recall:  70.14%; FB1:  59.70
+
+2018-09-12 04:09:19,359 - log\train.log - INFO -            hetong: precision:  31.98%; recall:  82.54%; FB1:  46.10  813
+
+2018-09-12 04:09:19,359 - log\train.log - INFO -           jiafang: precision:  70.39%; recall:  69.64%; FB1:  70.01  922
+
+2018-09-12 04:09:19,360 - log\train.log - INFO -           xiangmu: precision:  28.79%; recall:  66.03%; FB1:  40.10  1452
+
+2018-09-12 04:09:19,360 - log\train.log - INFO -            yifang: precision:  81.45%; recall:  69.50%; FB1:  75.00  1116
+
+2018-09-12 04:13:04,716 - log\train.log - INFO - iteration:11 step:50/840, NER loss: 4.718471
+2018-09-12 04:18:26,319 - log\train.log - INFO - iteration:11 step:100/840, NER loss: 5.852338
+2018-09-12 04:23:12,328 - log\train.log - INFO - iteration:11 step:150/840, NER loss: 4.721056
+2018-09-12 04:28:11,104 - log\train.log - INFO - iteration:11 step:200/840, NER loss: 5.291519
+2018-09-12 04:32:38,457 - log\train.log - INFO - iteration:11 step:250/840, NER loss: 4.822011
+2018-09-12 04:37:09,700 - log\train.log - INFO - iteration:11 step:300/840, NER loss: 5.332417
+2018-09-12 04:41:30,468 - log\train.log - INFO - iteration:11 step:350/840, NER loss: 4.829517
+2018-09-12 04:46:16,806 - log\train.log - INFO - iteration:11 step:400/840, NER loss: 5.109910
+2018-09-12 04:50:32,942 - log\train.log - INFO - iteration:11 step:450/840, NER loss: 5.094172
+2018-09-12 04:54:52,321 - log\train.log - INFO - iteration:11 step:500/840, NER loss: 5.288123
+2018-09-12 04:58:54,291 - log\train.log - INFO - iteration:11 step:550/840, NER loss: 4.935083
+2018-09-12 05:04:28,918 - log\train.log - INFO - iteration:11 step:600/840, NER loss: 6.173806
+2018-09-12 05:09:07,620 - log\train.log - INFO - iteration:11 step:650/840, NER loss: 4.666642
+2018-09-12 05:13:21,447 - log\train.log - INFO - iteration:11 step:700/840, NER loss: 5.171053
+2018-09-12 05:17:01,275 - log\train.log - INFO - iteration:11 step:750/840, NER loss: 4.679335
+2018-09-12 05:21:30,865 - log\train.log - INFO - iteration:11 step:800/840, NER loss: 5.416162
+2018-09-12 05:25:04,537 - log\train.log - INFO - evaluate:dev
+2018-09-12 05:25:37,782 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1659 phrases; correct: 1307.
+
+2018-09-12 05:25:37,783 - log\train.log - INFO - accuracy:  97.52%; precision:  78.78%; recall:  55.52%; FB1:  65.14
+
+2018-09-12 05:25:37,785 - log\train.log - INFO -            hetong: precision:  63.18%; recall:  75.12%; FB1:  68.63  258
+
+2018-09-12 05:25:37,785 - log\train.log - INFO -           jiafang: precision:  82.48%; recall:  56.02%; FB1:  66.72  468
+
+2018-09-12 05:25:37,785 - log\train.log - INFO -           xiangmu: precision:  68.13%; recall:  39.66%; FB1:  50.13  273
+
+2018-09-12 05:25:37,786 - log\train.log - INFO -            yifang: precision:  86.67%; recall:  58.43%; FB1:  69.80  660
+
+2018-09-12 05:25:37,802 - log\train.log - INFO - evaluate:test
+2018-09-12 05:26:29,701 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2367 phrases; correct: 1796.
+
+2018-09-12 05:26:29,702 - log\train.log - INFO - accuracy:  97.90%; precision:  75.88%; recall:  56.34%; FB1:  64.66
+
+2018-09-12 05:26:29,703 - log\train.log - INFO -            hetong: precision:  55.38%; recall:  68.57%; FB1:  61.28  390
+
+2018-09-12 05:26:29,704 - log\train.log - INFO -           jiafang: precision:  81.00%; recall:  55.36%; FB1:  65.77  637
+
+2018-09-12 05:26:29,704 - log\train.log - INFO -           xiangmu: precision:  59.54%; recall:  36.97%; FB1:  45.61  393
+
+2018-09-12 05:26:29,705 - log\train.log - INFO -            yifang: precision:  87.65%; recall:  63.46%; FB1:  73.61  947
+
+2018-09-12 05:26:29,805 - log\train.log - INFO - new best test f1 score:64.660
+2018-09-12 05:27:21,165 - log\train.log - INFO - iteration:12 step:10/840, NER loss: 5.011878
+2018-09-12 05:31:28,796 - log\train.log - INFO - iteration:12 step:60/840, NER loss: 4.290573
+2018-09-12 05:35:20,024 - log\train.log - INFO - iteration:12 step:110/840, NER loss: 4.391194
+2018-09-12 05:39:10,429 - log\train.log - INFO - iteration:12 step:160/840, NER loss: 4.504658
+2018-09-12 05:43:43,737 - log\train.log - INFO - iteration:12 step:210/840, NER loss: 4.368329
+2018-09-12 05:48:34,960 - log\train.log - INFO - iteration:12 step:260/840, NER loss: 4.531421
+2018-09-12 05:52:31,871 - log\train.log - INFO - iteration:12 step:310/840, NER loss: 4.306810
+2018-09-12 05:56:38,308 - log\train.log - INFO - iteration:12 step:360/840, NER loss: 4.314749
+2018-09-12 06:01:28,930 - log\train.log - INFO - iteration:12 step:410/840, NER loss: 4.259404
+2018-09-12 06:06:00,786 - log\train.log - INFO - iteration:12 step:460/840, NER loss: 4.517439
+2018-09-12 06:10:44,066 - log\train.log - INFO - iteration:12 step:510/840, NER loss: 4.444733
+2018-09-12 06:16:34,539 - log\train.log - INFO - iteration:12 step:560/840, NER loss: 4.930606
+2018-09-12 06:21:17,198 - log\train.log - INFO - iteration:12 step:610/840, NER loss: 3.833307
+2018-09-12 06:25:41,609 - log\train.log - INFO - iteration:12 step:660/840, NER loss: 4.825369
+2018-09-12 06:31:46,644 - log\train.log - INFO - iteration:12 step:710/840, NER loss: 5.043251
+2018-09-12 06:35:47,023 - log\train.log - INFO - iteration:12 step:760/840, NER loss: 4.753195
+2018-09-12 06:39:49,449 - log\train.log - INFO - iteration:12 step:810/840, NER loss: 4.277657
+2018-09-12 06:42:37,371 - log\train.log - INFO - evaluate:dev
+2018-09-12 06:43:14,841 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1895 phrases; correct: 1442.
+
+2018-09-12 06:43:14,842 - log\train.log - INFO - accuracy:  97.58%; precision:  76.09%; recall:  61.26%; FB1:  67.87
+
+2018-09-12 06:43:14,842 - log\train.log - INFO -            hetong: precision:  76.17%; recall:  67.74%; FB1:  71.71  193
+
+2018-09-12 06:43:14,842 - log\train.log - INFO -           jiafang: precision:  70.71%; recall:  71.84%; FB1:  71.27  700
+
+2018-09-12 06:43:14,843 - log\train.log - INFO -           xiangmu: precision:  65.13%; recall:  42.22%; FB1:  51.23  304
+
+2018-09-12 06:43:14,843 - log\train.log - INFO -            yifang: precision:  86.25%; recall:  61.49%; FB1:  71.79  698
+
+2018-09-12 06:43:14,941 - log\train.log - INFO - new best dev f1 score:67.870
+2018-09-12 06:43:15,447 - log\train.log - INFO - model saved
+2018-09-12 06:43:15,448 - log\train.log - INFO - evaluate:test
+2018-09-12 06:44:07,691 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2618 phrases; correct: 1954.
+
+2018-09-12 06:44:07,691 - log\train.log - INFO - accuracy:  97.99%; precision:  74.64%; recall:  61.29%; FB1:  67.31
+
+2018-09-12 06:44:07,692 - log\train.log - INFO -            hetong: precision:  69.45%; recall:  60.63%; FB1:  64.75  275
+
+2018-09-12 06:44:07,692 - log\train.log - INFO -           jiafang: precision:  70.71%; recall:  70.71%; FB1:  70.71  932
+
+2018-09-12 06:44:07,692 - log\train.log - INFO -           xiangmu: precision:  58.04%; recall:  39.34%; FB1:  46.89  429
+
+2018-09-12 06:44:07,693 - log\train.log - INFO -            yifang: precision:  87.07%; recall:  65.37%; FB1:  74.67  982
+
+2018-09-12 06:44:07,792 - log\train.log - INFO - new best test f1 score:67.310
+2018-09-12 06:45:37,327 - log\train.log - INFO - iteration:13 step:20/840, NER loss: 5.023283
+2018-09-12 06:51:38,806 - log\train.log - INFO - iteration:13 step:70/840, NER loss: 4.512664
+2018-09-12 06:55:16,499 - log\train.log - INFO - iteration:13 step:120/840, NER loss: 4.519800
+2018-09-12 06:59:23,377 - log\train.log - INFO - iteration:13 step:170/840, NER loss: 5.048023
+2018-09-12 07:05:09,625 - log\train.log - INFO - iteration:13 step:220/840, NER loss: 5.000578
+2018-09-12 07:09:39,713 - log\train.log - INFO - iteration:13 step:270/840, NER loss: 4.223792
+2018-09-12 07:14:30,114 - log\train.log - INFO - iteration:13 step:320/840, NER loss: 4.429195
+2018-09-12 07:17:52,646 - log\train.log - INFO - iteration:13 step:370/840, NER loss: 4.222565
+2018-09-12 07:22:38,751 - log\train.log - INFO - iteration:13 step:420/840, NER loss: 4.674605
+2018-09-12 07:27:02,638 - log\train.log - INFO - iteration:13 step:470/840, NER loss: 3.989064
+2018-09-12 07:31:00,780 - log\train.log - INFO - iteration:13 step:520/840, NER loss: 4.572438
+2018-09-12 07:35:57,811 - log\train.log - INFO - iteration:13 step:570/840, NER loss: 5.007540
+2018-09-12 07:40:11,294 - log\train.log - INFO - iteration:13 step:620/840, NER loss: 4.411588
+2018-09-12 07:45:11,470 - log\train.log - INFO - iteration:13 step:670/840, NER loss: 4.941523
+2018-09-12 07:49:52,159 - log\train.log - INFO - iteration:13 step:720/840, NER loss: 4.638555
+2018-09-12 07:53:18,225 - log\train.log - INFO - iteration:13 step:770/840, NER loss: 4.082254
+2018-09-12 07:57:38,018 - log\train.log - INFO - iteration:13 step:820/840, NER loss: 4.672669
+2018-09-12 07:59:52,229 - log\train.log - INFO - evaluate:dev
+2018-09-12 08:00:25,322 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1761 phrases; correct: 1370.
+
+2018-09-12 08:00:25,323 - log\train.log - INFO - accuracy:  97.49%; precision:  77.80%; recall:  58.20%; FB1:  66.59
+
+2018-09-12 08:00:25,323 - log\train.log - INFO -            hetong: precision:  91.15%; recall:  47.47%; FB1:  62.42  113
+
+2018-09-12 08:00:25,324 - log\train.log - INFO -           jiafang: precision:  80.77%; recall:  60.96%; FB1:  69.48  520
+
+2018-09-12 08:00:25,324 - log\train.log - INFO -           xiangmu: precision:  55.08%; recall:  46.27%; FB1:  50.29  394
+
+2018-09-12 08:00:25,325 - log\train.log - INFO -            yifang: precision:  85.83%; recall:  64.35%; FB1:  73.56  734
+
+2018-09-12 08:00:25,339 - log\train.log - INFO - evaluate:test
+2018-09-12 08:01:17,198 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2431 phrases; correct: 1838.
+
+2018-09-12 08:01:17,199 - log\train.log - INFO - accuracy:  97.78%; precision:  75.61%; recall:  57.65%; FB1:  65.42
+
+2018-09-12 08:01:17,200 - log\train.log - INFO -            hetong: precision:  85.53%; recall:  43.17%; FB1:  57.38  159
+
+2018-09-12 08:01:17,200 - log\train.log - INFO -           jiafang: precision:  80.55%; recall:  59.98%; FB1:  68.76  694
+
+2018-09-12 08:01:17,200 - log\train.log - INFO -           xiangmu: precision:  48.71%; recall:  44.71%; FB1:  46.62  581
+
+2018-09-12 08:01:17,201 - log\train.log - INFO -            yifang: precision:  86.26%; recall:  65.75%; FB1:  74.62  997
+
+2018-09-12 08:03:30,400 - log\train.log - INFO - iteration:14 step:30/840, NER loss: 3.959586
+2018-09-12 08:08:53,116 - log\train.log - INFO - iteration:14 step:80/840, NER loss: 4.198415
+2018-09-12 08:13:43,757 - log\train.log - INFO - iteration:14 step:130/840, NER loss: 4.120800
+2018-09-12 08:17:57,779 - log\train.log - INFO - iteration:14 step:180/840, NER loss: 4.424347
+2018-09-12 08:22:03,027 - log\train.log - INFO - iteration:14 step:230/840, NER loss: 4.107661
+2018-09-12 08:26:35,428 - log\train.log - INFO - iteration:14 step:280/840, NER loss: 4.259995
+2018-09-12 08:31:27,705 - log\train.log - INFO - iteration:14 step:330/840, NER loss: 4.486980
+2018-09-12 08:35:28,544 - log\train.log - INFO - iteration:14 step:380/840, NER loss: 4.202664
+2018-09-12 08:39:41,636 - log\train.log - INFO - iteration:14 step:430/840, NER loss: 3.848463
+2018-09-12 08:44:46,893 - log\train.log - INFO - iteration:14 step:480/840, NER loss: 3.937113
+2018-09-12 08:49:01,491 - log\train.log - INFO - iteration:14 step:530/840, NER loss: 3.992376
+2018-09-12 08:54:23,890 - log\train.log - INFO - iteration:14 step:580/840, NER loss: 4.457125
+2018-09-12 08:58:54,817 - log\train.log - INFO - iteration:14 step:630/840, NER loss: 3.686946
+2018-09-12 09:02:55,990 - log\train.log - INFO - iteration:14 step:680/840, NER loss: 4.137912
+2018-09-12 09:07:03,207 - log\train.log - INFO - iteration:14 step:730/840, NER loss: 3.648855
+2018-09-12 09:10:55,203 - log\train.log - INFO - iteration:14 step:780/840, NER loss: 4.018965
+2018-09-12 09:15:37,958 - log\train.log - INFO - iteration:14 step:830/840, NER loss: 4.520934
+2018-09-12 09:16:30,415 - log\train.log - INFO - evaluate:dev
+2018-09-12 09:17:02,117 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2700 phrases; correct: 1749.
+
+2018-09-12 09:17:02,118 - log\train.log - INFO - accuracy:  97.12%; precision:  64.78%; recall:  74.30%; FB1:  69.21
+
+2018-09-12 09:17:02,120 - log\train.log - INFO -            hetong: precision:  84.21%; recall:  51.61%; FB1:  64.00  133
+
+2018-09-12 09:17:02,121 - log\train.log - INFO -           jiafang: precision:  66.83%; recall:  77.21%; FB1:  71.65  796
+
+2018-09-12 09:17:02,121 - log\train.log - INFO -           xiangmu: precision:  44.05%; recall:  71.86%; FB1:  54.62  765
+
+2018-09-12 09:17:02,121 - log\train.log - INFO -            yifang: precision:  76.34%; recall:  78.45%; FB1:  77.38  1006
+
+2018-09-12 09:17:02,215 - log\train.log - INFO - new best dev f1 score:69.210
+2018-09-12 09:17:02,698 - log\train.log - INFO - model saved
+2018-09-12 09:17:02,699 - log\train.log - INFO - evaluate:test
+2018-09-12 09:17:52,142 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3852 phrases; correct: 2307.
+
+2018-09-12 09:17:52,143 - log\train.log - INFO - accuracy:  97.25%; precision:  59.89%; recall:  72.37%; FB1:  65.54
+
+2018-09-12 09:17:52,144 - log\train.log - INFO -            hetong: precision:  80.29%; recall:  53.02%; FB1:  63.86  208
+
+2018-09-12 09:17:52,145 - log\train.log - INFO -           jiafang: precision:  66.07%; recall:  75.86%; FB1:  70.63  1070
+
+2018-09-12 09:17:52,145 - log\train.log - INFO -           xiangmu: precision:  35.75%; recall:  64.61%; FB1:  46.03  1144
+
+2018-09-12 09:17:52,145 - log\train.log - INFO -            yifang: precision:  71.61%; recall:  78.29%; FB1:  74.80  1430
+
+2018-09-12 09:21:01,424 - log\train.log - INFO - iteration:15 step:40/840, NER loss: 3.655254
+2018-09-12 09:25:11,641 - log\train.log - INFO - iteration:15 step:90/840, NER loss: 3.839106
+2018-09-12 09:29:28,597 - log\train.log - INFO - iteration:15 step:140/840, NER loss: 3.661038
+2018-09-12 09:33:30,638 - log\train.log - INFO - iteration:15 step:190/840, NER loss: 3.785711
+2018-09-12 09:37:16,971 - log\train.log - INFO - iteration:15 step:240/840, NER loss: 3.954288
+2018-09-12 09:42:04,817 - log\train.log - INFO - iteration:15 step:290/840, NER loss: 3.535100
+2018-09-12 09:46:59,717 - log\train.log - INFO - iteration:15 step:340/840, NER loss: 3.680812
+2018-09-12 09:51:59,377 - log\train.log - INFO - iteration:15 step:390/840, NER loss: 3.571633
+2018-09-12 09:55:56,440 - log\train.log - INFO - iteration:15 step:440/840, NER loss: 3.379796
+2018-09-12 10:00:25,480 - log\train.log - INFO - iteration:15 step:490/840, NER loss: 3.393091
+2018-09-12 10:04:55,281 - log\train.log - INFO - iteration:15 step:540/840, NER loss: 3.378826
+2018-09-12 10:09:06,368 - log\train.log - INFO - iteration:15 step:590/840, NER loss: 3.292309
+2018-09-12 10:13:01,396 - log\train.log - INFO - iteration:15 step:640/840, NER loss: 3.289806
+2018-09-12 10:17:41,485 - log\train.log - INFO - iteration:15 step:690/840, NER loss: 3.704101
+2018-09-12 10:21:52,944 - log\train.log - INFO - iteration:15 step:740/840, NER loss: 3.598523
+2018-09-12 10:25:57,353 - log\train.log - INFO - iteration:15 step:790/840, NER loss: 3.480707
+2018-09-12 10:31:25,462 - log\train.log - INFO - iteration:16 step:0/840, NER loss: 3.965795
+2018-09-12 10:31:25,463 - log\train.log - INFO - evaluate:dev
+2018-09-12 10:31:57,114 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2214 phrases; correct: 1649.
+
+2018-09-12 10:31:57,116 - log\train.log - INFO - accuracy:  97.81%; precision:  74.48%; recall:  70.05%; FB1:  72.20
+
+2018-09-12 10:31:57,117 - log\train.log - INFO -            hetong: precision:  60.31%; recall:  71.43%; FB1:  65.40  257
+
+2018-09-12 10:31:57,118 - log\train.log - INFO -           jiafang: precision:  78.27%; recall:  72.13%; FB1:  75.08  635
+
+2018-09-12 10:31:57,118 - log\train.log - INFO -           xiangmu: precision:  61.99%; recall:  61.19%; FB1:  61.59  463
+
+2018-09-12 10:31:57,118 - log\train.log - INFO -            yifang: precision:  82.65%; recall:  72.52%; FB1:  77.26  859
+
+2018-09-12 10:31:57,213 - log\train.log - INFO - new best dev f1 score:72.200
+2018-09-12 10:31:57,737 - log\train.log - INFO - model saved
+2018-09-12 10:31:57,738 - log\train.log - INFO - evaluate:test
+2018-09-12 10:32:47,169 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3112 phrases; correct: 2147.
+
+2018-09-12 10:32:47,170 - log\train.log - INFO - accuracy:  97.93%; precision:  68.99%; recall:  67.35%; FB1:  68.16
+
+2018-09-12 10:32:47,171 - log\train.log - INFO -            hetong: precision:  56.17%; recall:  73.65%; FB1:  63.74  413
+
+2018-09-12 10:32:47,172 - log\train.log - INFO -           jiafang: precision:  72.00%; recall:  68.99%; FB1:  70.47  893
+
+2018-09-12 10:32:47,172 - log\train.log - INFO -           xiangmu: precision:  51.28%; recall:  50.55%; FB1:  50.91  624
+
+2018-09-12 10:32:47,173 - log\train.log - INFO -            yifang: precision:  80.54%; recall:  72.78%; FB1:  76.47  1182
+
+2018-09-12 10:32:47,268 - log\train.log - INFO - new best test f1 score:68.160
+2018-09-12 10:36:58,840 - log\train.log - INFO - iteration:16 step:50/840, NER loss: 3.184525
+2018-09-12 10:41:32,717 - log\train.log - INFO - iteration:16 step:100/840, NER loss: 2.939353
+2018-09-12 10:46:16,209 - log\train.log - INFO - iteration:16 step:150/840, NER loss: 3.400996
+2018-09-12 10:50:27,058 - log\train.log - INFO - iteration:16 step:200/840, NER loss: 3.347448
+2018-09-12 10:55:06,783 - log\train.log - INFO - iteration:16 step:250/840, NER loss: 3.350404
+2018-09-12 10:59:12,152 - log\train.log - INFO - iteration:16 step:300/840, NER loss: 3.762797
+2018-09-12 11:05:29,624 - log\train.log - INFO - iteration:16 step:350/840, NER loss: 3.510347
+2018-09-12 11:09:06,361 - log\train.log - INFO - iteration:16 step:400/840, NER loss: 3.740402
+2018-09-12 11:13:04,550 - log\train.log - INFO - iteration:16 step:450/840, NER loss: 3.470707
+2018-09-12 11:17:24,726 - log\train.log - INFO - iteration:16 step:500/840, NER loss: 3.706487
+2018-09-12 11:21:40,822 - log\train.log - INFO - iteration:16 step:550/840, NER loss: 3.327891
+2018-09-12 11:25:23,217 - log\train.log - INFO - iteration:16 step:600/840, NER loss: 3.432533
+2018-09-12 11:30:07,528 - log\train.log - INFO - iteration:16 step:650/840, NER loss: 3.558173
+2018-09-12 11:34:14,895 - log\train.log - INFO - iteration:16 step:700/840, NER loss: 2.999200
+2018-09-12 11:38:35,424 - log\train.log - INFO - iteration:16 step:750/840, NER loss: 3.928297
+2018-09-12 11:43:13,588 - log\train.log - INFO - iteration:16 step:800/840, NER loss: 4.494485
+2018-09-12 11:46:19,854 - log\train.log - INFO - evaluate:dev
+2018-09-12 11:46:51,503 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2266 phrases; correct: 1655.
+
+2018-09-12 11:46:51,504 - log\train.log - INFO - accuracy:  97.77%; precision:  73.04%; recall:  70.31%; FB1:  71.65
+
+2018-09-12 11:46:51,505 - log\train.log - INFO -            hetong: precision:  72.97%; recall:  62.21%; FB1:  67.16  185
+
+2018-09-12 11:46:51,506 - log\train.log - INFO -           jiafang: precision:  68.91%; recall:  77.21%; FB1:  72.83  772
+
+2018-09-12 11:46:51,506 - log\train.log - INFO -           xiangmu: precision:  62.44%; recall:  55.65%; FB1:  58.85  418
+
+2018-09-12 11:46:51,506 - log\train.log - INFO -            yifang: precision:  81.59%; recall:  74.26%; FB1:  77.75  891
+
+2018-09-12 11:46:51,520 - log\train.log - INFO - evaluate:test
+2018-09-12 11:47:41,075 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3140 phrases; correct: 2196.
+
+2018-09-12 11:47:41,076 - log\train.log - INFO - accuracy:  98.03%; precision:  69.94%; recall:  68.88%; FB1:  69.41
+
+2018-09-12 11:47:41,077 - log\train.log - INFO -            hetong: precision:  71.96%; recall:  61.90%; FB1:  66.55  271
+
+2018-09-12 11:47:41,078 - log\train.log - INFO -           jiafang: precision:  67.02%; recall:  74.79%; FB1:  70.69  1040
+
+2018-09-12 11:47:41,078 - log\train.log - INFO -           xiangmu: precision:  53.97%; recall:  49.45%; FB1:  51.61  580
+
+2018-09-12 11:47:41,079 - log\train.log - INFO -            yifang: precision:  79.34%; recall:  75.76%; FB1:  77.51  1249
+
+2018-09-12 11:47:41,170 - log\train.log - INFO - new best test f1 score:69.410
+2018-09-12 11:48:23,478 - log\train.log - INFO - iteration:17 step:10/840, NER loss: 3.463658
+2018-09-12 11:52:21,486 - log\train.log - INFO - iteration:17 step:60/840, NER loss: 3.266819
+2018-09-12 11:56:17,752 - log\train.log - INFO - iteration:17 step:110/840, NER loss: 3.359358
+2018-09-12 12:00:04,170 - log\train.log - INFO - iteration:17 step:160/840, NER loss: 2.847763
+2018-09-12 12:04:12,448 - log\train.log - INFO - iteration:17 step:210/840, NER loss: 3.022752
+2018-09-12 12:08:05,315 - log\train.log - INFO - iteration:17 step:260/840, NER loss: 3.405670
+2018-09-12 12:12:12,820 - log\train.log - INFO - iteration:17 step:310/840, NER loss: 3.061453
+2018-09-12 12:16:26,605 - log\train.log - INFO - iteration:17 step:360/840, NER loss: 3.462837
+2018-09-12 12:20:07,962 - log\train.log - INFO - iteration:17 step:410/840, NER loss: 3.167908
+2018-09-12 12:25:25,302 - log\train.log - INFO - iteration:17 step:460/840, NER loss: 3.492061
+2018-09-12 12:29:58,954 - log\train.log - INFO - iteration:17 step:510/840, NER loss: 2.982273
+2018-09-12 12:34:28,260 - log\train.log - INFO - iteration:17 step:560/840, NER loss: 3.918795
+2018-09-12 12:39:34,093 - log\train.log - INFO - iteration:17 step:610/840, NER loss: 3.399395
+2018-09-12 12:44:12,298 - log\train.log - INFO - iteration:17 step:660/840, NER loss: 2.993878
+2018-09-12 12:48:34,158 - log\train.log - INFO - iteration:17 step:710/840, NER loss: 3.457215
+2018-09-12 12:53:31,076 - log\train.log - INFO - iteration:17 step:760/840, NER loss: 3.477460
+2018-09-12 12:58:45,688 - log\train.log - INFO - iteration:17 step:810/840, NER loss: 4.082440
+2018-09-12 13:01:14,007 - log\train.log - INFO - evaluate:dev
+2018-09-12 13:01:45,813 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2379 phrases; correct: 1651.
+
+2018-09-12 13:01:45,814 - log\train.log - INFO - accuracy:  97.30%; precision:  69.40%; recall:  70.14%; FB1:  69.77
+
+2018-09-12 13:01:45,815 - log\train.log - INFO -            hetong: precision:  77.59%; recall:  62.21%; FB1:  69.05  174
+
+2018-09-12 13:01:45,816 - log\train.log - INFO -           jiafang: precision:  73.62%; recall:  75.33%; FB1:  74.46  705
+
+2018-09-12 13:01:45,816 - log\train.log - INFO -           xiangmu: precision:  45.63%; recall:  73.56%; FB1:  56.33  756
+
+2018-09-12 13:01:45,816 - log\train.log - INFO -            yifang: precision:  87.63%; recall:  66.60%; FB1:  75.68  744
+
+2018-09-12 13:01:45,831 - log\train.log - INFO - evaluate:test
+2018-09-12 13:02:35,755 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3326 phrases; correct: 2202.
+
+2018-09-12 13:02:35,756 - log\train.log - INFO - accuracy:  97.61%; precision:  66.21%; recall:  69.07%; FB1:  67.61
+
+2018-09-12 13:02:35,759 - log\train.log - INFO -            hetong: precision:  75.38%; recall:  62.22%; FB1:  68.17  260
+
+2018-09-12 13:02:35,760 - log\train.log - INFO -           jiafang: precision:  72.50%; recall:  73.82%; FB1:  73.15  949
+
+2018-09-12 13:02:35,761 - log\train.log - INFO -           xiangmu: precision:  39.17%; recall:  68.25%; FB1:  49.77  1103
+
+2018-09-12 13:02:35,761 - log\train.log - INFO -            yifang: precision:  87.38%; recall:  67.74%; FB1:  76.31  1014
+
+2018-09-12 13:03:52,403 - log\train.log - INFO - iteration:18 step:20/840, NER loss: 3.422018
+2018-09-12 13:09:18,386 - log\train.log - INFO - iteration:18 step:70/840, NER loss: 3.155262
+2018-09-12 13:13:48,318 - log\train.log - INFO - iteration:18 step:120/840, NER loss: 2.801269
+2018-09-12 13:18:10,160 - log\train.log - INFO - iteration:18 step:170/840, NER loss: 3.015171
+2018-09-12 13:22:08,543 - log\train.log - INFO - iteration:18 step:220/840, NER loss: 2.916739
+2018-09-12 13:26:22,482 - log\train.log - INFO - iteration:18 step:270/840, NER loss: 3.644538
+2018-09-12 13:30:15,329 - log\train.log - INFO - iteration:18 step:320/840, NER loss: 3.035551
+2018-09-12 13:35:13,643 - log\train.log - INFO - iteration:18 step:370/840, NER loss: 3.530012
+2018-09-12 13:40:52,473 - log\train.log - INFO - iteration:18 step:420/840, NER loss: 4.014815
+2018-09-12 13:45:24,423 - log\train.log - INFO - iteration:18 step:470/840, NER loss: 3.018518
+2018-09-12 13:49:37,368 - log\train.log - INFO - iteration:18 step:520/840, NER loss: 3.274822
+2018-09-12 13:54:01,658 - log\train.log - INFO - iteration:18 step:570/840, NER loss: 2.778171
+2018-09-12 13:58:36,975 - log\train.log - INFO - iteration:18 step:620/840, NER loss: 2.619899
+2018-09-12 14:02:54,252 - log\train.log - INFO - iteration:18 step:670/840, NER loss: 3.104312
+2018-09-12 14:06:50,815 - log\train.log - INFO - iteration:18 step:720/840, NER loss: 3.253498
+2018-09-12 14:10:32,430 - log\train.log - INFO - iteration:18 step:770/840, NER loss: 3.386118
+2018-09-12 14:15:12,075 - log\train.log - INFO - iteration:18 step:820/840, NER loss: 3.768321
+2018-09-12 14:16:48,491 - log\train.log - INFO - evaluate:dev
+2018-09-12 14:17:21,588 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2564 phrases; correct: 1786.
+
+2018-09-12 14:17:21,588 - log\train.log - INFO - accuracy:  97.71%; precision:  69.66%; recall:  75.87%; FB1:  72.63
+
+2018-09-12 14:17:21,589 - log\train.log - INFO -            hetong: precision:  80.25%; recall:  59.91%; FB1:  68.60  162
+
+2018-09-12 14:17:21,589 - log\train.log - INFO -           jiafang: precision:  63.57%; recall:  82.29%; FB1:  71.73  892
+
+2018-09-12 14:17:21,589 - log\train.log - INFO -           xiangmu: precision:  59.52%; recall:  58.64%; FB1:  59.08  462
+
+2018-09-12 14:17:21,590 - log\train.log - INFO -            yifang: precision:  77.67%; recall:  83.15%; FB1:  80.32  1048
+
+2018-09-12 14:17:21,693 - log\train.log - INFO - new best dev f1 score:72.630
+2018-09-12 14:17:22,179 - log\train.log - INFO - model saved
+2018-09-12 14:17:22,179 - log\train.log - INFO - evaluate:test
+2018-09-12 14:18:13,671 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3637 phrases; correct: 2351.
+
+2018-09-12 14:18:13,672 - log\train.log - INFO - accuracy:  97.86%; precision:  64.64%; recall:  73.75%; FB1:  68.89
+
+2018-09-12 14:18:13,673 - log\train.log - INFO -            hetong: precision:  76.31%; recall:  60.32%; FB1:  67.38  249
+
+2018-09-12 14:18:13,674 - log\train.log - INFO -           jiafang: precision:  60.94%; recall:  81.01%; FB1:  69.55  1239
+
+2018-09-12 14:18:13,674 - log\train.log - INFO -           xiangmu: precision:  52.13%; recall:  54.03%; FB1:  53.06  656
+
+2018-09-12 14:18:13,674 - log\train.log - INFO -            yifang: precision:  71.27%; recall:  81.35%; FB1:  75.97  1493
+
+2018-09-12 14:20:30,172 - log\train.log - INFO - iteration:19 step:30/840, NER loss: 3.079698
+2018-09-12 14:24:54,962 - log\train.log - INFO - iteration:19 step:80/840, NER loss: 2.954694
+2018-09-12 14:28:42,690 - log\train.log - INFO - iteration:19 step:130/840, NER loss: 3.005449
+2018-09-12 14:33:20,539 - log\train.log - INFO - iteration:19 step:180/840, NER loss: 2.856457
+2018-09-12 14:39:11,218 - log\train.log - INFO - iteration:19 step:230/840, NER loss: 3.223449
+2018-09-12 14:43:37,485 - log\train.log - INFO - iteration:19 step:280/840, NER loss: 2.679478
+2018-09-12 14:47:42,287 - log\train.log - INFO - iteration:19 step:330/840, NER loss: 3.029470
+2018-09-12 14:53:08,039 - log\train.log - INFO - iteration:19 step:380/840, NER loss: 3.247094
+2018-09-12 14:57:59,599 - log\train.log - INFO - iteration:19 step:430/840, NER loss: 3.156334
+2018-09-12 15:01:30,025 - log\train.log - INFO - iteration:19 step:480/840, NER loss: 2.833995
+2018-09-12 15:07:11,295 - log\train.log - INFO - iteration:19 step:530/840, NER loss: 3.251287
+2018-09-12 15:12:02,261 - log\train.log - INFO - iteration:19 step:580/840, NER loss: 2.744978
+2018-09-12 15:15:39,357 - log\train.log - INFO - iteration:19 step:630/840, NER loss: 2.513149
+2018-09-12 15:19:47,052 - log\train.log - INFO - iteration:19 step:680/840, NER loss: 3.410915
+2018-09-12 15:24:31,619 - log\train.log - INFO - iteration:19 step:730/840, NER loss: 3.114146
+2018-09-12 15:29:35,991 - log\train.log - INFO - iteration:19 step:780/840, NER loss: 3.296420
+2018-09-12 15:34:42,152 - log\train.log - INFO - iteration:19 step:830/840, NER loss: 3.262065
+2018-09-12 15:35:34,574 - log\train.log - INFO - evaluate:dev
+2018-09-12 15:36:07,632 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2586 phrases; correct: 1771.
+
+2018-09-12 15:36:07,633 - log\train.log - INFO - accuracy:  97.54%; precision:  68.48%; recall:  75.23%; FB1:  71.70
+
+2018-09-12 15:36:07,634 - log\train.log - INFO -            hetong: precision:  58.51%; recall:  76.04%; FB1:  66.13  282
+
+2018-09-12 15:36:07,635 - log\train.log - INFO -           jiafang: precision:  63.29%; recall:  82.58%; FB1:  71.66  899
+
+2018-09-12 15:36:07,636 - log\train.log - INFO -           xiangmu: precision:  58.41%; recall:  65.88%; FB1:  61.92  529
+
+2018-09-12 15:36:07,636 - log\train.log - INFO -            yifang: precision:  83.11%; recall:  74.36%; FB1:  78.49  876
+
+2018-09-12 15:36:07,653 - log\train.log - INFO - evaluate:test
+2018-09-12 15:36:59,308 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3614 phrases; correct: 2327.
+
+2018-09-12 15:36:59,308 - log\train.log - INFO - accuracy:  97.74%; precision:  64.39%; recall:  72.99%; FB1:  68.42
+
+2018-09-12 15:36:59,309 - log\train.log - INFO -            hetong: precision:  52.21%; recall:  74.92%; FB1:  61.54  452
+
+2018-09-12 15:36:59,310 - log\train.log - INFO -           jiafang: precision:  61.83%; recall:  81.01%; FB1:  70.13  1221
+
+2018-09-12 15:36:59,310 - log\train.log - INFO -           xiangmu: precision:  48.57%; recall:  56.40%; FB1:  52.19  735
+
+2018-09-12 15:36:59,310 - log\train.log - INFO -            yifang: precision:  81.18%; recall:  74.85%; FB1:  77.88  1206
+
+2018-09-12 15:40:33,815 - log\train.log - INFO - iteration:20 step:40/840, NER loss: 2.636458
+2018-09-12 15:44:45,018 - log\train.log - INFO - iteration:20 step:90/840, NER loss: 2.583111
+2018-09-12 15:49:06,474 - log\train.log - INFO - iteration:20 step:140/840, NER loss: 2.706241
+2018-09-12 15:54:11,465 - log\train.log - INFO - iteration:20 step:190/840, NER loss: 2.903824
+2018-09-12 15:58:02,560 - log\train.log - INFO - iteration:20 step:240/840, NER loss: 2.540962
+2018-09-12 16:02:41,733 - log\train.log - INFO - iteration:20 step:290/840, NER loss: 2.851827
+2018-09-12 16:07:35,682 - log\train.log - INFO - iteration:20 step:340/840, NER loss: 3.079074
+2018-09-12 16:11:26,958 - log\train.log - INFO - iteration:20 step:390/840, NER loss: 2.417569
+2018-09-12 16:15:39,799 - log\train.log - INFO - iteration:20 step:440/840, NER loss: 3.132055
+2018-09-12 16:20:29,957 - log\train.log - INFO - iteration:20 step:490/840, NER loss: 2.681182
+2018-09-12 16:25:18,978 - log\train.log - INFO - iteration:20 step:540/840, NER loss: 3.038221
+2018-09-12 16:29:56,052 - log\train.log - INFO - iteration:20 step:590/840, NER loss: 3.327933
+2018-09-12 16:33:55,500 - log\train.log - INFO - iteration:20 step:640/840, NER loss: 2.848305
+2018-09-12 16:37:54,879 - log\train.log - INFO - iteration:20 step:690/840, NER loss: 3.095323
+2018-09-12 16:42:15,122 - log\train.log - INFO - iteration:20 step:740/840, NER loss: 2.742221
+2018-09-12 16:46:28,098 - log\train.log - INFO - iteration:20 step:790/840, NER loss: 2.766292
+2018-09-12 16:52:51,715 - log\train.log - INFO - iteration:21 step:0/840, NER loss: 3.516440
+2018-09-12 16:52:51,715 - log\train.log - INFO - evaluate:dev
+2018-09-12 16:53:24,753 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2096 phrases; correct: 1634.
+
+2018-09-12 16:53:24,754 - log\train.log - INFO - accuracy:  97.90%; precision:  77.96%; recall:  69.41%; FB1:  73.44
+
+2018-09-12 16:53:24,754 - log\train.log - INFO -            hetong: precision:  86.57%; recall:  53.46%; FB1:  66.10  134
+
+2018-09-12 16:53:24,755 - log\train.log - INFO -           jiafang: precision:  75.57%; recall:  77.21%; FB1:  76.38  704
+
+2018-09-12 16:53:24,755 - log\train.log - INFO -           xiangmu: precision:  68.46%; recall:  54.16%; FB1:  60.48  371
+
+2018-09-12 16:53:24,756 - log\train.log - INFO -            yifang: precision:  82.53%; recall:  74.77%; FB1:  78.46  887
+
+2018-09-12 16:53:24,859 - log\train.log - INFO - new best dev f1 score:73.440
+2018-09-12 16:53:25,370 - log\train.log - INFO - model saved
+2018-09-12 16:53:25,371 - log\train.log - INFO - evaluate:test
+2018-09-12 16:54:17,151 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2905 phrases; correct: 2147.
+
+2018-09-12 16:54:17,152 - log\train.log - INFO - accuracy:  98.14%; precision:  73.91%; recall:  67.35%; FB1:  70.47
+
+2018-09-12 16:54:17,152 - log\train.log - INFO -            hetong: precision:  86.44%; recall:  48.57%; FB1:  62.20  177
+
+2018-09-12 16:54:17,152 - log\train.log - INFO -           jiafang: precision:  72.83%; recall:  75.64%; FB1:  74.21  968
+
+2018-09-12 16:54:17,153 - log\train.log - INFO -           xiangmu: precision:  59.06%; recall:  47.87%; FB1:  52.88  513
+
+2018-09-12 16:54:17,153 - log\train.log - INFO -            yifang: precision:  79.07%; recall:  75.38%; FB1:  77.18  1247
+
+2018-09-12 16:54:17,254 - log\train.log - INFO - new best test f1 score:70.470
+2018-09-12 16:58:36,441 - log\train.log - INFO - iteration:21 step:50/840, NER loss: 2.485875
+2018-09-12 17:03:26,672 - log\train.log - INFO - iteration:21 step:100/840, NER loss: 2.245719
+2018-09-12 17:07:54,904 - log\train.log - INFO - iteration:21 step:150/840, NER loss: 2.479815
+2018-09-12 17:12:36,204 - log\train.log - INFO - iteration:21 step:200/840, NER loss: 2.740927
+2018-09-12 17:17:21,383 - log\train.log - INFO - iteration:21 step:250/840, NER loss: 3.035530
+2018-09-12 17:21:43,723 - log\train.log - INFO - iteration:21 step:300/840, NER loss: 2.709290
+2018-09-12 17:25:36,838 - log\train.log - INFO - iteration:21 step:350/840, NER loss: 2.740681
+2018-09-12 17:30:24,427 - log\train.log - INFO - iteration:21 step:400/840, NER loss: 2.497468
+2018-09-12 17:34:21,474 - log\train.log - INFO - iteration:21 step:450/840, NER loss: 2.821989
+2018-09-12 17:38:28,751 - log\train.log - INFO - iteration:21 step:500/840, NER loss: 3.263271
+2018-09-12 17:42:59,629 - log\train.log - INFO - iteration:21 step:550/840, NER loss: 3.373519
+2018-09-12 17:47:00,312 - log\train.log - INFO - iteration:21 step:600/840, NER loss: 2.434324
+2018-09-12 17:51:50,788 - log\train.log - INFO - iteration:21 step:650/840, NER loss: 3.265115
+2018-09-12 17:57:51,609 - log\train.log - INFO - iteration:21 step:700/840, NER loss: 3.383086
+2018-09-12 18:02:25,545 - log\train.log - INFO - iteration:21 step:750/840, NER loss: 3.100203
+2018-09-12 18:06:40,071 - log\train.log - INFO - iteration:21 step:800/840, NER loss: 2.805917
+2018-09-12 18:10:02,199 - log\train.log - INFO - evaluate:dev
+2018-09-12 18:10:35,592 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1948 phrases; correct: 1559.
+
+2018-09-12 18:10:35,593 - log\train.log - INFO - accuracy:  97.99%; precision:  80.03%; recall:  66.23%; FB1:  72.48
+
+2018-09-12 18:10:35,594 - log\train.log - INFO -            hetong: precision:  79.35%; recall:  56.68%; FB1:  66.13  155
+
+2018-09-12 18:10:35,594 - log\train.log - INFO -           jiafang: precision:  77.19%; recall:  74.17%; FB1:  75.65  662
+
+2018-09-12 18:10:35,594 - log\train.log - INFO -           xiangmu: precision:  69.95%; recall:  60.55%; FB1:  64.91  406
+
+2018-09-12 18:10:35,594 - log\train.log - INFO -            yifang: precision:  88.41%; recall:  65.47%; FB1:  75.23  725
+
+2018-09-12 18:10:35,608 - log\train.log - INFO - evaluate:test
+2018-09-12 18:11:27,585 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2708 phrases; correct: 2077.
+
+2018-09-12 18:11:27,586 - log\train.log - INFO - accuracy:  98.19%; precision:  76.70%; recall:  65.15%; FB1:  70.45
+
+2018-09-12 18:11:27,586 - log\train.log - INFO -            hetong: precision:  76.09%; recall:  55.56%; FB1:  64.22  230
+
+2018-09-12 18:11:27,586 - log\train.log - INFO -           jiafang: precision:  76.79%; recall:  73.82%; FB1:  75.27  896
+
+2018-09-12 18:11:27,587 - log\train.log - INFO -           xiangmu: precision:  57.42%; recall:  50.71%; FB1:  53.86  559
+
+2018-09-12 18:11:27,587 - log\train.log - INFO -            yifang: precision:  87.29%; recall:  68.27%; FB1:  76.62  1023
+
+2018-09-12 18:11:59,691 - log\train.log - INFO - iteration:22 step:10/840, NER loss: 2.804949
+2018-09-12 18:16:32,946 - log\train.log - INFO - iteration:22 step:60/840, NER loss: 2.327332
+2018-09-12 18:20:03,901 - log\train.log - INFO - iteration:22 step:110/840, NER loss: 2.073685
+2018-09-12 18:24:30,628 - log\train.log - INFO - iteration:22 step:160/840, NER loss: 2.634148
+2018-09-12 18:28:17,116 - log\train.log - INFO - iteration:22 step:210/840, NER loss: 2.381028
+2018-09-12 18:32:50,542 - log\train.log - INFO - iteration:22 step:260/840, NER loss: 2.688686
+2018-09-12 18:37:45,317 - log\train.log - INFO - iteration:22 step:310/840, NER loss: 2.989815
+2018-09-12 18:42:26,060 - log\train.log - INFO - iteration:22 step:360/840, NER loss: 2.449488
+2018-09-12 18:46:59,993 - log\train.log - INFO - iteration:22 step:410/840, NER loss: 2.691239
+2018-09-12 18:51:59,474 - log\train.log - INFO - iteration:22 step:460/840, NER loss: 2.856942
+2018-09-12 18:57:36,445 - log\train.log - INFO - iteration:22 step:510/840, NER loss: 3.327508
+2018-09-12 19:03:27,905 - log\train.log - INFO - iteration:22 step:560/840, NER loss: 2.883858
+2018-09-12 19:07:51,986 - log\train.log - INFO - iteration:22 step:610/840, NER loss: 2.719523
+2018-09-12 19:12:21,082 - log\train.log - INFO - iteration:22 step:660/840, NER loss: 3.130659
+2018-09-12 19:16:02,129 - log\train.log - INFO - iteration:22 step:710/840, NER loss: 2.449750
+2018-09-12 19:20:28,687 - log\train.log - INFO - iteration:22 step:760/840, NER loss: 2.899226
+2018-09-12 19:24:52,683 - log\train.log - INFO - iteration:22 step:810/840, NER loss: 2.604855
+2018-09-12 19:27:20,682 - log\train.log - INFO - evaluate:dev
+2018-09-12 19:27:53,929 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2124 phrases; correct: 1666.
+
+2018-09-12 19:27:53,930 - log\train.log - INFO - accuracy:  98.04%; precision:  78.44%; recall:  70.77%; FB1:  74.41
+
+2018-09-12 19:27:53,931 - log\train.log - INFO -            hetong: precision:  85.26%; recall:  61.29%; FB1:  71.31  156
+
+2018-09-12 19:27:53,932 - log\train.log - INFO -           jiafang: precision:  74.73%; recall:  78.96%; FB1:  76.78  728
+
+2018-09-12 19:27:53,932 - log\train.log - INFO -           xiangmu: precision:  68.08%; recall:  61.83%; FB1:  64.80  426
+
+2018-09-12 19:27:53,933 - log\train.log - INFO -            yifang: precision:  85.87%; recall:  71.40%; FB1:  77.97  814
+
+2018-09-12 19:27:54,035 - log\train.log - INFO - new best dev f1 score:74.410
+2018-09-12 19:27:54,801 - log\train.log - INFO - model saved
+2018-09-12 19:27:54,802 - log\train.log - INFO - evaluate:test
+2018-09-12 19:28:46,509 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3002 phrases; correct: 2214.
+
+2018-09-12 19:28:46,510 - log\train.log - INFO - accuracy:  98.19%; precision:  73.75%; recall:  69.45%; FB1:  71.53
+
+2018-09-12 19:28:46,510 - log\train.log - INFO -            hetong: precision:  80.17%; recall:  60.32%; FB1:  68.84  237
+
+2018-09-12 19:28:46,511 - log\train.log - INFO -           jiafang: precision:  71.02%; recall:  77.58%; FB1:  74.15  1018
+
+2018-09-12 19:28:46,511 - log\train.log - INFO -           xiangmu: precision:  56.84%; recall:  54.50%; FB1:  55.65  607
+
+2018-09-12 19:28:46,512 - log\train.log - INFO -            yifang: precision:  83.86%; recall:  73.09%; FB1:  78.10  1140
+
+2018-09-12 19:28:46,613 - log\train.log - INFO - new best test f1 score:71.530
+2018-09-12 19:30:29,991 - log\train.log - INFO - iteration:23 step:20/840, NER loss: 2.849067
+2018-09-12 19:35:12,417 - log\train.log - INFO - iteration:23 step:70/840, NER loss: 1.961000
+2018-09-12 19:39:16,188 - log\train.log - INFO - iteration:23 step:120/840, NER loss: 2.173766
+2018-09-12 19:43:53,990 - log\train.log - INFO - iteration:23 step:170/840, NER loss: 2.170386
+2018-09-12 19:48:22,778 - log\train.log - INFO - iteration:23 step:220/840, NER loss: 2.800273
+2018-09-12 19:54:05,240 - log\train.log - INFO - iteration:23 step:270/840, NER loss: 2.639365
+2018-09-12 19:58:09,719 - log\train.log - INFO - iteration:23 step:320/840, NER loss: 2.377805
+2018-09-12 20:02:25,529 - log\train.log - INFO - iteration:23 step:370/840, NER loss: 3.004189
+2018-09-12 20:07:56,700 - log\train.log - INFO - iteration:23 step:420/840, NER loss: 2.643795
+2018-09-12 20:11:58,136 - log\train.log - INFO - iteration:23 step:470/840, NER loss: 3.001566
+2018-09-12 20:17:01,297 - log\train.log - INFO - iteration:23 step:520/840, NER loss: 2.460191
+2018-09-12 20:22:22,718 - log\train.log - INFO - iteration:23 step:570/840, NER loss: 3.278227
+2018-09-12 20:27:06,669 - log\train.log - INFO - iteration:23 step:620/840, NER loss: 2.804004
+2018-09-12 20:31:17,584 - log\train.log - INFO - iteration:23 step:670/840, NER loss: 2.476753
+2018-09-12 20:35:24,944 - log\train.log - INFO - iteration:23 step:720/840, NER loss: 2.429355
+2018-09-12 20:40:07,727 - log\train.log - INFO - iteration:23 step:770/840, NER loss: 2.421258
+2018-09-12 20:44:23,463 - log\train.log - INFO - iteration:23 step:820/840, NER loss: 2.169218
+2018-09-12 20:46:15,189 - log\train.log - INFO - evaluate:dev
+2018-09-12 20:46:48,384 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2507 phrases; correct: 1840.
+
+2018-09-12 20:46:48,385 - log\train.log - INFO - accuracy:  98.02%; precision:  73.39%; recall:  78.16%; FB1:  75.70
+
+2018-09-12 20:46:48,386 - log\train.log - INFO -            hetong: precision:  75.85%; recall:  72.35%; FB1:  74.06  207
+
+2018-09-12 20:46:48,387 - log\train.log - INFO -           jiafang: precision:  76.29%; recall:  77.50%; FB1:  76.89  700
+
+2018-09-12 20:46:48,387 - log\train.log - INFO -           xiangmu: precision:  63.49%; recall:  68.23%; FB1:  65.78  504
+
+2018-09-12 20:46:48,387 - log\train.log - INFO -            yifang: precision:  75.64%; recall:  84.68%; FB1:  79.90  1096
+
+2018-09-12 20:46:48,490 - log\train.log - INFO - new best dev f1 score:75.700
+2018-09-12 20:46:48,975 - log\train.log - INFO - model saved
+2018-09-12 20:46:48,976 - log\train.log - INFO - evaluate:test
+2018-09-12 20:47:40,807 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3540 phrases; correct: 2391.
+
+2018-09-12 20:47:40,808 - log\train.log - INFO - accuracy:  98.02%; precision:  67.54%; recall:  75.00%; FB1:  71.08
+
+2018-09-12 20:47:40,809 - log\train.log - INFO -            hetong: precision:  71.16%; recall:  72.06%; FB1:  71.61  319
+
+2018-09-12 20:47:40,809 - log\train.log - INFO -           jiafang: precision:  74.82%; recall:  77.15%; FB1:  75.96  961
+
+2018-09-12 20:47:40,809 - log\train.log - INFO -           xiangmu: precision:  53.15%; recall:  57.35%; FB1:  55.17  683
+
+2018-09-12 20:47:40,810 - log\train.log - INFO -            yifang: precision:  68.61%; recall:  82.72%; FB1:  75.01  1577
+
+2018-09-12 20:49:38,022 - log\train.log - INFO - iteration:24 step:30/840, NER loss: 2.498559
+2018-09-12 20:54:10,313 - log\train.log - INFO - iteration:24 step:80/840, NER loss: 1.770519
+2018-09-12 20:58:40,773 - log\train.log - INFO - iteration:24 step:130/840, NER loss: 2.437103
+2018-09-12 21:03:49,887 - log\train.log - INFO - iteration:24 step:180/840, NER loss: 2.559052
+2018-09-12 21:08:22,822 - log\train.log - INFO - iteration:24 step:230/840, NER loss: 2.576881
+2018-09-12 21:12:49,974 - log\train.log - INFO - iteration:24 step:280/840, NER loss: 2.379605
+2018-09-12 21:17:20,582 - log\train.log - INFO - iteration:24 step:330/840, NER loss: 2.698564
+2018-09-12 21:21:51,657 - log\train.log - INFO - iteration:24 step:380/840, NER loss: 2.740273
+2018-09-12 21:27:13,429 - log\train.log - INFO - iteration:24 step:430/840, NER loss: 2.399941
+2018-09-12 21:30:56,987 - log\train.log - INFO - iteration:24 step:480/840, NER loss: 2.285026
+2018-09-12 21:35:48,672 - log\train.log - INFO - iteration:24 step:530/840, NER loss: 2.373197
+2018-09-12 21:40:25,928 - log\train.log - INFO - iteration:24 step:580/840, NER loss: 2.482015
+2018-09-12 21:44:41,621 - log\train.log - INFO - iteration:24 step:630/840, NER loss: 2.731496
+2018-09-12 21:49:06,419 - log\train.log - INFO - iteration:24 step:680/840, NER loss: 2.692611
+2018-09-12 21:53:00,510 - log\train.log - INFO - iteration:24 step:730/840, NER loss: 2.406947
+2018-09-12 21:58:03,547 - log\train.log - INFO - iteration:24 step:780/840, NER loss: 2.699619
+2018-09-12 22:02:16,736 - log\train.log - INFO - iteration:24 step:830/840, NER loss: 2.561599
+2018-09-12 22:03:42,573 - log\train.log - INFO - evaluate:dev
+2018-09-12 22:04:15,693 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2106 phrases; correct: 1687.
+
+2018-09-12 22:04:15,693 - log\train.log - INFO - accuracy:  98.13%; precision:  80.10%; recall:  71.67%; FB1:  75.65
+
+2018-09-12 22:04:15,694 - log\train.log - INFO -            hetong: precision:  82.04%; recall:  63.13%; FB1:  71.35  167
+
+2018-09-12 22:04:15,694 - log\train.log - INFO -           jiafang: precision:  79.15%; recall:  78.23%; FB1:  78.69  681
+
+2018-09-12 22:04:15,694 - log\train.log - INFO -           xiangmu: precision:  77.74%; recall:  55.86%; FB1:  65.01  337
+
+2018-09-12 22:04:15,695 - log\train.log - INFO -            yifang: precision:  81.32%; recall:  76.51%; FB1:  78.84  921
+
+2018-09-12 22:04:15,709 - log\train.log - INFO - evaluate:test
+2018-09-12 22:05:07,387 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2905 phrases; correct: 2202.
+
+2018-09-12 22:05:07,388 - log\train.log - INFO - accuracy:  98.27%; precision:  75.80%; recall:  69.07%; FB1:  72.28
+
+2018-09-12 22:05:07,389 - log\train.log - INFO -            hetong: precision:  77.61%; recall:  63.81%; FB1:  70.03  259
+
+2018-09-12 22:05:07,389 - log\train.log - INFO -           jiafang: precision:  75.43%; recall:  75.11%; FB1:  75.27  928
+
+2018-09-12 22:05:07,389 - log\train.log - INFO -           xiangmu: precision:  68.46%; recall:  44.23%; FB1:  53.74  409
+
+2018-09-12 22:05:07,390 - log\train.log - INFO -            yifang: precision:  78.00%; recall:  78.06%; FB1:  78.03  1309
+
+2018-09-12 22:05:07,493 - log\train.log - INFO - new best test f1 score:72.280
+2018-09-12 22:08:56,759 - log\train.log - INFO - iteration:25 step:40/840, NER loss: 2.146892
+2018-09-12 22:13:07,935 - log\train.log - INFO - iteration:25 step:90/840, NER loss: 2.242611
+2018-09-12 22:17:47,164 - log\train.log - INFO - iteration:25 step:140/840, NER loss: 2.223894
+2018-09-12 22:22:47,441 - log\train.log - INFO - iteration:25 step:190/840, NER loss: 2.626942
+2018-09-12 22:26:53,915 - log\train.log - INFO - iteration:25 step:240/840, NER loss: 2.089357
+2018-09-12 22:30:52,628 - log\train.log - INFO - iteration:25 step:290/840, NER loss: 2.253187
+2018-09-12 22:34:08,604 - log\train.log - INFO - iteration:25 step:340/840, NER loss: 2.211375
+2018-09-12 22:38:34,308 - log\train.log - INFO - iteration:25 step:390/840, NER loss: 2.517383
+2018-09-12 22:44:17,779 - log\train.log - INFO - iteration:25 step:440/840, NER loss: 2.699450
+2018-09-12 22:48:56,676 - log\train.log - INFO - iteration:25 step:490/840, NER loss: 2.471156
+2018-09-12 22:53:25,411 - log\train.log - INFO - iteration:25 step:540/840, NER loss: 1.990204
+2018-09-12 22:58:36,912 - log\train.log - INFO - iteration:25 step:590/840, NER loss: 2.556071
+2018-09-12 23:03:10,385 - log\train.log - INFO - iteration:25 step:640/840, NER loss: 2.264559
+2018-09-12 23:07:00,055 - log\train.log - INFO - iteration:25 step:690/840, NER loss: 2.339828
+2018-09-12 23:11:18,910 - log\train.log - INFO - iteration:25 step:740/840, NER loss: 2.305389
+2018-09-12 23:15:53,383 - log\train.log - INFO - iteration:25 step:790/840, NER loss: 2.592212
+2018-09-12 23:21:07,587 - log\train.log - INFO - iteration:26 step:0/840, NER loss: 2.753139
+2018-09-12 23:21:07,588 - log\train.log - INFO - evaluate:dev
+2018-09-12 23:21:40,695 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1923 phrases; correct: 1551.
+
+2018-09-12 23:21:40,695 - log\train.log - INFO - accuracy:  97.97%; precision:  80.66%; recall:  65.89%; FB1:  72.53
+
+2018-09-12 23:21:40,695 - log\train.log - INFO -            hetong: precision:  82.94%; recall:  64.98%; FB1:  72.87  170
+
+2018-09-12 23:21:40,696 - log\train.log - INFO -           jiafang: precision:  85.18%; recall:  65.89%; FB1:  74.30  533
+
+2018-09-12 23:21:40,696 - log\train.log - INFO -           xiangmu: precision:  63.37%; recall:  69.72%; FB1:  66.40  516
+
+2018-09-12 23:21:40,696 - log\train.log - INFO -            yifang: precision:  89.35%; recall:  64.25%; FB1:  74.75  704
+
+2018-09-12 23:21:40,711 - log\train.log - INFO - evaluate:test
+2018-09-12 23:22:32,512 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2678 phrases; correct: 2044.
+
+2018-09-12 23:22:32,513 - log\train.log - INFO - accuracy:  98.17%; precision:  76.33%; recall:  64.12%; FB1:  69.69
+
+2018-09-12 23:22:32,514 - log\train.log - INFO -            hetong: precision:  80.00%; recall:  64.76%; FB1:  71.58  255
+
+2018-09-12 23:22:32,514 - log\train.log - INFO -           jiafang: precision:  82.04%; recall:  63.73%; FB1:  71.74  724
+
+2018-09-12 23:22:32,515 - log\train.log - INFO -           xiangmu: precision:  52.43%; recall:  59.72%; FB1:  55.83  721
+
+2018-09-12 23:22:32,515 - log\train.log - INFO -            yifang: precision:  88.75%; recall:  66.36%; FB1:  75.94  978
+
+2018-09-12 23:27:50,064 - log\train.log - INFO - iteration:26 step:50/840, NER loss: 1.924670
+2018-09-12 23:31:56,724 - log\train.log - INFO - iteration:26 step:100/840, NER loss: 2.369554
+2018-09-12 23:35:56,104 - log\train.log - INFO - iteration:26 step:150/840, NER loss: 2.452844
+2018-09-12 23:39:58,223 - log\train.log - INFO - iteration:26 step:200/840, NER loss: 2.206949
+2018-09-12 23:44:28,160 - log\train.log - INFO - iteration:26 step:250/840, NER loss: 1.577428
+2018-09-12 23:48:23,666 - log\train.log - INFO - iteration:26 step:300/840, NER loss: 2.059329
+2018-09-12 23:52:56,379 - log\train.log - INFO - iteration:26 step:350/840, NER loss: 2.236016
+2018-09-12 23:57:30,383 - log\train.log - INFO - iteration:26 step:400/840, NER loss: 2.952371
+2018-09-13 00:01:49,475 - log\train.log - INFO - iteration:26 step:450/840, NER loss: 1.975293
+2018-09-13 00:07:13,221 - log\train.log - INFO - iteration:26 step:500/840, NER loss: 2.780222
+2018-09-13 00:11:45,261 - log\train.log - INFO - iteration:26 step:550/840, NER loss: 3.138754
+2018-09-13 00:17:51,397 - log\train.log - INFO - iteration:26 step:600/840, NER loss: 3.137307
+2018-09-13 00:22:05,064 - log\train.log - INFO - iteration:26 step:650/840, NER loss: 2.341511
+2018-09-13 00:25:25,131 - log\train.log - INFO - iteration:26 step:700/840, NER loss: 2.188843
+2018-09-13 00:29:40,768 - log\train.log - INFO - iteration:26 step:750/840, NER loss: 2.536181
+2018-09-13 00:35:08,007 - log\train.log - INFO - iteration:26 step:800/840, NER loss: 2.804780
+2018-09-13 00:38:25,696 - log\train.log - INFO - evaluate:dev
+2018-09-13 00:38:58,782 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2111 phrases; correct: 1702.
+
+2018-09-13 00:38:58,784 - log\train.log - INFO - accuracy:  98.16%; precision:  80.63%; recall:  72.30%; FB1:  76.24
+
+2018-09-13 00:38:58,785 - log\train.log - INFO -            hetong: precision:  85.44%; recall:  62.21%; FB1:  72.00  158
+
+2018-09-13 00:38:58,785 - log\train.log - INFO -           jiafang: precision:  78.79%; recall:  79.25%; FB1:  79.02  693
+
+2018-09-13 00:38:58,786 - log\train.log - INFO -           xiangmu: precision:  75.71%; recall:  57.14%; FB1:  65.13  354
+
+2018-09-13 00:38:58,786 - log\train.log - INFO -            yifang: precision:  83.11%; recall:  76.92%; FB1:  79.89  906
+
+2018-09-13 00:38:58,883 - log\train.log - INFO - new best dev f1 score:76.240
+2018-09-13 00:38:59,674 - log\train.log - INFO - model saved
+2018-09-13 00:38:59,675 - log\train.log - INFO - evaluate:test
+2018-09-13 00:39:51,653 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2887 phrases; correct: 2212.
+
+2018-09-13 00:39:51,654 - log\train.log - INFO - accuracy:  98.31%; precision:  76.62%; recall:  69.39%; FB1:  72.82
+
+2018-09-13 00:39:51,654 - log\train.log - INFO -            hetong: precision:  79.35%; recall:  62.22%; FB1:  69.75  247
+
+2018-09-13 00:39:51,655 - log\train.log - INFO -           jiafang: precision:  76.21%; recall:  76.29%; FB1:  76.25  933
+
+2018-09-13 00:39:51,655 - log\train.log - INFO -           xiangmu: precision:  65.88%; recall:  48.50%; FB1:  55.87  466
+
+2018-09-13 00:39:51,655 - log\train.log - INFO -            yifang: precision:  80.42%; recall:  76.30%; FB1:  78.31  1241
+
+2018-09-13 00:39:51,753 - log\train.log - INFO - new best test f1 score:72.820
+2018-09-13 00:40:45,174 - log\train.log - INFO - iteration:27 step:10/840, NER loss: 2.614345
+2018-09-13 00:45:53,832 - log\train.log - INFO - iteration:27 step:60/840, NER loss: 2.047399
+2018-09-13 00:50:12,586 - log\train.log - INFO - iteration:27 step:110/840, NER loss: 1.729668
+2018-09-13 00:54:36,673 - log\train.log - INFO - iteration:27 step:160/840, NER loss: 2.154837
+2018-09-13 01:00:13,546 - log\train.log - INFO - iteration:27 step:210/840, NER loss: 1.761463
+2018-09-13 01:03:43,649 - log\train.log - INFO - iteration:27 step:260/840, NER loss: 2.019145
+2018-09-13 01:08:05,299 - log\train.log - INFO - iteration:27 step:310/840, NER loss: 2.169205
+2018-09-13 01:13:32,579 - log\train.log - INFO - iteration:27 step:360/840, NER loss: 2.027225
+2018-09-13 01:18:11,359 - log\train.log - INFO - iteration:27 step:410/840, NER loss: 2.407697
+2018-09-13 01:23:16,426 - log\train.log - INFO - iteration:27 step:460/840, NER loss: 2.321025
+2018-09-13 01:27:52,828 - log\train.log - INFO - iteration:27 step:510/840, NER loss: 2.262750
+2018-09-13 01:32:48,300 - log\train.log - INFO - iteration:27 step:560/840, NER loss: 2.265981
+2018-09-13 01:37:04,853 - log\train.log - INFO - iteration:27 step:610/840, NER loss: 2.276351
+2018-09-13 01:41:11,643 - log\train.log - INFO - iteration:27 step:660/840, NER loss: 2.375494
+2018-09-13 01:45:28,933 - log\train.log - INFO - iteration:27 step:710/840, NER loss: 2.069803
+2018-09-13 01:49:43,043 - log\train.log - INFO - iteration:27 step:760/840, NER loss: 2.416364
+2018-09-13 01:53:47,551 - log\train.log - INFO - iteration:27 step:810/840, NER loss: 2.866657
+2018-09-13 01:56:26,301 - log\train.log - INFO - evaluate:dev
+2018-09-13 01:56:59,508 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2138 phrases; correct: 1674.
+
+2018-09-13 01:56:59,509 - log\train.log - INFO - accuracy:  97.99%; precision:  78.30%; recall:  71.11%; FB1:  74.53
+
+2018-09-13 01:56:59,511 - log\train.log - INFO -            hetong: precision:  83.02%; recall:  60.83%; FB1:  70.21  159
+
+2018-09-13 01:56:59,511 - log\train.log - INFO -           jiafang: precision:  84.37%; recall:  72.86%; FB1:  78.19  595
+
+2018-09-13 01:56:59,512 - log\train.log - INFO -           xiangmu: precision:  61.63%; recall:  69.51%; FB1:  65.33  529
+
+2018-09-13 01:56:59,512 - log\train.log - INFO -            yifang: precision:  83.51%; recall:  72.93%; FB1:  77.86  855
+
+2018-09-13 01:56:59,527 - log\train.log - INFO - evaluate:test
+2018-09-13 01:57:51,297 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3002 phrases; correct: 2244.
+
+2018-09-13 01:57:51,298 - log\train.log - INFO - accuracy:  98.15%; precision:  74.75%; recall:  70.39%; FB1:  72.50
+
+2018-09-13 01:57:51,299 - log\train.log - INFO -            hetong: precision:  83.54%; recall:  62.86%; FB1:  71.74  237
+
+2018-09-13 01:57:51,300 - log\train.log - INFO -           jiafang: precision:  81.56%; recall:  71.67%; FB1:  76.30  819
+
+2018-09-13 01:57:51,300 - log\train.log - INFO -           xiangmu: precision:  51.50%; recall:  62.40%; FB1:  56.43  767
+
+2018-09-13 01:57:51,301 - log\train.log - INFO -            yifang: precision:  83.38%; recall:  75.15%; FB1:  79.05  1179
+
+2018-09-13 01:59:23,398 - log\train.log - INFO - iteration:28 step:20/840, NER loss: 2.381168
+2018-09-13 02:04:19,077 - log\train.log - INFO - iteration:28 step:70/840, NER loss: 2.149180
+2018-09-13 02:09:20,600 - log\train.log - INFO - iteration:28 step:120/840, NER loss: 2.298991
+2018-09-13 02:13:55,445 - log\train.log - INFO - iteration:28 step:170/840, NER loss: 2.025965
+2018-09-13 02:19:16,893 - log\train.log - INFO - iteration:28 step:220/840, NER loss: 2.150035
+2018-09-13 02:23:36,785 - log\train.log - INFO - iteration:28 step:270/840, NER loss: 2.078373
+2018-09-13 02:27:57,622 - log\train.log - INFO - iteration:28 step:320/840, NER loss: 1.825224
+2018-09-13 02:32:18,026 - log\train.log - INFO - iteration:28 step:370/840, NER loss: 2.027220
+2018-09-13 02:37:20,382 - log\train.log - INFO - iteration:28 step:420/840, NER loss: 2.188039
+2018-09-13 02:41:48,252 - log\train.log - INFO - iteration:28 step:470/840, NER loss: 2.294700
+2018-09-13 02:46:02,643 - log\train.log - INFO - iteration:28 step:520/840, NER loss: 2.126481
+2018-09-13 02:50:43,133 - log\train.log - INFO - iteration:28 step:570/840, NER loss: 2.051429
+2018-09-13 02:55:24,731 - log\train.log - INFO - iteration:28 step:620/840, NER loss: 2.630934
+2018-09-13 02:59:32,082 - log\train.log - INFO - iteration:28 step:670/840, NER loss: 2.144658
+2018-09-13 03:03:47,935 - log\train.log - INFO - iteration:28 step:720/840, NER loss: 2.340456
+2018-09-13 03:07:47,636 - log\train.log - INFO - iteration:28 step:770/840, NER loss: 2.015002
+2018-09-13 03:12:02,810 - log\train.log - INFO - iteration:28 step:820/840, NER loss: 2.384220
+2018-09-13 03:13:49,489 - log\train.log - INFO - evaluate:dev
+2018-09-13 03:14:22,735 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2067 phrases; correct: 1649.
+
+2018-09-13 03:14:22,736 - log\train.log - INFO - accuracy:  98.01%; precision:  79.78%; recall:  70.05%; FB1:  74.60
+
+2018-09-13 03:14:22,737 - log\train.log - INFO -            hetong: precision:  80.92%; recall:  64.52%; FB1:  71.79  173
+
+2018-09-13 03:14:22,737 - log\train.log - INFO -           jiafang: precision:  73.12%; recall:  81.71%; FB1:  77.18  770
+
+2018-09-13 03:14:22,737 - log\train.log - INFO -           xiangmu: precision:  78.47%; recall:  45.84%; FB1:  57.87  274
+
+2018-09-13 03:14:22,738 - log\train.log - INFO -            yifang: precision:  86.00%; recall:  74.67%; FB1:  79.93  850
+
+2018-09-13 03:14:22,753 - log\train.log - INFO - evaluate:test
+2018-09-13 03:15:14,660 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2829 phrases; correct: 2163.
+
+2018-09-13 03:15:14,661 - log\train.log - INFO - accuracy:  98.25%; precision:  76.46%; recall:  67.85%; FB1:  71.90
+
+2018-09-13 03:15:14,661 - log\train.log - INFO -            hetong: precision:  80.31%; recall:  64.76%; FB1:  71.70  254
+
+2018-09-13 03:15:14,662 - log\train.log - INFO -           jiafang: precision:  69.17%; recall:  80.15%; FB1:  74.25  1080
+
+2018-09-13 03:15:14,662 - log\train.log - INFO -           xiangmu: precision:  75.08%; recall:  39.49%; FB1:  51.76  333
+
+2018-09-13 03:15:14,662 - log\train.log - INFO -            yifang: precision:  82.79%; recall:  73.55%; FB1:  77.89  1162
+
+2018-09-13 03:17:51,437 - log\train.log - INFO - iteration:29 step:30/840, NER loss: 2.480836
+2018-09-13 03:22:31,294 - log\train.log - INFO - iteration:29 step:80/840, NER loss: 2.064116
+2018-09-13 03:26:03,465 - log\train.log - INFO - iteration:29 step:130/840, NER loss: 1.764573
+2018-09-13 03:31:22,329 - log\train.log - INFO - iteration:29 step:180/840, NER loss: 2.100846
+2018-09-13 03:35:42,385 - log\train.log - INFO - iteration:29 step:230/840, NER loss: 1.903499
+2018-09-13 03:40:35,775 - log\train.log - INFO - iteration:29 step:280/840, NER loss: 2.120989
+2018-09-13 03:45:12,278 - log\train.log - INFO - iteration:29 step:330/840, NER loss: 2.054513
+2018-09-13 03:50:06,350 - log\train.log - INFO - iteration:29 step:380/840, NER loss: 2.443452
+2018-09-13 03:54:36,699 - log\train.log - INFO - iteration:29 step:430/840, NER loss: 1.798255
+2018-09-13 03:58:49,483 - log\train.log - INFO - iteration:29 step:480/840, NER loss: 1.834540
+2018-09-13 04:02:59,954 - log\train.log - INFO - iteration:29 step:530/840, NER loss: 2.421333
+2018-09-13 04:07:57,964 - log\train.log - INFO - iteration:29 step:580/840, NER loss: 2.324921
+2018-09-13 04:12:54,488 - log\train.log - INFO - iteration:29 step:630/840, NER loss: 2.597150
+2018-09-13 04:16:51,312 - log\train.log - INFO - iteration:29 step:680/840, NER loss: 2.686836
+2018-09-13 04:21:43,910 - log\train.log - INFO - iteration:29 step:730/840, NER loss: 2.357400
+2018-09-13 04:26:21,659 - log\train.log - INFO - iteration:29 step:780/840, NER loss: 2.104515
+2018-09-13 04:30:24,443 - log\train.log - INFO - iteration:29 step:830/840, NER loss: 2.394642
+2018-09-13 04:31:18,896 - log\train.log - INFO - evaluate:dev
+2018-09-13 04:31:52,269 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2618 phrases; correct: 1866.
+
+2018-09-13 04:31:52,270 - log\train.log - INFO - accuracy:  97.70%; precision:  71.28%; recall:  79.27%; FB1:  75.06
+
+2018-09-13 04:31:52,271 - log\train.log - INFO -            hetong: precision:  76.85%; recall:  71.89%; FB1:  74.29  203
+
+2018-09-13 04:31:52,271 - log\train.log - INFO -           jiafang: precision:  79.88%; recall:  75.47%; FB1:  77.61  651
+
+2018-09-13 04:31:52,272 - log\train.log - INFO -           xiangmu: precision:  52.76%; recall:  75.48%; FB1:  62.11  671
+
+2018-09-13 04:31:52,272 - log\train.log - INFO -            yifang: precision:  76.49%; recall:  85.39%; FB1:  80.69  1093
+
+2018-09-13 04:31:52,289 - log\train.log - INFO - evaluate:test
+2018-09-13 04:32:44,008 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3679 phrases; correct: 2419.
+
+2018-09-13 04:32:44,009 - log\train.log - INFO - accuracy:  97.80%; precision:  65.75%; recall:  75.88%; FB1:  70.45
+
+2018-09-13 04:32:44,009 - log\train.log - INFO -            hetong: precision:  73.38%; recall:  71.75%; FB1:  72.55  308
+
+2018-09-13 04:32:44,010 - log\train.log - INFO -           jiafang: precision:  79.10%; recall:  73.93%; FB1:  76.43  871
+
+2018-09-13 04:32:44,010 - log\train.log - INFO -           xiangmu: precision:  44.25%; recall:  64.45%; FB1:  52.48  922
+
+2018-09-13 04:32:44,010 - log\train.log - INFO -            yifang: precision:  69.46%; recall:  83.79%; FB1:  75.95  1578
+
+2018-09-13 04:36:54,306 - log\train.log - INFO - iteration:30 step:40/840, NER loss: 1.929410
+2018-09-13 04:41:41,006 - log\train.log - INFO - iteration:30 step:90/840, NER loss: 2.261778
+2018-09-13 04:45:40,249 - log\train.log - INFO - iteration:30 step:140/840, NER loss: 1.752312
+2018-09-13 04:49:49,573 - log\train.log - INFO - iteration:30 step:190/840, NER loss: 1.950769
+2018-09-13 04:54:46,957 - log\train.log - INFO - iteration:30 step:240/840, NER loss: 2.076668
+2018-09-13 04:59:30,266 - log\train.log - INFO - iteration:30 step:290/840, NER loss: 2.074871
+2018-09-13 05:04:23,142 - log\train.log - INFO - iteration:30 step:340/840, NER loss: 2.150727
+2018-09-13 05:09:24,780 - log\train.log - INFO - iteration:30 step:390/840, NER loss: 2.251433
+2018-09-13 05:12:24,974 - log\train.log - INFO - iteration:30 step:440/840, NER loss: 1.935038
+2018-09-13 05:17:05,537 - log\train.log - INFO - iteration:30 step:490/840, NER loss: 2.204800
+2018-09-13 05:22:23,815 - log\train.log - INFO - iteration:30 step:540/840, NER loss: 2.176700
+2018-09-13 05:27:13,178 - log\train.log - INFO - iteration:30 step:590/840, NER loss: 2.204830
+2018-09-13 05:31:41,793 - log\train.log - INFO - iteration:30 step:640/840, NER loss: 2.180679
+2018-09-13 05:36:28,150 - log\train.log - INFO - iteration:30 step:690/840, NER loss: 2.520577
+2018-09-13 05:40:38,024 - log\train.log - INFO - iteration:30 step:740/840, NER loss: 2.130362
+2018-09-13 05:44:14,570 - log\train.log - INFO - iteration:30 step:790/840, NER loss: 2.195351
+2018-09-13 05:48:47,934 - log\train.log - INFO - iteration:31 step:0/840, NER loss: 2.159945
+2018-09-13 05:48:47,935 - log\train.log - INFO - evaluate:dev
+2018-09-13 05:49:21,141 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1810 phrases; correct: 1534.
+
+2018-09-13 05:49:21,142 - log\train.log - INFO - accuracy:  98.03%; precision:  84.75%; recall:  65.17%; FB1:  73.68
+
+2018-09-13 05:49:21,142 - log\train.log - INFO -            hetong: precision:  81.67%; recall:  67.74%; FB1:  74.06  180
+
+2018-09-13 05:49:21,143 - log\train.log - INFO -           jiafang: precision:  82.72%; recall:  71.55%; FB1:  76.73  596
+
+2018-09-13 05:49:21,143 - log\train.log - INFO -           xiangmu: precision:  82.44%; recall:  46.06%; FB1:  59.10  262
+
+2018-09-13 05:49:21,144 - log\train.log - INFO -            yifang: precision:  87.82%; recall:  69.25%; FB1:  77.44  772
+
+2018-09-13 05:49:21,160 - log\train.log - INFO - evaluate:test
+2018-09-13 05:50:13,095 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2483 phrases; correct: 2039.
+
+2018-09-13 05:50:13,096 - log\train.log - INFO - accuracy:  98.33%; precision:  82.12%; recall:  63.96%; FB1:  71.91
+
+2018-09-13 05:50:13,097 - log\train.log - INFO -            hetong: precision:  74.05%; recall:  67.94%; FB1:  70.86  289
+
+2018-09-13 05:50:13,097 - log\train.log - INFO -           jiafang: precision:  80.26%; recall:  71.57%; FB1:  75.67  831
+
+2018-09-13 05:50:13,098 - log\train.log - INFO -           xiangmu: precision:  77.27%; recall:  40.28%; FB1:  52.96  330
+
+2018-09-13 05:50:13,099 - log\train.log - INFO -            yifang: precision:  87.42%; recall:  69.04%; FB1:  77.15  1033
+
+2018-09-13 05:54:02,257 - log\train.log - INFO - iteration:31 step:50/840, NER loss: 1.622584
+2018-09-13 05:58:31,182 - log\train.log - INFO - iteration:31 step:100/840, NER loss: 1.475381
+2018-09-13 06:03:32,014 - log\train.log - INFO - iteration:31 step:150/840, NER loss: 2.076529
+2018-09-13 06:07:34,884 - log\train.log - INFO - iteration:31 step:200/840, NER loss: 1.872051
+2018-09-13 06:11:22,776 - log\train.log - INFO - iteration:31 step:250/840, NER loss: 1.889421
+2018-09-13 06:16:43,577 - log\train.log - INFO - iteration:31 step:300/840, NER loss: 2.358762
+2018-09-13 06:21:37,392 - log\train.log - INFO - iteration:31 step:350/840, NER loss: 2.140044
+2018-09-13 06:25:47,644 - log\train.log - INFO - iteration:31 step:400/840, NER loss: 2.134381
+2018-09-13 06:30:14,666 - log\train.log - INFO - iteration:31 step:450/840, NER loss: 1.972946
+2018-09-13 06:34:38,723 - log\train.log - INFO - iteration:31 step:500/840, NER loss: 1.621703
+2018-09-13 06:38:53,874 - log\train.log - INFO - iteration:31 step:550/840, NER loss: 2.262383
+2018-09-13 06:43:18,678 - log\train.log - INFO - iteration:31 step:600/840, NER loss: 2.212116
+2018-09-13 06:48:19,368 - log\train.log - INFO - iteration:31 step:650/840, NER loss: 2.116252
+2018-09-13 06:53:48,345 - log\train.log - INFO - iteration:31 step:700/840, NER loss: 2.235971
+2018-09-13 06:57:23,983 - log\train.log - INFO - iteration:31 step:750/840, NER loss: 1.828940
+2018-09-13 07:02:45,954 - log\train.log - INFO - iteration:31 step:800/840, NER loss: 2.127835
+2018-09-13 07:06:40,076 - log\train.log - INFO - evaluate:dev
+2018-09-13 07:07:13,985 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2225 phrases; correct: 1721.
+
+2018-09-13 07:07:13,986 - log\train.log - INFO - accuracy:  97.91%; precision:  77.35%; recall:  73.11%; FB1:  75.17
+
+2018-09-13 07:07:13,987 - log\train.log - INFO -            hetong: precision:  84.71%; recall:  61.29%; FB1:  71.12  157
+
+2018-09-13 07:07:13,988 - log\train.log - INFO -           jiafang: precision:  85.34%; recall:  71.84%; FB1:  78.01  580
+
+2018-09-13 07:07:13,988 - log\train.log - INFO -           xiangmu: precision:  56.07%; recall:  74.84%; FB1:  64.11  626
+
+2018-09-13 07:07:13,989 - log\train.log - INFO -            yifang: precision:  86.08%; recall:  75.79%; FB1:  80.61  862
+
+2018-09-13 07:07:14,004 - log\train.log - INFO - evaluate:test
+2018-09-13 07:08:05,897 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3096 phrases; correct: 2253.
+
+2018-09-13 07:08:05,897 - log\train.log - INFO - accuracy:  97.99%; precision:  72.77%; recall:  70.67%; FB1:  71.71
+
+2018-09-13 07:08:05,898 - log\train.log - INFO -            hetong: precision:  84.17%; recall:  64.13%; FB1:  72.79  240
+
+2018-09-13 07:08:05,898 - log\train.log - INFO -           jiafang: precision:  84.56%; recall:  70.49%; FB1:  76.89  777
+
+2018-09-13 07:08:05,898 - log\train.log - INFO -           xiangmu: precision:  46.08%; recall:  66.82%; FB1:  54.55  918
+
+2018-09-13 07:08:05,899 - log\train.log - INFO -            yifang: precision:  83.63%; recall:  74.24%; FB1:  78.66  1161
+
+2018-09-13 07:09:01,137 - log\train.log - INFO - iteration:32 step:10/840, NER loss: 1.912620
+2018-09-13 07:15:01,878 - log\train.log - INFO - iteration:32 step:60/840, NER loss: 2.157646
+2018-09-13 07:19:32,314 - log\train.log - INFO - iteration:32 step:110/840, NER loss: 1.691249
+2018-09-13 07:24:43,496 - log\train.log - INFO - iteration:32 step:160/840, NER loss: 1.707879
+2018-09-13 07:29:31,113 - log\train.log - INFO - iteration:32 step:210/840, NER loss: 1.717839
+2018-09-13 07:34:29,343 - log\train.log - INFO - iteration:32 step:260/840, NER loss: 2.136648
+2018-09-13 07:39:34,381 - log\train.log - INFO - iteration:32 step:310/840, NER loss: 2.342747
+2018-09-13 07:44:19,588 - log\train.log - INFO - iteration:32 step:360/840, NER loss: 1.602563
+2018-09-13 07:48:29,212 - log\train.log - INFO - iteration:32 step:410/840, NER loss: 1.356421
+2018-09-13 07:53:58,934 - log\train.log - INFO - iteration:32 step:460/840, NER loss: 1.817774
+2018-09-13 07:57:29,449 - log\train.log - INFO - iteration:32 step:510/840, NER loss: 1.954283
+2018-09-13 08:01:34,495 - log\train.log - INFO - iteration:32 step:560/840, NER loss: 1.863481
+2018-09-13 08:06:16,047 - log\train.log - INFO - iteration:32 step:610/840, NER loss: 2.375336
+2018-09-13 08:10:20,898 - log\train.log - INFO - iteration:32 step:660/840, NER loss: 2.240900
+2018-09-13 08:14:16,870 - log\train.log - INFO - iteration:32 step:710/840, NER loss: 2.269635
+2018-09-13 08:18:52,734 - log\train.log - INFO - iteration:32 step:760/840, NER loss: 2.170455
+2018-09-13 08:22:53,013 - log\train.log - INFO - iteration:32 step:810/840, NER loss: 2.219016
+2018-09-13 08:25:36,770 - log\train.log - INFO - evaluate:dev
+2018-09-13 08:26:09,955 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1772 phrases; correct: 1520.
+
+2018-09-13 08:26:09,957 - log\train.log - INFO - accuracy:  98.16%; precision:  85.78%; recall:  64.57%; FB1:  73.68
+
+2018-09-13 08:26:09,957 - log\train.log - INFO -            hetong: precision:  77.08%; recall:  68.20%; FB1:  72.37  192
+
+2018-09-13 08:26:09,958 - log\train.log - INFO -           jiafang: precision:  89.01%; recall:  61.10%; FB1:  72.46  473
+
+2018-09-13 08:26:09,958 - log\train.log - INFO -           xiangmu: precision:  77.52%; recall:  63.97%; FB1:  70.09  387
+
+2018-09-13 08:26:09,958 - log\train.log - INFO -            yifang: precision:  90.42%; recall:  66.50%; FB1:  76.63  720
+
+2018-09-13 08:26:09,973 - log\train.log - INFO - evaluate:test
+2018-09-13 08:27:02,983 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2421 phrases; correct: 2002.
+
+2018-09-13 08:27:02,984 - log\train.log - INFO - accuracy:  98.35%; precision:  82.69%; recall:  62.80%; FB1:  71.39
+
+2018-09-13 08:27:02,984 - log\train.log - INFO -            hetong: precision:  72.79%; recall:  70.48%; FB1:  71.61  305
+
+2018-09-13 08:27:02,985 - log\train.log - INFO -           jiafang: precision:  87.77%; recall:  60.84%; FB1:  71.86  646
+
+2018-09-13 08:27:02,985 - log\train.log - INFO -           xiangmu: precision:  68.89%; recall:  53.87%; FB1:  60.46  495
+
+2018-09-13 08:27:02,986 - log\train.log - INFO -            yifang: precision:  89.44%; recall:  66.67%; FB1:  76.39  975
+
+2018-09-13 08:28:37,825 - log\train.log - INFO - iteration:33 step:20/840, NER loss: 1.744228
+2018-09-13 08:33:35,289 - log\train.log - INFO - iteration:33 step:70/840, NER loss: 2.398064
+2018-09-13 08:38:01,442 - log\train.log - INFO - iteration:33 step:120/840, NER loss: 2.018048
+2018-09-13 08:42:35,605 - log\train.log - INFO - iteration:33 step:170/840, NER loss: 1.827286
+2018-09-13 08:46:53,052 - log\train.log - INFO - iteration:33 step:220/840, NER loss: 2.255291
+2018-09-13 08:50:37,098 - log\train.log - INFO - iteration:33 step:270/840, NER loss: 1.743959
+2018-09-13 08:55:59,978 - log\train.log - INFO - iteration:33 step:320/840, NER loss: 1.690221
+2018-09-13 09:00:23,503 - log\train.log - INFO - iteration:33 step:370/840, NER loss: 1.766436
+2018-09-13 09:04:56,047 - log\train.log - INFO - iteration:33 step:420/840, NER loss: 2.003232
+2018-09-13 09:10:03,624 - log\train.log - INFO - iteration:33 step:470/840, NER loss: 2.000439
+2018-09-13 09:14:16,135 - log\train.log - INFO - iteration:33 step:520/840, NER loss: 1.810829
+2018-09-13 09:19:39,397 - log\train.log - INFO - iteration:33 step:570/840, NER loss: 1.966020
+2018-09-13 09:24:24,030 - log\train.log - INFO - iteration:33 step:620/840, NER loss: 2.056523
+2018-09-13 09:29:20,883 - log\train.log - INFO - iteration:33 step:670/840, NER loss: 2.002880
+2018-09-13 09:33:58,226 - log\train.log - INFO - iteration:33 step:720/840, NER loss: 1.839124
+2018-09-13 09:38:23,842 - log\train.log - INFO - iteration:33 step:770/840, NER loss: 1.908917
+2018-09-13 09:43:13,860 - log\train.log - INFO - iteration:33 step:820/840, NER loss: 2.120828
+2018-09-13 09:44:44,043 - log\train.log - INFO - evaluate:dev
+2018-09-13 09:45:17,358 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2002 phrases; correct: 1670.
+
+2018-09-13 09:45:17,358 - log\train.log - INFO - accuracy:  98.27%; precision:  83.42%; recall:  70.94%; FB1:  76.68
+
+2018-09-13 09:45:17,359 - log\train.log - INFO -            hetong: precision:  77.00%; recall:  70.97%; FB1:  73.86  200
+
+2018-09-13 09:45:17,359 - log\train.log - INFO -           jiafang: precision:  84.75%; recall:  72.57%; FB1:  78.19  590
+
+2018-09-13 09:45:17,360 - log\train.log - INFO -           xiangmu: precision:  73.90%; recall:  64.61%; FB1:  68.94  410
+
+2018-09-13 09:45:17,360 - log\train.log - INFO -            yifang: precision:  88.90%; recall:  72.83%; FB1:  80.07  802
+
+2018-09-13 09:45:17,463 - log\train.log - INFO - new best dev f1 score:76.680
+2018-09-13 09:45:18,230 - log\train.log - INFO - model saved
+2018-09-13 09:45:18,231 - log\train.log - INFO - evaluate:test
+2018-09-13 09:46:10,006 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2790 phrases; correct: 2203.
+
+2018-09-13 09:46:10,008 - log\train.log - INFO - accuracy:  98.39%; precision:  78.96%; recall:  69.10%; FB1:  73.70
+
+2018-09-13 09:46:10,008 - log\train.log - INFO -            hetong: precision:  70.06%; recall:  69.84%; FB1:  69.95  314
+
+2018-09-13 09:46:10,009 - log\train.log - INFO -           jiafang: precision:  82.76%; recall:  72.10%; FB1:  77.06  812
+
+2018-09-13 09:46:10,009 - log\train.log - INFO -           xiangmu: precision:  66.25%; recall:  57.98%; FB1:  61.84  554
+
+2018-09-13 09:46:10,009 - log\train.log - INFO -            yifang: precision:  85.05%; recall:  72.17%; FB1:  78.08  1110
+
+2018-09-13 09:46:10,107 - log\train.log - INFO - new best test f1 score:73.700
+2018-09-13 09:48:33,060 - log\train.log - INFO - iteration:34 step:30/840, NER loss: 1.981509
+2018-09-13 09:52:20,904 - log\train.log - INFO - iteration:34 step:80/840, NER loss: 1.466317
+2018-09-13 09:57:07,199 - log\train.log - INFO - iteration:34 step:130/840, NER loss: 2.146695
+2018-09-13 10:01:40,305 - log\train.log - INFO - iteration:34 step:180/840, NER loss: 1.545863
+2018-09-13 10:06:54,940 - log\train.log - INFO - iteration:34 step:230/840, NER loss: 1.754138
+2018-09-13 10:10:40,243 - log\train.log - INFO - iteration:34 step:280/840, NER loss: 1.747402
+2018-09-13 10:14:32,360 - log\train.log - INFO - iteration:34 step:330/840, NER loss: 1.654532
+2018-09-13 10:19:25,163 - log\train.log - INFO - iteration:34 step:380/840, NER loss: 1.801366
+2018-09-13 10:24:06,567 - log\train.log - INFO - iteration:34 step:430/840, NER loss: 1.861062
+2018-09-13 10:28:40,861 - log\train.log - INFO - iteration:34 step:480/840, NER loss: 1.939961
+2018-09-13 10:32:44,718 - log\train.log - INFO - iteration:34 step:530/840, NER loss: 2.046929
+2018-09-13 10:36:58,280 - log\train.log - INFO - iteration:34 step:580/840, NER loss: 1.805189
+2018-09-13 10:41:25,028 - log\train.log - INFO - iteration:34 step:630/840, NER loss: 1.839324
+2018-09-13 10:45:47,749 - log\train.log - INFO - iteration:34 step:680/840, NER loss: 1.904804
+2018-09-13 10:51:59,273 - log\train.log - INFO - iteration:34 step:730/840, NER loss: 2.459062
+2018-09-13 10:56:33,459 - log\train.log - INFO - iteration:34 step:780/840, NER loss: 2.031830
+2018-09-13 11:01:05,656 - log\train.log - INFO - iteration:34 step:830/840, NER loss: 1.912459
+2018-09-13 11:02:07,194 - log\train.log - INFO - evaluate:dev
+2018-09-13 11:02:40,454 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2107 phrases; correct: 1712.
+
+2018-09-13 11:02:40,454 - log\train.log - INFO - accuracy:  98.26%; precision:  81.25%; recall:  72.73%; FB1:  76.75
+
+2018-09-13 11:02:40,455 - log\train.log - INFO -            hetong: precision:  85.26%; recall:  61.29%; FB1:  71.31  156
+
+2018-09-13 11:02:40,455 - log\train.log - INFO -           jiafang: precision:  79.30%; recall:  78.37%; FB1:  78.83  681
+
+2018-09-13 11:02:40,456 - log\train.log - INFO -           xiangmu: precision:  70.84%; recall:  69.94%; FB1:  70.39  463
+
+2018-09-13 11:02:40,456 - log\train.log - INFO -            yifang: precision:  88.10%; recall:  72.63%; FB1:  79.62  807
+
+2018-09-13 11:02:40,553 - log\train.log - INFO - new best dev f1 score:76.750
+2018-09-13 11:02:41,038 - log\train.log - INFO - model saved
+2018-09-13 11:02:41,038 - log\train.log - INFO - evaluate:test
+2018-09-13 11:03:32,748 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2958 phrases; correct: 2262.
+
+2018-09-13 11:03:32,749 - log\train.log - INFO - accuracy:  98.33%; precision:  76.47%; recall:  70.95%; FB1:  73.61
+
+2018-09-13 11:03:32,750 - log\train.log - INFO -            hetong: precision:  78.95%; recall:  61.90%; FB1:  69.40  247
+
+2018-09-13 11:03:32,750 - log\train.log - INFO -           jiafang: precision:  75.74%; recall:  77.04%; FB1:  76.38  948
+
+2018-09-13 11:03:32,751 - log\train.log - INFO -           xiangmu: precision:  61.22%; recall:  61.61%; FB1:  61.42  637
+
+2018-09-13 11:03:32,752 - log\train.log - INFO -            yifang: precision:  85.17%; recall:  73.32%; FB1:  78.80  1126
+
+2018-09-13 11:06:49,734 - log\train.log - INFO - iteration:35 step:40/840, NER loss: 1.757003
+2018-09-13 11:11:20,534 - log\train.log - INFO - iteration:35 step:90/840, NER loss: 1.447218
+2018-09-13 11:16:05,052 - log\train.log - INFO - iteration:35 step:140/840, NER loss: 1.614738
+2018-09-13 11:20:36,275 - log\train.log - INFO - iteration:35 step:190/840, NER loss: 1.835843
+2018-09-13 11:24:10,472 - log\train.log - INFO - iteration:35 step:240/840, NER loss: 1.574091
+2018-09-13 11:29:10,434 - log\train.log - INFO - iteration:35 step:290/840, NER loss: 1.596874
+2018-09-13 11:34:21,837 - log\train.log - INFO - iteration:35 step:340/840, NER loss: 1.972153
+2018-09-13 11:39:27,399 - log\train.log - INFO - iteration:35 step:390/840, NER loss: 1.970250
+2018-09-13 11:44:00,288 - log\train.log - INFO - iteration:35 step:440/840, NER loss: 1.671578
+2018-09-13 11:48:03,549 - log\train.log - INFO - iteration:35 step:490/840, NER loss: 1.689725
+2018-09-13 11:52:26,087 - log\train.log - INFO - iteration:35 step:540/840, NER loss: 1.851594
+2018-09-13 11:57:13,777 - log\train.log - INFO - iteration:35 step:590/840, NER loss: 1.813408
+2018-09-13 12:00:57,352 - log\train.log - INFO - iteration:35 step:640/840, NER loss: 1.592843
+2018-09-13 12:04:48,892 - log\train.log - INFO - iteration:35 step:690/840, NER loss: 1.656517
+2018-09-13 12:09:57,621 - log\train.log - INFO - iteration:35 step:740/840, NER loss: 1.915402
+2018-09-13 12:14:23,900 - log\train.log - INFO - iteration:35 step:790/840, NER loss: 1.833923
+2018-09-13 12:19:33,352 - log\train.log - INFO - iteration:36 step:0/840, NER loss: 2.201530
+2018-09-13 12:19:33,353 - log\train.log - INFO - evaluate:dev
+2018-09-13 12:20:06,715 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1935 phrases; correct: 1638.
+
+2018-09-13 12:20:06,716 - log\train.log - INFO - accuracy:  98.26%; precision:  84.65%; recall:  69.58%; FB1:  76.38
+
+2018-09-13 12:20:06,716 - log\train.log - INFO -            hetong: precision:  84.77%; recall:  58.99%; FB1:  69.57  151
+
+2018-09-13 12:20:06,717 - log\train.log - INFO -           jiafang: precision:  84.54%; recall:  74.60%; FB1:  79.26  608
+
+2018-09-13 12:20:06,717 - log\train.log - INFO -           xiangmu: precision:  74.45%; recall:  65.25%; FB1:  69.55  411
+
+2018-09-13 12:20:06,717 - log\train.log - INFO -            yifang: precision:  90.20%; recall:  70.48%; FB1:  79.13  765
+
+2018-09-13 12:20:06,732 - log\train.log - INFO - evaluate:test
+2018-09-13 12:20:58,679 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2743 phrases; correct: 2164.
+
+2018-09-13 12:20:58,680 - log\train.log - INFO - accuracy:  98.36%; precision:  78.89%; recall:  67.88%; FB1:  72.97
+
+2018-09-13 12:20:58,680 - log\train.log - INFO -            hetong: precision:  81.63%; recall:  63.49%; FB1:  71.43  245
+
+2018-09-13 12:20:58,681 - log\train.log - INFO -           jiafang: precision:  80.67%; recall:  72.53%; FB1:  76.38  838
+
+2018-09-13 12:20:58,681 - log\train.log - INFO -           xiangmu: precision:  61.21%; recall:  57.35%; FB1:  59.22  593
+
+2018-09-13 12:20:58,681 - log\train.log - INFO -            yifang: precision:  86.69%; recall:  70.72%; FB1:  77.89  1067
+
+2018-09-13 12:25:57,654 - log\train.log - INFO - iteration:36 step:50/840, NER loss: 1.741442
+2018-09-13 12:29:56,685 - log\train.log - INFO - iteration:36 step:100/840, NER loss: 1.437073
+2018-09-13 12:34:47,665 - log\train.log - INFO - iteration:36 step:150/840, NER loss: 1.620010
+2018-09-13 12:39:19,179 - log\train.log - INFO - iteration:36 step:200/840, NER loss: 1.843299
+2018-09-13 12:43:30,853 - log\train.log - INFO - iteration:36 step:250/840, NER loss: 1.757809
+2018-09-13 12:47:57,148 - log\train.log - INFO - iteration:36 step:300/840, NER loss: 1.858630
+2018-09-13 12:53:30,705 - log\train.log - INFO - iteration:36 step:350/840, NER loss: 1.668234
+2018-09-13 12:57:27,362 - log\train.log - INFO - iteration:36 step:400/840, NER loss: 1.596010
+2018-09-13 13:02:59,901 - log\train.log - INFO - iteration:36 step:450/840, NER loss: 1.977741
+2018-09-13 13:07:09,344 - log\train.log - INFO - iteration:36 step:500/840, NER loss: 1.921787
+2018-09-13 13:10:52,535 - log\train.log - INFO - iteration:36 step:550/840, NER loss: 1.488215
+2018-09-13 13:16:17,541 - log\train.log - INFO - iteration:36 step:600/840, NER loss: 1.737606
+2018-09-13 13:20:52,801 - log\train.log - INFO - iteration:36 step:650/840, NER loss: 1.952257
+2018-09-13 13:24:45,531 - log\train.log - INFO - iteration:36 step:700/840, NER loss: 1.914791
+2018-09-13 13:28:47,500 - log\train.log - INFO - iteration:36 step:750/840, NER loss: 1.853320
+2018-09-13 13:33:09,435 - log\train.log - INFO - iteration:36 step:800/840, NER loss: 1.471499
+2018-09-13 13:36:57,622 - log\train.log - INFO - evaluate:dev
+2018-09-13 13:37:30,795 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2274 phrases; correct: 1803.
+
+2018-09-13 13:37:30,796 - log\train.log - INFO - accuracy:  98.25%; precision:  79.29%; recall:  76.59%; FB1:  77.92
+
+2018-09-13 13:37:30,797 - log\train.log - INFO -            hetong: precision:  82.39%; recall:  66.82%; FB1:  73.79  176
+
+2018-09-13 13:37:30,798 - log\train.log - INFO -           jiafang: precision:  75.65%; recall:  80.70%; FB1:  78.09  735
+
+2018-09-13 13:37:30,799 - log\train.log - INFO -           xiangmu: precision:  71.14%; recall:  66.74%; FB1:  68.87  440
+
+2018-09-13 13:37:30,799 - log\train.log - INFO -            yifang: precision:  85.48%; recall:  80.59%; FB1:  82.97  923
+
+2018-09-13 13:37:30,899 - log\train.log - INFO - new best dev f1 score:77.920
+2018-09-13 13:37:31,402 - log\train.log - INFO - model saved
+2018-09-13 13:37:31,403 - log\train.log - INFO - evaluate:test
+2018-09-13 13:38:23,433 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3171 phrases; correct: 2359.
+
+2018-09-13 13:38:23,434 - log\train.log - INFO - accuracy:  98.34%; precision:  74.39%; recall:  74.00%; FB1:  74.19
+
+2018-09-13 13:38:23,435 - log\train.log - INFO -            hetong: precision:  79.09%; recall:  66.03%; FB1:  71.97  263
+
+2018-09-13 13:38:23,436 - log\train.log - INFO -           jiafang: precision:  73.96%; recall:  80.15%; FB1:  76.93  1010
+
+2018-09-13 13:38:23,437 - log\train.log - INFO -           xiangmu: precision:  61.43%; recall:  59.87%; FB1:  60.64  617
+
+2018-09-13 13:38:23,438 - log\train.log - INFO -            yifang: precision:  80.02%; recall:  78.36%; FB1:  79.18  1281
+
+2018-09-13 13:38:23,538 - log\train.log - INFO - new best test f1 score:74.190
+2018-09-13 13:39:44,778 - log\train.log - INFO - iteration:37 step:10/840, NER loss: 1.848239
+2018-09-13 13:43:39,235 - log\train.log - INFO - iteration:37 step:60/840, NER loss: 1.410095
+2018-09-13 13:48:45,161 - log\train.log - INFO - iteration:37 step:110/840, NER loss: 1.732611
+2018-09-13 13:53:53,938 - log\train.log - INFO - iteration:37 step:160/840, NER loss: 1.656839
+2018-09-13 13:59:14,731 - log\train.log - INFO - iteration:37 step:210/840, NER loss: 1.814725
+2018-09-13 14:04:12,302 - log\train.log - INFO - iteration:37 step:260/840, NER loss: 1.587500
+2018-09-13 14:08:44,266 - log\train.log - INFO - iteration:37 step:310/840, NER loss: 1.929850
+2018-09-13 14:13:37,119 - log\train.log - INFO - iteration:37 step:360/840, NER loss: 1.777980
+2018-09-13 14:18:42,089 - log\train.log - INFO - iteration:37 step:410/840, NER loss: 1.719715
+2018-09-13 14:23:22,797 - log\train.log - INFO - iteration:37 step:460/840, NER loss: 1.879302
+2018-09-13 14:27:42,044 - log\train.log - INFO - iteration:37 step:510/840, NER loss: 1.602175
+2018-09-13 14:32:16,015 - log\train.log - INFO - iteration:37 step:560/840, NER loss: 1.613500
+2018-09-13 14:36:33,903 - log\train.log - INFO - iteration:37 step:610/840, NER loss: 1.780258
+2018-09-13 14:41:39,237 - log\train.log - INFO - iteration:37 step:660/840, NER loss: 2.040123
+2018-09-13 14:46:12,858 - log\train.log - INFO - iteration:37 step:710/840, NER loss: 1.780955
+2018-09-13 14:50:48,635 - log\train.log - INFO - iteration:37 step:760/840, NER loss: 1.972257
+2018-09-13 14:55:13,290 - log\train.log - INFO - iteration:37 step:810/840, NER loss: 1.934676
+2018-09-13 14:57:23,437 - log\train.log - INFO - evaluate:dev
+2018-09-13 14:57:57,303 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1932 phrases; correct: 1625.
+
+2018-09-13 14:57:57,303 - log\train.log - INFO - accuracy:  98.23%; precision:  84.11%; recall:  69.03%; FB1:  75.83
+
+2018-09-13 14:57:57,304 - log\train.log - INFO -            hetong: precision:  74.18%; recall:  72.81%; FB1:  73.49  213
+
+2018-09-13 14:57:57,305 - log\train.log - INFO -           jiafang: precision:  85.12%; recall:  71.41%; FB1:  77.66  578
+
+2018-09-13 14:57:57,306 - log\train.log - INFO -           xiangmu: precision:  76.15%; recall:  63.33%; FB1:  69.15  390
+
+2018-09-13 14:57:57,306 - log\train.log - INFO -            yifang: precision:  90.28%; recall:  69.25%; FB1:  78.38  751
+
+2018-09-13 14:57:57,323 - log\train.log - INFO - evaluate:test
+2018-09-13 14:58:50,294 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2675 phrases; correct: 2126.
+
+2018-09-13 14:58:50,295 - log\train.log - INFO - accuracy:  98.32%; precision:  79.48%; recall:  66.69%; FB1:  72.52
+
+2018-09-13 14:58:50,296 - log\train.log - INFO -            hetong: precision:  67.37%; recall:  71.43%; FB1:  69.34  334
+
+2018-09-13 14:58:50,297 - log\train.log - INFO -           jiafang: precision:  82.92%; recall:  71.35%; FB1:  76.70  802
+
+2018-09-13 14:58:50,297 - log\train.log - INFO -           xiangmu: precision:  66.02%; recall:  54.03%; FB1:  59.43  518
+
+2018-09-13 14:58:50,297 - log\train.log - INFO -            yifang: precision:  87.56%; recall:  68.35%; FB1:  76.77  1021
+
+2018-09-13 15:00:27,543 - log\train.log - INFO - iteration:38 step:20/840, NER loss: 1.863276
+2018-09-13 15:05:17,688 - log\train.log - INFO - iteration:38 step:70/840, NER loss: 1.592330
+2018-09-13 15:09:41,885 - log\train.log - INFO - iteration:38 step:120/840, NER loss: 1.511962
+2018-09-13 15:14:50,243 - log\train.log - INFO - iteration:38 step:170/840, NER loss: 1.589067
+2018-09-13 15:20:38,814 - log\train.log - INFO - iteration:38 step:220/840, NER loss: 1.605163
+2018-09-13 15:25:25,221 - log\train.log - INFO - iteration:38 step:270/840, NER loss: 1.696338
+2018-09-13 15:29:41,211 - log\train.log - INFO - iteration:38 step:320/840, NER loss: 1.497417
+2018-09-13 15:35:47,626 - log\train.log - INFO - iteration:38 step:370/840, NER loss: 1.946212
+2018-09-13 15:39:46,091 - log\train.log - INFO - iteration:38 step:420/840, NER loss: 1.587537
+2018-09-13 15:43:56,239 - log\train.log - INFO - iteration:38 step:470/840, NER loss: 1.736165
+2018-09-13 15:47:50,212 - log\train.log - INFO - iteration:38 step:520/840, NER loss: 1.701881
+2018-09-13 15:52:31,945 - log\train.log - INFO - iteration:38 step:570/840, NER loss: 1.856365
+2018-09-13 15:56:19,805 - log\train.log - INFO - iteration:38 step:620/840, NER loss: 1.669011
+2018-09-13 16:01:56,693 - log\train.log - INFO - iteration:38 step:670/840, NER loss: 1.760539
+2018-09-13 16:06:01,811 - log\train.log - INFO - iteration:38 step:720/840, NER loss: 1.615599
+2018-09-13 16:10:01,538 - log\train.log - INFO - iteration:38 step:770/840, NER loss: 1.479135
+2018-09-13 16:15:52,452 - log\train.log - INFO - iteration:38 step:820/840, NER loss: 1.873398
+2018-09-13 16:17:44,831 - log\train.log - INFO - evaluate:dev
+2018-09-13 16:18:18,995 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2274 phrases; correct: 1810.
+
+2018-09-13 16:18:18,995 - log\train.log - INFO - accuracy:  98.22%; precision:  79.60%; recall:  76.89%; FB1:  78.22
+
+2018-09-13 16:18:18,995 - log\train.log - INFO -            hetong: precision:  74.27%; recall:  70.51%; FB1:  72.34  206
+
+2018-09-13 16:18:18,995 - log\train.log - INFO -           jiafang: precision:  82.97%; recall:  77.07%; FB1:  79.91  640
+
+2018-09-13 16:18:18,996 - log\train.log - INFO -           xiangmu: precision:  68.30%; recall:  74.41%; FB1:  71.22  511
+
+2018-09-13 16:18:18,996 - log\train.log - INFO -            yifang: precision:  84.73%; recall:  79.37%; FB1:  81.96  917
+
+2018-09-13 16:18:19,113 - log\train.log - INFO - new best dev f1 score:78.220
+2018-09-13 16:18:19,640 - log\train.log - INFO - model saved
+2018-09-13 16:18:19,640 - log\train.log - INFO - evaluate:test
+2018-09-13 16:19:12,458 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3148 phrases; correct: 2346.
+
+2018-09-13 16:19:12,459 - log\train.log - INFO - accuracy:  98.27%; precision:  74.52%; recall:  73.59%; FB1:  74.05
+
+2018-09-13 16:19:12,460 - log\train.log - INFO -            hetong: precision:  71.70%; recall:  72.38%; FB1:  72.04  318
+
+2018-09-13 16:19:12,461 - log\train.log - INFO -           jiafang: precision:  80.39%; recall:  75.21%; FB1:  77.72  872
+
+2018-09-13 16:19:12,461 - log\train.log - INFO -           xiangmu: precision:  58.76%; recall:  63.03%; FB1:  60.82  679
+
+2018-09-13 16:19:12,462 - log\train.log - INFO -            yifang: precision:  79.59%; recall:  77.83%; FB1:  78.70  1279
+
+2018-09-13 16:21:23,808 - log\train.log - INFO - iteration:39 step:30/840, NER loss: 1.373453
+2018-09-13 16:25:27,420 - log\train.log - INFO - iteration:39 step:80/840, NER loss: 1.475760
+2018-09-13 16:30:04,585 - log\train.log - INFO - iteration:39 step:130/840, NER loss: 1.310231
+2018-09-13 16:35:27,546 - log\train.log - INFO - iteration:39 step:180/840, NER loss: 2.181919
+2018-09-13 16:41:06,337 - log\train.log - INFO - iteration:39 step:230/840, NER loss: 1.508405
+2018-09-13 16:45:56,242 - log\train.log - INFO - iteration:39 step:280/840, NER loss: 1.419998
+2018-09-13 16:49:47,376 - log\train.log - INFO - iteration:39 step:330/840, NER loss: 1.680260
+2018-09-13 16:53:40,051 - log\train.log - INFO - iteration:39 step:380/840, NER loss: 1.211824
+2018-09-13 16:58:08,883 - log\train.log - INFO - iteration:39 step:430/840, NER loss: 1.735190
+2018-09-13 17:03:04,141 - log\train.log - INFO - iteration:39 step:480/840, NER loss: 1.693566
+2018-09-13 17:07:08,480 - log\train.log - INFO - iteration:39 step:530/840, NER loss: 1.677825
+2018-09-13 17:12:02,339 - log\train.log - INFO - iteration:39 step:580/840, NER loss: 2.091157
+2018-09-13 17:16:06,239 - log\train.log - INFO - iteration:39 step:630/840, NER loss: 1.700644
+2018-09-13 17:21:02,351 - log\train.log - INFO - iteration:39 step:680/840, NER loss: 1.982126
+2018-09-13 17:25:13,063 - log\train.log - INFO - iteration:39 step:730/840, NER loss: 1.596858
+2018-09-13 17:29:03,327 - log\train.log - INFO - iteration:39 step:780/840, NER loss: 1.778162
+2018-09-13 17:33:37,519 - log\train.log - INFO - iteration:39 step:830/840, NER loss: 2.124292
+2018-09-13 17:34:28,905 - log\train.log - INFO - evaluate:dev
+2018-09-13 17:35:00,968 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2384 phrases; correct: 1786.
+
+2018-09-13 17:35:00,970 - log\train.log - INFO - accuracy:  97.77%; precision:  74.92%; recall:  75.87%; FB1:  75.39
+
+2018-09-13 17:35:00,971 - log\train.log - INFO -            hetong: precision:  85.43%; recall:  59.45%; FB1:  70.11  151
+
+2018-09-13 17:35:00,972 - log\train.log - INFO -           jiafang: precision:  77.75%; recall:  80.12%; FB1:  78.91  710
+
+2018-09-13 17:35:00,972 - log\train.log - INFO -           xiangmu: precision:  54.50%; recall:  77.40%; FB1:  63.96  666
+
+2018-09-13 17:35:00,972 - log\train.log - INFO -            yifang: precision:  86.58%; recall:  75.79%; FB1:  80.83  857
+
+2018-09-13 17:35:00,987 - log\train.log - INFO - evaluate:test
+2018-09-13 17:35:50,929 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3358 phrases; correct: 2347.
+
+2018-09-13 17:35:50,930 - log\train.log - INFO - accuracy:  97.84%; precision:  69.89%; recall:  73.62%; FB1:  71.71
+
+2018-09-13 17:35:50,931 - log\train.log - INFO -            hetong: precision:  82.83%; recall:  61.27%; FB1:  70.44  233
+
+2018-09-13 17:35:50,932 - log\train.log - INFO -           jiafang: precision:  75.77%; recall:  79.51%; FB1:  77.59  978
+
+2018-09-13 17:35:50,933 - log\train.log - INFO -           xiangmu: precision:  44.69%; recall:  69.19%; FB1:  54.31  980
+
+2018-09-13 17:35:50,933 - log\train.log - INFO -            yifang: precision:  83.55%; recall:  74.54%; FB1:  78.79  1167
+
+2018-09-13 17:39:37,405 - log\train.log - INFO - iteration:40 step:40/840, NER loss: 1.834511
+2018-09-13 17:44:16,610 - log\train.log - INFO - iteration:40 step:90/840, NER loss: 1.400856
+2018-09-13 17:48:40,426 - log\train.log - INFO - iteration:40 step:140/840, NER loss: 1.509011
+2018-09-13 17:53:12,404 - log\train.log - INFO - iteration:40 step:190/840, NER loss: 1.488584
+2018-09-13 17:57:17,892 - log\train.log - INFO - iteration:40 step:240/840, NER loss: 1.532883
+2018-09-13 18:01:29,951 - log\train.log - INFO - iteration:40 step:290/840, NER loss: 1.300994
+2018-09-13 18:05:19,660 - log\train.log - INFO - iteration:40 step:340/840, NER loss: 1.452599
+2018-09-13 18:08:47,709 - log\train.log - INFO - iteration:40 step:390/840, NER loss: 1.834476
+2018-09-13 18:12:44,377 - log\train.log - INFO - iteration:40 step:440/840, NER loss: 1.501086
+2018-09-13 18:17:28,802 - log\train.log - INFO - iteration:40 step:490/840, NER loss: 1.825609
+2018-09-13 18:21:43,152 - log\train.log - INFO - iteration:40 step:540/840, NER loss: 1.793853
+2018-09-13 18:26:09,212 - log\train.log - INFO - iteration:40 step:590/840, NER loss: 1.551947
+2018-09-13 18:31:04,553 - log\train.log - INFO - iteration:40 step:640/840, NER loss: 1.712128
+2018-09-13 18:36:25,919 - log\train.log - INFO - iteration:40 step:690/840, NER loss: 1.937212
+2018-09-13 18:40:36,591 - log\train.log - INFO - iteration:40 step:740/840, NER loss: 1.767060
+2018-09-13 18:45:13,285 - log\train.log - INFO - iteration:40 step:790/840, NER loss: 1.401679
+2018-09-13 18:49:48,695 - log\train.log - INFO - iteration:41 step:0/840, NER loss: 1.872958
+2018-09-13 18:49:48,696 - log\train.log - INFO - evaluate:dev
+2018-09-13 18:50:20,691 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2169 phrases; correct: 1761.
+
+2018-09-13 18:50:20,692 - log\train.log - INFO - accuracy:  98.27%; precision:  81.19%; recall:  74.81%; FB1:  77.87
+
+2018-09-13 18:50:20,694 - log\train.log - INFO -            hetong: precision:  79.79%; recall:  70.97%; FB1:  75.12  193
+
+2018-09-13 18:50:20,694 - log\train.log - INFO -           jiafang: precision:  78.95%; recall:  81.13%; FB1:  80.03  708
+
+2018-09-13 18:50:20,695 - log\train.log - INFO -           xiangmu: precision:  75.51%; recall:  63.75%; FB1:  69.13  396
+
+2018-09-13 18:50:20,695 - log\train.log - INFO -            yifang: precision:  85.89%; recall:  76.51%; FB1:  80.93  872
+
+2018-09-13 18:50:20,709 - log\train.log - INFO - evaluate:test
+2018-09-13 18:51:10,594 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3017 phrases; correct: 2317.
+
+2018-09-13 18:51:10,596 - log\train.log - INFO - accuracy:  98.36%; precision:  76.80%; recall:  72.68%; FB1:  74.68
+
+2018-09-13 18:51:10,597 - log\train.log - INFO -            hetong: precision:  71.70%; recall:  70.79%; FB1:  71.25  311
+
+2018-09-13 18:51:10,597 - log\train.log - INFO -           jiafang: precision:  76.18%; recall:  78.22%; FB1:  77.18  957
+
+2018-09-13 18:51:10,598 - log\train.log - INFO -           xiangmu: precision:  68.15%; recall:  58.14%; FB1:  62.75  540
+
+2018-09-13 18:51:10,598 - log\train.log - INFO -            yifang: precision:  82.46%; recall:  76.22%; FB1:  79.22  1209
+
+2018-09-13 18:51:10,692 - log\train.log - INFO - new best test f1 score:74.680
+2018-09-13 18:54:50,960 - log\train.log - INFO - iteration:41 step:50/840, NER loss: 1.607638
+2018-09-13 18:59:41,400 - log\train.log - INFO - iteration:41 step:100/840, NER loss: 1.119181
+2018-09-13 19:03:41,164 - log\train.log - INFO - iteration:41 step:150/840, NER loss: 1.696975
+2018-09-13 19:08:10,545 - log\train.log - INFO - iteration:41 step:200/840, NER loss: 1.495361
+2018-09-13 19:11:37,297 - log\train.log - INFO - iteration:41 step:250/840, NER loss: 1.350773
+2018-09-13 19:16:32,101 - log\train.log - INFO - iteration:41 step:300/840, NER loss: 1.318400
+2018-09-13 19:20:59,479 - log\train.log - INFO - iteration:41 step:350/840, NER loss: 1.478591
+2018-09-13 19:26:48,314 - log\train.log - INFO - iteration:41 step:400/840, NER loss: 1.984217
+2018-09-13 19:31:26,102 - log\train.log - INFO - iteration:41 step:450/840, NER loss: 1.785531
+2018-09-13 19:35:23,801 - log\train.log - INFO - iteration:41 step:500/840, NER loss: 1.371952
+2018-09-13 19:39:50,956 - log\train.log - INFO - iteration:41 step:550/840, NER loss: 1.543643
+2018-09-13 19:44:17,082 - log\train.log - INFO - iteration:41 step:600/840, NER loss: 1.769589
+2018-09-13 19:48:09,737 - log\train.log - INFO - iteration:41 step:650/840, NER loss: 1.676092
+2018-09-13 19:53:41,513 - log\train.log - INFO - iteration:41 step:700/840, NER loss: 1.656326
+2018-09-13 19:57:55,067 - log\train.log - INFO - iteration:41 step:750/840, NER loss: 2.055280
+2018-09-13 20:01:54,681 - log\train.log - INFO - iteration:41 step:800/840, NER loss: 1.690186
+2018-09-13 20:05:15,763 - log\train.log - INFO - evaluate:dev
+2018-09-13 20:05:47,822 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 1947 phrases; correct: 1651.
+
+2018-09-13 20:05:47,824 - log\train.log - INFO - accuracy:  98.28%; precision:  84.80%; recall:  70.14%; FB1:  76.77
+
+2018-09-13 20:05:47,825 - log\train.log - INFO -            hetong: precision:  83.82%; recall:  66.82%; FB1:  74.36  173
+
+2018-09-13 20:05:47,826 - log\train.log - INFO -           jiafang: precision:  83.39%; recall:  76.49%; FB1:  79.79  632
+
+2018-09-13 20:05:47,826 - log\train.log - INFO -           xiangmu: precision:  80.92%; recall:  59.70%; FB1:  68.71  346
+
+2018-09-13 20:05:47,826 - log\train.log - INFO -            yifang: precision:  87.81%; recall:  71.40%; FB1:  78.76  796
+
+2018-09-13 20:05:47,840 - log\train.log - INFO - evaluate:test
+2018-09-13 20:06:37,765 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2652 phrases; correct: 2152.
+
+2018-09-13 20:06:37,766 - log\train.log - INFO - accuracy:  98.42%; precision:  81.15%; recall:  67.50%; FB1:  73.70
+
+2018-09-13 20:06:37,767 - log\train.log - INFO -            hetong: precision:  76.89%; recall:  64.44%; FB1:  70.12  264
+
+2018-09-13 20:06:37,767 - log\train.log - INFO -           jiafang: precision:  80.21%; recall:  72.64%; FB1:  76.24  844
+
+2018-09-13 20:06:37,768 - log\train.log - INFO -           xiangmu: precision:  75.74%; recall:  52.29%; FB1:  61.87  437
+
+2018-09-13 20:06:37,768 - log\train.log - INFO -            yifang: precision:  85.00%; recall:  71.94%; FB1:  77.93  1107
+
+2018-09-13 20:07:41,910 - log\train.log - INFO - iteration:42 step:10/840, NER loss: 2.085670
+2018-09-13 20:11:57,566 - log\train.log - INFO - iteration:42 step:60/840, NER loss: 1.587071
+2018-09-13 20:16:39,721 - log\train.log - INFO - iteration:42 step:110/840, NER loss: 1.483246
+2018-09-13 20:21:55,805 - log\train.log - INFO - iteration:42 step:160/840, NER loss: 1.513575
+2018-09-13 20:26:51,717 - log\train.log - INFO - iteration:42 step:210/840, NER loss: 1.899542
+2018-09-13 20:30:14,651 - log\train.log - INFO - iteration:42 step:260/840, NER loss: 1.615796
+2018-09-13 20:34:02,346 - log\train.log - INFO - iteration:42 step:310/840, NER loss: 1.361348
+2018-09-13 20:39:10,527 - log\train.log - INFO - iteration:42 step:360/840, NER loss: 1.899144
+2018-09-13 20:43:30,693 - log\train.log - INFO - iteration:42 step:410/840, NER loss: 1.525658
+2018-09-13 20:47:53,183 - log\train.log - INFO - iteration:42 step:460/840, NER loss: 1.254810
+2018-09-13 20:51:47,907 - log\train.log - INFO - iteration:42 step:510/840, NER loss: 1.304853
+2018-09-13 20:55:48,352 - log\train.log - INFO - iteration:42 step:560/840, NER loss: 1.643786
+2018-09-13 21:00:05,868 - log\train.log - INFO - iteration:42 step:610/840, NER loss: 1.500921
+2018-09-13 21:05:30,762 - log\train.log - INFO - iteration:42 step:660/840, NER loss: 1.920312
+2018-09-13 21:10:15,110 - log\train.log - INFO - iteration:42 step:710/840, NER loss: 1.605280
+2018-09-13 21:15:03,695 - log\train.log - INFO - iteration:42 step:760/840, NER loss: 1.414439
+2018-09-13 21:19:18,892 - log\train.log - INFO - iteration:42 step:810/840, NER loss: 1.549272
+2018-09-13 21:22:03,676 - log\train.log - INFO - evaluate:dev
+2018-09-13 21:22:36,949 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2287 phrases; correct: 1804.
+
+2018-09-13 21:22:36,951 - log\train.log - INFO - accuracy:  98.24%; precision:  78.88%; recall:  76.64%; FB1:  77.74
+
+2018-09-13 21:22:36,952 - log\train.log - INFO -            hetong: precision:  78.00%; recall:  71.89%; FB1:  74.82  200
+
+2018-09-13 21:22:36,953 - log\train.log - INFO -           jiafang: precision:  79.08%; recall:  80.12%; FB1:  79.60  698
+
+2018-09-13 21:22:36,953 - log\train.log - INFO -           xiangmu: precision:  67.79%; recall:  73.13%; FB1:  70.36  506
+
+2018-09-13 21:22:36,954 - log\train.log - INFO -            yifang: precision:  85.28%; recall:  76.92%; FB1:  80.88  883
+
+2018-09-13 21:22:36,970 - log\train.log - INFO - evaluate:test
+2018-09-13 21:23:28,778 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3237 phrases; correct: 2379.
+
+2018-09-13 21:23:28,780 - log\train.log - INFO - accuracy:  98.27%; precision:  73.49%; recall:  74.62%; FB1:  74.05
+
+2018-09-13 21:23:28,781 - log\train.log - INFO -            hetong: precision:  72.88%; recall:  70.79%; FB1:  71.82  306
+
+2018-09-13 21:23:28,781 - log\train.log - INFO -           jiafang: precision:  75.15%; recall:  78.54%; FB1:  76.81  974
+
+2018-09-13 21:23:28,782 - log\train.log - INFO -           xiangmu: precision:  57.87%; recall:  66.19%; FB1:  61.75  724
+
+2018-09-13 21:23:28,782 - log\train.log - INFO -            yifang: precision:  81.51%; recall:  76.83%; FB1:  79.10  1233
+
+2018-09-13 21:24:49,636 - log\train.log - INFO - iteration:43 step:20/840, NER loss: 1.366093
+2018-09-13 21:29:22,219 - log\train.log - INFO - iteration:43 step:70/840, NER loss: 1.162818
+2018-09-13 21:33:51,264 - log\train.log - INFO - iteration:43 step:120/840, NER loss: 1.498238
+2018-09-13 21:38:08,014 - log\train.log - INFO - iteration:43 step:170/840, NER loss: 1.107511
+2018-09-13 21:43:30,661 - log\train.log - INFO - iteration:43 step:220/840, NER loss: 1.702332
+2018-09-13 21:47:58,024 - log\train.log - INFO - iteration:43 step:270/840, NER loss: 1.638294
+2018-09-13 21:52:34,267 - log\train.log - INFO - iteration:43 step:320/840, NER loss: 1.505006
+2018-09-13 21:56:53,377 - log\train.log - INFO - iteration:43 step:370/840, NER loss: 1.227913
+2018-09-13 22:00:54,252 - log\train.log - INFO - iteration:43 step:420/840, NER loss: 1.600851
+2018-09-13 22:05:19,970 - log\train.log - INFO - iteration:43 step:470/840, NER loss: 1.526301
+2018-09-13 22:11:22,912 - log\train.log - INFO - iteration:43 step:520/840, NER loss: 1.671752
+2018-09-13 22:15:49,784 - log\train.log - INFO - iteration:43 step:570/840, NER loss: 1.417361
+2018-09-13 22:21:00,606 - log\train.log - INFO - iteration:43 step:620/840, NER loss: 1.527522
+2018-09-13 22:25:12,177 - log\train.log - INFO - iteration:43 step:670/840, NER loss: 1.399442
+2018-09-13 22:29:31,038 - log\train.log - INFO - iteration:43 step:720/840, NER loss: 1.666329
+2018-09-13 22:33:25,683 - log\train.log - INFO - iteration:43 step:770/840, NER loss: 1.432977
+2018-09-13 22:38:09,768 - log\train.log - INFO - iteration:43 step:820/840, NER loss: 1.477728
+2018-09-13 22:40:06,959 - log\train.log - INFO - evaluate:dev
+2018-09-13 22:40:40,143 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2319 phrases; correct: 1837.
+
+2018-09-13 22:40:40,144 - log\train.log - INFO - accuracy:  98.26%; precision:  79.22%; recall:  78.04%; FB1:  78.62
+
+2018-09-13 22:40:40,145 - log\train.log - INFO -            hetong: precision:  76.96%; recall:  72.35%; FB1:  74.58  204
+
+2018-09-13 22:40:40,146 - log\train.log - INFO -           jiafang: precision:  83.60%; recall:  76.92%; FB1:  80.12  634
+
+2018-09-13 22:40:40,146 - log\train.log - INFO -           xiangmu: precision:  67.44%; recall:  74.63%; FB1:  70.85  519
+
+2018-09-13 22:40:40,147 - log\train.log - INFO -            yifang: precision:  83.16%; recall:  81.72%; FB1:  82.43  962
+
+2018-09-13 22:40:40,244 - log\train.log - INFO - new best dev f1 score:78.620
+2018-09-13 22:40:41,154 - log\train.log - INFO - model saved
+2018-09-13 22:40:41,155 - log\train.log - INFO - evaluate:test
+2018-09-13 22:41:32,738 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 3228 phrases; correct: 2371.
+
+2018-09-13 22:41:32,740 - log\train.log - INFO - accuracy:  98.26%; precision:  73.45%; recall:  74.37%; FB1:  73.91
+
+2018-09-13 22:41:32,741 - log\train.log - INFO -            hetong: precision:  66.97%; recall:  69.52%; FB1:  68.22  327
+
+2018-09-13 22:41:32,741 - log\train.log - INFO -           jiafang: precision:  80.39%; recall:  74.79%; FB1:  77.49  867
+
+2018-09-13 22:41:32,741 - log\train.log - INFO -           xiangmu: precision:  58.73%; recall:  64.30%; FB1:  61.39  693
+
+2018-09-13 22:41:32,742 - log\train.log - INFO -            yifang: precision:  78.15%; recall:  80.12%; FB1:  79.12  1341
+
+2018-09-13 22:44:14,632 - log\train.log - INFO - iteration:44 step:30/840, NER loss: 1.428894
+2018-09-13 22:48:26,696 - log\train.log - INFO - iteration:44 step:80/840, NER loss: 1.245190
+2018-09-13 22:53:21,953 - log\train.log - INFO - iteration:44 step:130/840, NER loss: 1.434864
+2018-09-13 22:58:03,098 - log\train.log - INFO - iteration:44 step:180/840, NER loss: 1.465194
+2018-09-13 23:03:06,762 - log\train.log - INFO - iteration:44 step:230/840, NER loss: 1.538067
+2018-09-13 23:08:14,015 - log\train.log - INFO - iteration:44 step:280/840, NER loss: 1.475038
+2018-09-13 23:12:55,765 - log\train.log - INFO - iteration:44 step:330/840, NER loss: 1.522940
+2018-09-13 23:17:03,474 - log\train.log - INFO - iteration:44 step:380/840, NER loss: 1.349601
+2018-09-13 23:20:48,863 - log\train.log - INFO - iteration:44 step:430/840, NER loss: 1.605990
+2018-09-13 23:26:08,617 - log\train.log - INFO - iteration:44 step:480/840, NER loss: 1.764103
+2018-09-13 23:31:11,282 - log\train.log - INFO - iteration:44 step:530/840, NER loss: 1.292126
+2018-09-13 23:35:35,348 - log\train.log - INFO - iteration:44 step:580/840, NER loss: 1.667770
+2018-09-13 23:40:28,277 - log\train.log - INFO - iteration:44 step:630/840, NER loss: 1.565008
+2018-09-13 23:46:01,980 - log\train.log - INFO - iteration:44 step:680/840, NER loss: 1.841869
+2018-09-13 23:50:33,107 - log\train.log - INFO - iteration:44 step:730/840, NER loss: 1.358283
+2018-09-13 23:54:46,673 - log\train.log - INFO - iteration:44 step:780/840, NER loss: 1.355128
+2018-09-13 23:58:51,355 - log\train.log - INFO - iteration:44 step:830/840, NER loss: 1.698312
+2018-09-13 23:59:37,254 - log\train.log - INFO - evaluate:dev
+2018-09-14 00:00:10,623 - log\train.log - INFO - processed 819272 tokens with 2354 phrases; found: 2151 phrases; correct: 1770.
+
+2018-09-14 00:00:10,624 - log\train.log - INFO - accuracy:  98.30%; precision:  82.29%; recall:  75.19%; FB1:  78.58
+
+2018-09-14 00:00:10,625 - log\train.log - INFO -            hetong: precision:  85.09%; recall:  63.13%; FB1:  72.49  161
+
+2018-09-14 00:00:10,626 - log\train.log - INFO -           jiafang: precision:  81.05%; recall:  80.70%; FB1:  80.87  686
+
+2018-09-14 00:00:10,626 - log\train.log - INFO -           xiangmu: precision:  73.39%; recall:  68.23%; FB1:  70.72  436
+
+2018-09-14 00:00:10,626 - log\train.log - INFO -            yifang: precision:  87.21%; recall:  77.32%; FB1:  81.97  868
+
+2018-09-14 00:00:10,641 - log\train.log - INFO - evaluate:test
+2018-09-14 00:01:02,448 - log\train.log - INFO - processed 1416367 tokens with 3188 phrases; found: 2953 phrases; correct: 2306.
+
+2018-09-14 00:01:02,449 - log\train.log - INFO - accuracy:  98.42%; precision:  78.09%; recall:  72.33%; FB1:  75.10
+
+2018-09-14 00:01:02,450 - log\train.log - INFO -            hetong: precision:  82.85%; recall:  62.86%; FB1:  71.48  239
+
+2018-09-14 00:01:02,451 - log\train.log - INFO -           jiafang: precision:  78.76%; recall:  78.00%; FB1:  78.38  923
+
+2018-09-14 00:01:02,451 - log\train.log - INFO -           xiangmu: precision:  64.81%; recall:  58.77%; FB1:  61.64  574
+
+2018-09-14 00:01:02,452 - log\train.log - INFO -            yifang: precision:  82.91%; recall:  77.14%; FB1:  79.92  1217
+
+2018-09-14 00:01:02,552 - log\train.log - INFO - new best test f1 score:75.100
+2018-09-14 00:04:52,635 - log\train.log - INFO - iteration:45 step:40/840, NER loss: 1.249973
+
+{'string': '美尚生态系观股份有限公司(以下简称“公司")于近日收到招标人江苏省无锡惠山经济开发区委员会发来的《中标通知书,通知书确认 公 司为“
+无锡古庄生态农业科技园PPPI项目"(以下器称“本项目”)的中标人', 'entities': [{'word': '美尚生态系观股份有限公司', 'start': 0, 'end': 12, 'ty
+pe': 'yifang'}, {'word': '江苏省无锡惠山经济开发区委员会', 'start': 30, 'end': 45, 'type': 'jiafang'}, {'word': '无锡古庄生态农业科技园PPP
+I项目', 'start': 66, 'end': 83, 'type': 'xiangmu'}]}

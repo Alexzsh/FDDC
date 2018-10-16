@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import os
 import re
 import tqdm
-import html2text
+# import html2text
 dirname='../FDDC/html'
 re_replace_blank=re.compile('\s+')
 from bs4 import BeautifulSoup
@@ -95,7 +95,7 @@ def strQ2B(ustring):
     ss = []
     for s in ustring:
         rstring = ""
-        for uchar in s:
+        for uchar in str(s):
             inside_code = ord(uchar)
             if inside_code == 12288:  # 全角空格直接转换
                 inside_code = 32
@@ -135,10 +135,10 @@ def getContentWithoutTable(filename):
 
     return res_text
 
-def getContentFromHtml2Text(filename):
-    filename = os.path.join(dirname, filename)
-    with open(filename, 'r') as fr:
-        return html2text.html2text(fr.read())
+# def getContentFromHtml2Text(filename):
+#     filename = os.path.join(dirname, filename)
+#     with open(filename, 'r') as fr:
+#         return html2text.html2text(fr.read())
 
 if __name__ == '__main__':
 

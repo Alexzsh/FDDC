@@ -2953,3 +2953,4 @@
 2018-11-07 22:02:25,345 - log\train.log - INFO - iteration:75 step:6/206, NER loss: 1.110597
 2018-11-07 22:04:43,720 - log\train.log - INFO - iteration:75 step:56/206, NER loss: 0.975078
 2018-11-07 22:07:08,042 - log\train.log - INFO - iteration:75 step:106/206, NER loss: 1.183166
+2018-11-07 22:09:48,570 - log\train.log - INFO - iteration:75 step:156/206, NER loss: 1.105161

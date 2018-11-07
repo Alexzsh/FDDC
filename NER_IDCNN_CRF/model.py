@@ -135,14 +135,14 @@ class Model(object):
         """
 
         embedding = []
-        with tf.variable_scope("char_embedding" if not name else name), tf.device('/gpu:0'):
+        with tf.variable_scope("char_embedding" if not name else name), tf.device('/cpu:0'):
             self.char_lookup = tf.get_variable(
                     name="char_embedding",
                     shape=[self.num_chars, self.char_dim],
                     initializer=self.initializer)
             embedding.append(tf.nn.embedding_lookup(self.char_lookup, char_inputs))
             if config["seg_dim"]:
-                with tf.variable_scope("seg_embedding"), tf.device('/gpu:0'):
+                with tf.variable_scope("seg_embedding"), tf.device('/cpu:0'):
                     self.seg_lookup = tf.get_variable(
                         name="seg_embedding",
                         shape=[self.num_segs, self.seg_dim],
@@ -385,13 +385,7 @@ class Model(object):
                 result = []
                 string = strings[i][:lengths[i]]
                 gold = iobes_iob([id_to_tag[int(x)] for x in tags[i][:lengths[i]]])
-             #   try:
                 pred = iobes_iob([id_to_tag[int(x)] for x in batch_paths[i][:lengths[i]]])
-            #except KeyError as error:
-            #        print('error is',error)
-            #        print(batch_paths[i])
-            #        print(batch_paths[i][:lengths[i]])
-            #        continue
                 for char, gold, pred in zip(string, gold, pred):
                     result.append(" ".join([char, gold, pred]))
                 results.append(result)

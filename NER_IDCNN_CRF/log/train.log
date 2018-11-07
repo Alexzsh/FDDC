@@ -2951,3 +2951,5 @@
 2018-11-07 22:02:15,266 - log\train.log - INFO -          fullname: precision:  94.05%; recall:  92.96%; FB1:  93.50  1361
 
 2018-11-07 22:02:25,345 - log\train.log - INFO - iteration:75 step:6/206, NER loss: 1.110597
+2018-11-07 22:04:43,720 - log\train.log - INFO - iteration:75 step:56/206, NER loss: 0.975078
+2018-11-07 22:07:08,042 - log\train.log - INFO - iteration:75 step:106/206, NER loss: 1.183166

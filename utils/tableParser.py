@@ -6,6 +6,7 @@
 @time:2018/11/6 09:23
 """
 import codecs
+import re
 from bs4 import BeautifulSoup
 import TextUtils
 class parseHtmlGetTable:
@@ -183,7 +184,18 @@ class parseHtmlGetTable:
                 for content_div in paragraph_div.find_all('div'):
                     div_type = content_div.get('type')
                     if div_type is not None and div_type == 'content':
-                        rs[-1].append(TextUtils.clean_text(content_div.text))
+                        table = content_div.find_all('table')
+                        if table:
+                            tableText=""
+                            tr = soup.find_all('tr')
+                            for r in tr:
+                                td = r.find_all('td')
+                                for d in td:
+                                    tableText+=(TextUtils.clean_text(TextUtils.normalize(d.text)))+','
+
+                            rs[-1].append((tableText))
+                        else:
+                            rs[-1].append(TextUtils.clean_text(content_div.text))
         paragraphs = []
         for content_list in rs:
             if len(content_list) > 0:

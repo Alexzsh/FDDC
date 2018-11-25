@@ -4,14 +4,15 @@ import tqdm
 import TextUtils
 import bs4
 import pprint
+import jieba
 import random
 from bs4 import BeautifulSoup
-
+import time
 
 import tableParser
 
 
-
+jieba.initialize()
 dirname='../FDDC/html'
 re_replace_blank=re.compile('\s+')
 BlankCharSet = set([' ', '\n', '\t'])
@@ -34,12 +35,15 @@ def getDingZeng(filename):
             last_hidden = int(int(hidden[-1]['name'][1:])*0.6)
         for child in soup.descendants:
             sentence=""
+
             if cutPage and child.name=='hidden' and int(child['name'][1:])>=last_hidden:
                 print('break in\t',child['name'],'\tall\t',hidden[-1]['name'])
                 break
             if child.name=='tr' or child.name=='td':
                 if not text[-1] in CommaCharInNumberSet1:
                     sentence+=','
+            if child.name == 'img':
+                continue
             if isinstance(child,bs4.element.Tag) and child.attrs.get('title'):
                 if 'title' in child.attrs:
                     sentence= TextUtils.clean_text(TextUtils.normalize(child['title']))
@@ -97,46 +101,82 @@ def testTable(filename):
             elif isinstance(child, bs4.NavigableString):
                 print(child)
 
+def getDataFromParserThread(filename,file,res):
+    start = time.time()
+    sum = 0
+    content = tableParser.parseHtmlGetTable.parse_content(os.path.join(filename, file))
+    result = '。'.join(content)
+    result = TextUtils.clean_text(TextUtils.normalize(result))
 
-def doGetTextFromHtml():
-    text_dirname = '../FDDC/dingzeng/dataHalf'
-    dirname = '../FDDC/dingzeng/html'
-    if not os.path.exists(text_dirname):
-        os.makedirs(text_dirname)
+    sentences = result.split('。')
+    savename = file.split('.')[0]
+    for sentence in sentences:
+        if sentence == "":
+            continue
+        label = 0
+        sum += 1
+        if savename in res.keys():
+            field = res.get(savename)
+            for v in field[1:]:
+                if len(v) > 1 and field[0] in sentence and v in sentence:
+                    print('-' * 10, v, sentence.find(field[0]), sentence.find(v), len(sentence))
+                    label = 1
+                    break
 
-    print(list(os.walk(dirname)))
-    filename='6927.html'
-    for filename in tqdm.tqdm(list(os.walk(dirname))[0][2]):
-        # filename=list(os.walk(dirname))[0][2][0]
-        text_filename = filename[:filename.find('.')] + '.txt'
-        filename = os.path.join(dirname, filename)
-        with open(os.path.join(text_dirname, text_filename), 'w') as fw:
+        seg = jieba.cut(sentence)
+        res_sentence = " ".join(seg)
+        res_sentence = " ".join(res_sentence.split())
+        res_sentence += '\t__label__dingzeng\n' if label else '\t__label__useless\n'
+        contents.append(res_sentence)
+    print(file,' spend ',time.time()-start,'!'*10)
 
-            text = getDingZeng(filename)
-            fw.write(text)
-
-
-def doTestGetTableFromHtml():
-    filename = '../../NER/round1_train_20180518/增减持/html/6927.html'
-    # pprint.pprint(tableParser.parseHtmlGetTable.parse_table(filename))
-    print(tableParser.parseHtmlGetTable.parse_table(filename))
-    # for table in res:
-
-    # record = tableParser.parseHtmlGetTable(None, None, None, None, None, None, None)
-    # rs = []
-    # for table_dict in record.parse_table(filename):
-    #     rs_table = record.extract_from_table_dict(table_dict)
-    #     if len(rs_table) > 0:
-    #         if len(rs) > 0:
-    #             record.mergeRecord(rs, rs_table)
-    #             break
-    #         else:
-    #             rs.extend(rs_table)
-    # pprint.pprint(rs)
+def getDataFromParser():
+    import pprint
+    import threading
+    import multiprocessing as mp
+    pool  = mp.Pool()
+    dirname = '../FDDC/dingzeng'
+    output = 'fasttext.train'
+    res = {}
+    global contents
+    contents = []
+    with open(os.path.join(dirname, 'dingzeng.train'), 'r') as trainFr:
+        trains = trainFr.readlines()
+        for train in trains:
+            train = train.split('\t')
+            res[train[0]] = train[1:]
+    filename = '../FDDC/dingzeng/html'
+    for root,dir,files in os.walk(filename):
+        for file in files:
+            t = threading.Thread(getDataFromParserThread(filename,file,res),name='file:'+file)
+            t.start()
+            t.join()
+        #     pool.apply_async(getDataFromParserThread,(filename,file,res))
+        #
+        # print('<'*20)
+        # pool.close()
+        # pool.join()
+        # print('>'*20)
+        trueContent = [i for i in contents if i.endswith('\t__label__dingzeng\n')]
+        falseContent = [i for i in contents if i.endswith('\t__label__useless\n')]
+        random.shuffle(falseContent)
+        trueContent.extend(falseContent)#[:len(trueContent)]
+        random.shuffle(trueContent)
+        with open(os.path.join(dirname, output), 'w') as fw:
+            fw.writelines(trueContent)
 def test():
-    filename = '../../NER/round1_train_20180518/增减持/html/6927.html'
+    filename = 'test.html'
+    with open(filename,'r') as fr:
+        soup = BeautifulSoup(fr.read(),'html.parser')
+        table = soup.find_all('table')
+        if table:
+            tr = soup.find_all('tr')
+            for r in tr:
+                td = r.find_all('td')
+                for d in td:
+                    print(TextUtils.clean_text(TextUtils.normalize(d.text)))
 
-import jieba
+
 def getFasttextData():
     dirname='../FDDC/dingzeng'
     output='fasttext.train'
@@ -155,6 +195,8 @@ def getFasttextData():
                 sentences=text.split('。')
                 filename=file.split('.')[0]
                 for sentence in sentences:
+                    if sentence=="":
+                        continue
                     label=0
                     sum+=1
                     if filename in res.keys():
@@ -173,17 +215,14 @@ def getFasttextData():
     trueContent = [i for i in contents if i.endswith('\t__label__dingzeng\n')]
     falseContent=[i for i in contents if i.endswith('\t__label__useless\n')]
     random.shuffle(falseContent)
-    trueContent.extend(falseContent[:len(trueContent)])
+    trueContent.extend(falseContent)#[:len(trueContent)]
     random.shuffle(trueContent)
+    print(len(trueContent))
     with open(os.path.join(dirname,output),'w') as fw:
         fw.writelines(trueContent)
-def getDataByPage(filename):
-    with open(filename,'r') as fr:
-        soup=BeautifulSoup(fr.read())
 
 if __name__ == '__main__':
-    doGetTextFromHtml()
-
+    getDataFromParser()
 
 
 

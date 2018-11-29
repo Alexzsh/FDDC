@@ -16,8 +16,8 @@ from utils import print_config, save_config, load_config, test_ner
 from data_utils import load_word2vec, create_input, input_from_line, BatchManager
 
 flags = tf.app.flags
-flags.DEFINE_boolean("clean",       False,      "clean train folder")
-flags.DEFINE_boolean("train",       False,      "Whether train the model")
+flags.DEFINE_boolean("clean",       True,      "clean train folder")
+flags.DEFINE_boolean("train",       True,      "Whether train the model")
 # configurations for the model
 flags.DEFINE_integer("seg_dim",     20,         "Embedding size for segmentation, 0 if not used")
 flags.DEFINE_integer("char_dim",    100,        "Embedding size for characters")
@@ -45,9 +45,9 @@ flags.DEFINE_string("config_file",  "config_file",  "File for config")
 flags.DEFINE_string("script",       "conlleval",    "evaluation script")
 flags.DEFINE_string("result_path",  "result",       "Path for results")
 flags.DEFINE_string("emb_file",     os.path.join("data", "vec.txt"),  "Path for pre_trained embedding")
-flags.DEFINE_string("train_file",   os.path.join("data", "example.train"),  "Path for train data")
-flags.DEFINE_string("dev_file",     os.path.join("data", "example.dev"),    "Path for dev data")
-flags.DEFINE_string("test_file",    os.path.join("data", "example.test"),   "Path for test data")
+flags.DEFINE_string("train_file",   os.path.join("data", "ruijin/ruijin.train"),  "Path for train data")
+# flags.DEFINE_string("dev_file",     os.path.join("data", "example.dev"),    "Path for dev data")
+flags.DEFINE_string("test_file",    os.path.join("data", "ruijin/ruijin.test"),   "Path for test data")
 
 flags.DEFINE_string("model_type", "idcnn", "Model type, can be idcnn or bilstm")
 #flags.DEFINE_string("model_type", "bilstm", "Model type, can be idcnn or bilstm")
@@ -107,7 +107,7 @@ def evaluate(sess, model, name, data, id_to_tag, logger):
 def train():
     # load data sets
     train_sentences = load_sentences(FLAGS.train_file, FLAGS.lower, FLAGS.zeros)
-    dev_sentences = load_sentences(FLAGS.dev_file, FLAGS.lower, FLAGS.zeros)
+    # dev_sentences = load_sentences(FLAGS.dev_file, FLAGS.lower, FLAGS.zeros)
     test_sentences = load_sentences(FLAGS.test_file, FLAGS.lower, FLAGS.zeros)
 
     # Use selected tagging scheme (IOB / IOBES)
@@ -141,17 +141,17 @@ def train():
     train_data = prepare_dataset(
         train_sentences, char_to_id, tag_to_id, FLAGS.lower
     )
-    dev_data = prepare_dataset(
-        dev_sentences, char_to_id, tag_to_id, FLAGS.lower
-    )
+    # dev_data = prepare_dataset(
+    #     dev_sentences, char_to_id, tag_to_id, FLAGS.lower
+    # )
     test_data = prepare_dataset(
         test_sentences, char_to_id, tag_to_id, FLAGS.lower
     )
-    print("%i / %i / %i sentences in train / dev / test." % (
-        len(train_data), len(dev_data), len(test_data)))
+    # print("%i / %i / %i sentences in train / dev / test." % (
+    #     len(train_data), len(dev_data), len(test_data)))
 
     train_manager = BatchManager(train_data, FLAGS.batch_size)
-    dev_manager = BatchManager(dev_data, 100)
+    # dev_manager = BatchManager(dev_data, 100)
     test_manager = BatchManager(test_data, 100)
     # make path for store log and model if not exist
     make_path(FLAGS)
@@ -185,13 +185,14 @@ def train():
                         iteration, step%steps_per_epoch, steps_per_epoch, np.mean(loss)))
                     loss = []
 
-            best = evaluate(sess, model, "dev", dev_manager, id_to_tag, logger)
+            best = evaluate(sess, model, "test", test_manager, id_to_tag, logger)
             if best:
                 save_model(sess, model, FLAGS.ckpt_path, logger)
-            evaluate(sess, model, "test", test_manager, id_to_tag, logger)
+            # evaluate(sess, model, "test", test_manager, id_to_tag, logger)
 
 
 def evaluate_line():
+    print('evaluate')
     config = load_config(FLAGS.config_file)
     logger = get_logger(FLAGS.log_file)
     # limit GPU memory
@@ -214,18 +215,19 @@ def evaluate_line():
                 print(result)
 
 
-def main(_):
+def main():
 
-    if FLAGS.train:
-        if FLAGS.clean:
-            clean(FLAGS)
-        train()
-    else:
-        evaluate_line()
+    # if FLAGS.train:
+    #     if FLAGS.clean:
+    #         clean(FLAGS)
+    #         train()
+    # else:
+    print('evaluate')
+    evaluate_line()
 
 
 if __name__ == "__main__":
-    tf.app.run(main)
+    main()
 
 
 

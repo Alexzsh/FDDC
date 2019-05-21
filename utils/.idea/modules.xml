@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../NER-pytorch/.idea/NER-pytorch.iml" filepath="$PROJECT_DIR$/../NER-pytorch/.idea/NER-pytorch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../NER_IDCNN_CRF/.idea/NER_IDCNN_CRF.iml" filepath="$PROJECT_DIR$/../NER_IDCNN_CRF/.idea/NER_IDCNN_CRF.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fastTextClassify/.idea/fastTextClassify.iml" filepath="$PROJECT_DIR$/../fastTextClassify/.idea/fastTextClassify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../fddc-extraction-release/.idea/fddc-extraction-release.iml" filepath="$PROJECT_DIR$/../fddc-extraction-release/.idea/fddc-extraction-release.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../pytorch_NER_BiLSTM_CNN_CRF/.idea/pytorch_NER_BiLSTM_CNN_CRF.iml" filepath="$PROJECT_DIR$/../pytorch_NER_BiLSTM_CNN_CRF/.idea/pytorch_NER_BiLSTM_CNN_CRF.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/utils.iml" filepath="$PROJECT_DIR$/.idea/utils.iml" />
+    </modules>
+  </component>
+</project>

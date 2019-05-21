@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/RuiJin/ruijin_round1_submit_20181022/test_id.ann" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/history/10_BIO_10/log/train.log" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/history/BIO_CUT_LAST_NOT_O/log/train.log" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/history/all sentence with BIO/log/train.log" charset="GB2312" />
+    <file url="file://$PROJECT_DIR$/history/cnki3.csv" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/../tianchi-ruijin/RuiJin/ruijin_round1_submit_20181022/test_id.ann" charset="GBK" />
+  </component>
+</project>

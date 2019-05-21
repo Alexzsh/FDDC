@@ -156,6 +156,161 @@ class parseHtmlGetTable:
                 changeRecord.shareNumAfterChg = record.shareNumAfterChg
                 changeRecord.sharePcntAfterChg = record.sharePcntAfterChg
     @classmethod
+    def parse_content_statistics(self, html_file_path, res={}):
+        """
+        解析 HTML 中的段落文本
+        按顺序返回多个 paragraph 构成一个数组，
+        每个 paragraph 是一个 content 行构成的数组
+        :param html_file_path:
+        :return:
+        """
+        rs = []
+        result = []
+        tableSumSet = []
+        OtherSumSet = []
+        with codecs.open(html_file_path, encoding='utf-8', mode='r') as fp:
+            savename = ''
+            tableSum = 0
+            otherSum = 0
+            allSum = 0
+            res_field = []
+            field=[]
+            if res!={}:
+                savename = html_file_path.split('/')[-1].split('.')[0]
+            f=res.get(savename)
+            soup = BeautifulSoup(fp.read(), "html.parser")
+            paragraphs = []
+            for div in soup.find_all('div'):
+                div_type = div.get('type')
+                if div_type is not None and div_type == 'paragraph':
+                    paragraphs.append(div)
+            for paragraph_div in paragraphs:
+                paragraph_div_type=paragraph_div.attrs
+                dingzengPara = ['发行', '发售']
+
+
+                if 'title' in paragraph_div_type.keys():
+                    title = paragraph_div_type['title']
+                    if (('发行对象' in  title or '发售对象' in title ) and '前后' not in title) or res!={}:
+                        has_sub_paragraph = False
+                        for div in paragraph_div.find_all('div'):
+                            div_type = div.get('type')
+                            if div_type is not None and div_type == 'paragraph':
+                                has_sub_paragraph = True
+                        if has_sub_paragraph:
+                            continue
+                        rs.append([])
+                        for content_div in paragraph_div.find_all('div'):
+                            div_type = content_div.get('type')
+
+                            if div_type is not None and div_type == 'content':
+                                table = content_div.find_all('table')
+
+                                dingzeng = ['发行','对象','认购','限售期','锁定期','获配']
+                                dingzeng_num=0
+                                for word in dingzeng:
+                                    if word in content_div.text:
+                                        dingzeng_num += 1
+                                if table:
+
+                                    if dingzeng_num < 4 and res == {}:
+                                        continue
+                                    tableText=""
+                                    tr = soup.find_all('tr')
+                                    for r in tr:
+                                        td = r.find_all('td')
+                                        for d in td:
+                                            tableText+=(TextUtils.normalize(d.text))+','
+                                        tableText = tableText[:-2]+'。'
+                                    sentence = tableText
+                                    if savename in res.keys():
+                                        f = res.get(savename)
+                                        for field in f:
+                                            res_field = field
+                                            allSum = len(field)
+                                            for v in field[:]:
+                                                # if len(v) > 1 and field[0] in sentence and v in sentence:
+                                                if len(v) > 1 and v in sentence:
+                                                    tableSum+=1
+                                                    if v not in tableSumSet:
+                                                        tableSumSet.append(v)
+                                                # break
+                                    rs[-1].append((tableText))
+                                else:
+                                    if dingzeng_num < 2 and res == {}:
+                                        continue
+                                    sentence = content_div.text
+                                    if savename in res.keys():
+                                        f = res.get(savename)
+                                        for field in f:
+                                            res_field=field
+                                            allSum = len(field)
+                                            for v in field[:]:
+                                                # if len(v) > 1 and field[0] in sentence and v in sentence:
+                                                if len(v) > 1 and v in sentence:
+                                                    otherSum += 1
+                                                    if v not in OtherSumSet:
+                                                        OtherSumSet.append(v)
+                                                # break
+                                    rs[-1].append(TextUtils.normalize(content_div.text))
+                else:
+                    has_sub_paragraph = False
+                    for div in paragraph_div.find_all('div'):
+                        div_type = div.get('type')
+                        if div_type is not None and div_type == 'paragraph':
+                            has_sub_paragraph = True
+                    if has_sub_paragraph:
+                        continue
+                    rs.append([])
+                    for content_div in paragraph_div.find_all('div'):
+                        div_type = content_div.get('type')
+                        if div_type is not None and div_type == 'content':
+
+                            sentence = content_div.text
+                            if savename in res.keys():
+                                f = res.get(savename)
+                                for field in f:
+                                    res_field = field
+                                    allSum = len(field)
+                                    for v in field[:]:
+                                        # if len(v) > 1 and field[0] in sentence and v in sentence:
+                                        if len(v) > 1 and v in sentence:
+                                            otherSum += 1
+                                            if v not in OtherSumSet:
+                                                OtherSumSet.append(v)
+                                        # break
+                            rs[-1].append(TextUtils.clean_text(content_div.text))
+        if res!={}:
+            print('!'*20)
+            print(savename,allSum,len(set(tableSumSet)),len(set(OtherSumSet)))
+            tmp = tableSumSet
+            tmp.extend(OtherSumSet)
+
+            all_field = []
+            for i in f:
+                all_field.extend(i)
+
+            all_field = set(all_field)
+
+            not_found = len(set(all_field))-len(set(tmp))
+            series={'filename':savename,
+                    'allSum':len(all_field),
+                    'field':all_field,
+                    'tableSum':len(set(tableSumSet)),
+                    'tabledata':set(tableSumSet),
+                    'otherSum':len(set(OtherSumSet)),
+                    'otherdata':set(OtherSumSet),
+                    'not_found':not_found,
+                    'not_found_data':set(all_field)-set(tmp)}
+            print(series)
+            return series
+        # paragraphs = []
+        # for content_list in rs:
+        #     if len(content_list) > 0:
+        #         paragraphs.append(''.join(content_list))
+        # return paragraphs
+
+    @classmethod
     def parse_content(self, html_file_path):
         """
         解析 HTML 中的段落文本
@@ -186,13 +341,18 @@ class parseHtmlGetTable:
                     if div_type is not None and div_type == 'content':
                         table = content_div.find_all('table')
                         if table:
-                            tableText=""
+                            tableText = ""
                             tr = soup.find_all('tr')
                             for r in tr:
                                 td = r.find_all('td')
                                 for d in td:
-                                    tableText+=(TextUtils.clean_text(TextUtils.normalize(d.text)))+','
-
+                                    clean_text = (TextUtils.clean_text(
+                                        TextUtils.normalize(d.text)))
+                                    if clean_text=='--':
+                                        continue
+                                    tableText += clean_text
+                                    if not tableText[-1] in ',./;\'[]-=()_+{}:">?<':
+                                        tableText+=','
                             rs[-1].append((tableText))
                         else:
                             rs[-1].append(TextUtils.clean_text(content_div.text))

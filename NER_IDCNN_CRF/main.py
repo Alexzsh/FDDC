@@ -45,9 +45,9 @@ flags.DEFINE_string("config_file",  "config_file",  "File for config")
 flags.DEFINE_string("script",       "conlleval",    "evaluation script")
 flags.DEFINE_string("result_path",  "result",       "Path for results")
 flags.DEFINE_string("emb_file",     os.path.join("data", "vec.txt"),  "Path for pre_trained embedding")
-flags.DEFINE_string("train_file",   os.path.join("data", "ruijin/ruijin.train"),  "Path for train data")
-# flags.DEFINE_string("dev_file",     os.path.join("data", "example.dev"),    "Path for dev data")
-flags.DEFINE_string("test_file",    os.path.join("data", "ruijin/ruijin.test"),   "Path for test data")
+flags.DEFINE_string("train_file",   os.path.join("data", "example.train"),  "Path for train data")
+flags.DEFINE_string("dev_file",     os.path.join("data", "example.dev"),    "Path for dev data")
+flags.DEFINE_string("test_file",    os.path.join("data", "example.test"),   "Path for test data")
 
 flags.DEFINE_string("model_type", "idcnn", "Model type, can be idcnn or bilstm")
 #flags.DEFINE_string("model_type", "bilstm", "Model type, can be idcnn or bilstm")
@@ -107,7 +107,7 @@ def evaluate(sess, model, name, data, id_to_tag, logger):
 def train():
     # load data sets
     train_sentences = load_sentences(FLAGS.train_file, FLAGS.lower, FLAGS.zeros)
-    # dev_sentences = load_sentences(FLAGS.dev_file, FLAGS.lower, FLAGS.zeros)
+    dev_sentences = load_sentences(FLAGS.dev_file, FLAGS.lower, FLAGS.zeros)
     test_sentences = load_sentences(FLAGS.test_file, FLAGS.lower, FLAGS.zeros)
 
     # Use selected tagging scheme (IOB / IOBES)
@@ -141,17 +141,18 @@ def train():
     train_data = prepare_dataset(
         train_sentences, char_to_id, tag_to_id, FLAGS.lower
     )
-    # dev_data = prepare_dataset(
-    #     dev_sentences, char_to_id, tag_to_id, FLAGS.lower
-    # )
+    dev_data = prepare_dataset(
+        dev_sentences, char_to_id, tag_to_id, FLAGS.lower
+    )
     test_data = prepare_dataset(
         test_sentences, char_to_id, tag_to_id, FLAGS.lower
     )
-    # print("%i / %i / %i sentences in train / dev / test." % (
-    #     len(train_data), len(dev_data), len(test_data)))
+
+    print("%i / %i / %i sentences in train / dev / test." % (
+        len(train_data), len(dev_data), len(test_data)))
 
     train_manager = BatchManager(train_data, FLAGS.batch_size)
-    # dev_manager = BatchManager(dev_data, 100)
+    dev_manager = BatchManager(dev_data, 100)
     test_manager = BatchManager(test_data, 100)
     # make path for store log and model if not exist
     make_path(FLAGS)
@@ -210,20 +211,19 @@ def evaluate_line():
             # except Exception as e:
             #     logger.info(e)
 
-                line = input("请输入测试句子:")
-                result = model.evaluate_line(sess, input_from_line(line, char_to_id), id_to_tag)
-                print(result)
+            line = input("请输入测试句子:")
+            result = model.evaluate_line(sess, input_from_line(line, char_to_id), id_to_tag)
+            print(result)
 
 
 def main():
 
-    # if FLAGS.train:
-    #     if FLAGS.clean:
-    #         clean(FLAGS)
-    #         train()
-    # else:
-    print('evaluate')
-    evaluate_line()
+    if FLAGS.train and FLAGS.clean:
+        clean(FLAGS)
+        train()
+    else:
+        print('evaluate')
+        evaluate_line()
 
 
 if __name__ == "__main__":

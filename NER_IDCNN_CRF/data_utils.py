@@ -77,6 +77,7 @@ def iob_iobes(tags):
                tags[i + 1].split('-')[0] == 'I':
                 new_tags.append(tag)
             else:
+                continue
                 new_tags.append(tag.replace('B-', 'S-'))
         elif tag.split('-')[0] == 'I':
             if i + 1 < len(tags) and \

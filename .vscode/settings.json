@@ -1,0 +1,5 @@
+{
+    "git.ignoreLimitWarning": true,
+    "python.pythonPath": "~/.virtualenvs/py3.6/bin/python",
+    "python.linting.pylintEnabled": false
+}

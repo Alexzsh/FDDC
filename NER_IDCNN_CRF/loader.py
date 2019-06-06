@@ -13,11 +13,8 @@ def load_sentences(path, lower, zeros):
     """
     sentences = []
     sentence = []
-    num = 0
     for line in codecs.open(path, 'r', 'utf8'):
-        num+=1
         line = zero_digits(line.rstrip()) if zeros else line.rstrip()
-        # print(list(line))
         if not line:
             if len(sentence) > 0:
                 if 'DOCSTART' not in sentence[0][0]:
@@ -27,9 +24,9 @@ def load_sentences(path, lower, zeros):
             if line[0] == " ":
                 line = "$" + line[1:]
                 word = line.split()
-                # word[0] = " "
             else:
                 word= line.split()
+            if len(word) < 2: continue
             assert len(word) >= 2, print([word[0]])
             sentence.append(word)
     if len(sentence) > 0:
@@ -168,4 +165,8 @@ def load_maps(save_path):
     pass
     # with codecs.open(save_path, "r", encoding="utf8") as f:
     #     pickle.load(save_path, f)
+import  numpy as np
+if __name__=="__main__":
+    res=[np.exp(i) for i in range(100)]
+    print(res)
 

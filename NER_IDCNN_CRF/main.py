@@ -16,8 +16,8 @@ from utils import print_config, save_config, load_config, test_ner
 from data_utils import load_word2vec, create_input, input_from_line, BatchManager
 
 flags = tf.app.flags
-flags.DEFINE_boolean("clean",       False,      "clean train folder")
-flags.DEFINE_boolean("train",       False,      "Whether train the model")
+flags.DEFINE_boolean("clean",       True,      "clean train folder")
+flags.DEFINE_boolean("train",       True,      "Whether train the model")
 # configurations for the model
 flags.DEFINE_integer("seg_dim",     20,         "Embedding size for segmentation, 0 if not used")
 flags.DEFINE_integer("char_dim",    100,        "Embedding size for characters")
@@ -147,6 +147,7 @@ def train():
     test_data = prepare_dataset(
         test_sentences, char_to_id, tag_to_id, FLAGS.lower
     )
+
     print("%i / %i / %i sentences in train / dev / test." % (
         len(train_data), len(dev_data), len(test_data)))
 
@@ -185,13 +186,14 @@ def train():
                         iteration, step%steps_per_epoch, steps_per_epoch, np.mean(loss)))
                     loss = []
 
-            best = evaluate(sess, model, "dev", dev_manager, id_to_tag, logger)
+            best = evaluate(sess, model, "test", test_manager, id_to_tag, logger)
             if best:
                 save_model(sess, model, FLAGS.ckpt_path, logger)
-            evaluate(sess, model, "test", test_manager, id_to_tag, logger)
+            # evaluate(sess, model, "test", test_manager, id_to_tag, logger)
 
 
 def evaluate_line():
+    print('evaluate')
     config = load_config(FLAGS.config_file)
     logger = get_logger(FLAGS.log_file)
     # limit GPU memory
@@ -209,23 +211,23 @@ def evaluate_line():
             # except Exception as e:
             #     logger.info(e)
 
-                line = input("请输入测试句子:")
-                result = model.evaluate_line(sess, input_from_line(line, char_to_id), id_to_tag)
-                print(result)
+            line = input("请输入测试句子:")
+            result = model.evaluate_line(sess, input_from_line(line, char_to_id), id_to_tag)
+            print(result)
 
 
-def main(_):
+def main():
 
-    if FLAGS.train:
-        if FLAGS.clean:
-            clean(FLAGS)
+    if FLAGS.train and FLAGS.clean:
+        clean(FLAGS)
         train()
     else:
+        print('evaluate')
         evaluate_line()
 
 
 if __name__ == "__main__":
-    tf.app.run(main)
+    main()
 
 
 

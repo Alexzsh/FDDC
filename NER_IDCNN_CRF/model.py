@@ -1,11 +1,13 @@
 # encoding = utf8
 import numpy as np
 import tensorflow as tf
+import tensorflow.contrib as contrib
 from tensorflow.contrib.crf import crf_log_likelihood
 from tensorflow.contrib.crf import viterbi_decode
 from tensorflow.contrib.layers.python.layers import initializers
 
-import rnncell as rnn
+# import rnncell as rnn
+
 from utils import result_to_json
 from data_utils import create_input, iobes_iob
 
@@ -24,6 +26,9 @@ class Model(object):
         self.num_tags = config["num_tags"]
         self.num_chars = config["num_chars"]
         self.num_segs = 4
+
+        self.num_heads = 8
+        self.num_units = 2*int(config["lstm_dim"])
 
         self.global_step = tf.Variable(0, trainable=False)
         self.best_dev_f1 = tf.Variable(0.0, trainable=False)
@@ -86,7 +91,7 @@ class Model(object):
 
             # bi-directional lstm layer
             model_outputs = self.biLSTM_layer(model_inputs, self.lstm_dim, self.lengths)
-
+            model_outputs = self.self_attention(model_outputs)
             # logits for tags
             self.logits = self.project_layer_bilstm(model_outputs)
         
@@ -160,11 +165,13 @@ class Model(object):
             lstm_cell = {}
             for direction in ["forward", "backward"]:
                 with tf.variable_scope(direction):
-                    lstm_cell[direction] = rnn.CoupledInputForgetGateLSTMCell(
-                        lstm_dim,
-                        use_peepholes=True,
-                        initializer=self.initializer,
-                        state_is_tuple=True)
+                    if direction=="backward":
+                        lstm_cell[direction] = contrib.rnn.LSTMCell(
+                            lstm_dim,initializer=self.initializer)
+                    else:
+                        lstm_cell[direction] = contrib.rnn.GRUCell(
+                            lstm_dim,kernel_initializer=self.initializer,bias_initializer=self.initializer)
+
             outputs, final_states = tf.nn.bidirectional_dynamic_rnn(
                 lstm_cell["forward"],
                 lstm_cell["backward"],
@@ -172,7 +179,42 @@ class Model(object):
                 dtype=tf.float32,
                 sequence_length=lengths)
         return tf.concat(outputs, axis=2)
-    
+    def normalize(self,inputs, epsilon = 1e-8,scope="ln",reuse=None):
+        with tf.variable_scope(scope, reuse=reuse):
+            inputs_shape = inputs.get_shape()
+            params_shape = inputs_shape[-1:]
+            mean, variance = tf.nn.moments(inputs, [-1], keep_dims=True)
+            beta = tf.Variable(tf.zeros(params_shape),dtype=tf.float32)
+            gamma = tf.Variable(tf.ones(params_shape),dtype=tf.float32)
+            normalized = (inputs - mean) / ((variance + epsilon) ** (0.5))
+            outputs = gamma * normalized + beta
+        return outputs
+    def self_attention(self,keys, scope='multihead_attention', reuse=None):
+        with tf.variable_scope(scope, reuse=reuse):
+            Q = tf.nn.relu(tf.layers.dense(keys, self.num_units, kernel_initializer=tf.contrib.layers.xavier_initializer()))
+            K = tf.nn.relu(tf.layers.dense(keys, self.num_units, kernel_initializer=tf.contrib.layers.xavier_initializer()))
+            V = tf.nn.relu(tf.layers.dense(keys, self.num_units, kernel_initializer=tf.contrib.layers.xavier_initializer()))
+            Q_ = tf.concat(tf.split(Q, self.num_heads, axis=2), axis=0)
+            K_ = tf.concat(tf.split(K, self.num_heads, axis=2), axis=0)
+            V_ = tf.concat(tf.split(V, self.num_heads, axis=2), axis=0)
+            outputs = tf.matmul(Q_, tf.transpose(K_, [0, 2, 1]))
+            outputs = outputs / (K_.get_shape().as_list()[-1] ** 0.5)
+            key_masks = tf.sign(tf.abs(tf.reduce_sum(keys, axis=-1)))
+            key_masks = tf.tile(key_masks, [self.num_heads, 1])
+            key_masks = tf.tile(tf.expand_dims(key_masks, 1), [1, tf.shape(keys)[1], 1])
+            paddings = tf.ones_like(outputs) * (-2 ** 32 + 1)
+            outputs = tf.where(tf.equal(key_masks, 0), paddings, outputs)
+            outputs = tf.nn.softmax(outputs)
+            query_masks = tf.sign(tf.abs(tf.reduce_sum(keys, axis=-1)))
+            query_masks = tf.tile(query_masks, [self.num_heads, 1])
+            query_masks = tf.tile(tf.expand_dims(query_masks, -1), [1, 1, tf.shape(keys)[1]])
+            outputs *= query_masks
+            outputs = tf.nn.dropout(outputs, keep_prob=self.dropout)
+            outputs = tf.matmul(outputs, V_)
+            outputs = tf.concat(tf.split(outputs, self.num_heads, axis=0), axis=2)
+            outputs += keys
+            outputs = self.normalize(outputs)
+        return outputs
     #IDCNN layer 
     def IDCNN_layer(self, model_inputs, 
                     name=None):
@@ -182,7 +224,7 @@ class Model(object):
         """
         model_inputs = tf.expand_dims(model_inputs, 1)
         reuse = False
-        if not self.is_train:
+        if self.dropout == 1.0:
             reuse = True
         with tf.variable_scope("idcnn" if not name else name):
             shape=[1, self.filter_width, self.embedding_dim,
@@ -210,7 +252,8 @@ class Model(object):
                     dilation = self.layers[i]['dilation']
                     isLast = True if i == (len(self.layers) - 1) else False
                     with tf.variable_scope("atrous-conv-layer-%d" % i,
-                                           reuse=tf.AUTO_REUSE):
+                                           reuse=True
+                                           if (reuse or j > 0) else False):
                         w = tf.get_variable(
                             "filterW",
                             shape=[1, self.filter_width, self.num_filter,
@@ -311,6 +354,74 @@ class Model(object):
                 transition_params=self.trans,
                 sequence_lengths=lengths+1)
             return tf.reduce_mean(-log_likelihood)
+    def lstm_decode_layer(self, lstm_outputs,name=None):
+        """
+        calculate lstm decode loss
+        :param project_logits: 
+        :param lengths: 
+        :param name: 
+        :return: loss
+        """
+        with tf.variable_scope("lstm_decode" if not name else name):
+            decode_lstm = rnn.LSTMCell(self.lstm_dim,use_peepholes=True)
+            init_state = decode_lstm.zero_state(self.batch_size, dtype=tf.float32)
+            #tf.constant会报错
+            # outputs = [tf.zeros(shape=[self.batch_size,self.lstm_dim])]
+            # state = init_state
+
+            i = tf.constant(0)
+            while_condition = lambda i,state,outputs: i<self.num_steps
+            # self.outputs = tf.Variable(shape=[self.num_steps,self.batch_size, self.lstm_dim])
+            self.outputs = tf.zeros([self.num_steps,self.batch_size, self.lstm_dim])
+            def body(i,state,outputs):
+                # state = init_state
+                # if i > 0:
+                # tf.get_variable_scope().reuse_variables()
+                # 这里的state保存了每一层 LSTM 的状态
+                (cell_output, state) = decode_lstm(tf.concat([lstm_outputs[:, i, :], outputs[-1]], axis=-1),state)
+                # (cell_output, state) = decode_lstm(lstm_outputs[:, i, :],state)
+                with tf.variable_scope("hidden"):
+                    W = tf.get_variable("W", shape=[self.lstm_dim, self.lstm_dim],
+                                        dtype=tf.float32, initializer=self.initializer)
+
+                    b = tf.get_variable("b", shape=[self.lstm_dim], dtype=tf.float32,
+                                        initializer=tf.zeros_initializer())
+                    output = tf.reshape(cell_output, shape=[self.batch_size, self.lstm_dim])
+                    hidden = tf.tanh(tf.nn.xw_plus_b(output, W, b))
+                outputs = tf.concat([outputs[:i],tf.reshape(hidden,shape=[1,-1,self.lstm_dim]),outputs[i+1:]],axis=0)
+                # outputs
+                return [i+1,state,outputs]
+
+            # do the loop:
+            final = tf.while_loop(while_condition, body, [i,init_state,self.outputs])
+            self.outputs = final[2]
+            outputs = tf.transpose(self.outputs,[1,0,2])
+        with tf.variable_scope("logits"):
+            W = tf.get_variable("W", shape=[self.lstm_dim, self.num_tags],
+                                dtype=tf.float32, initializer=self.initializer)
+
+            b = tf.get_variable("b", shape=[self.num_tags], dtype=tf.float32,
+                                initializer=tf.zeros_initializer())
+            outputs = tf.reshape(outputs, shape=[-1, self.lstm_dim])
+            pred = tf.nn.xw_plus_b(outputs, W, b)
+
+        return tf.reshape(pred, [-1, self.num_steps, self.num_tags])
+
+    def lstm_decode_loss_layer(self, lstm_outputs,bias,name=None):
+        # return tf.reduce_sum(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=self.targets,logits=lstm_outputs))
+        with tf.variable_scope("lstm_decode_loss" if not name else name):
+            lstm_outputs = tf.nn.softmax(lstm_outputs)
+            zero = tf.zeros(shape=[self.batch_size,self.num_steps],dtype=tf.int32)
+            one = tf.ones(shape=[self.batch_size,self.num_steps],dtype=tf.float32)
+            logpy = tf.reduce_sum(tf.log(lstm_outputs)*tf.cast(tf.one_hot(self.targets,self.num_tags,1,0),tf.float32),axis=-1)
+            I0 = tf.cast(tf.equal(zero,self.targets),tf.float32)
+            # print(I0.shape)
+            I1 = one-I0
+            if bias:
+                print(-tf.reduce_mean(logpy*I0+bias*logpy*I1))
+                return -tf.reduce_mean(logpy*I0+bias*logpy*I1)
+            else:
+                return -tf.reduce_mean(logpy)
 
     def create_feed_dict(self, is_train, batch):
         """
@@ -338,6 +449,7 @@ class Model(object):
         """
         feed_dict = self.create_feed_dict(is_train, batch)
         if is_train:
+            # print([self.global_step, self.loss, self.train_op],feed_dict)
             global_step, loss, _ = sess.run(
                 [self.global_step, self.loss, self.train_op],
                 feed_dict)

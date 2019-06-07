@@ -207,10 +207,10 @@ class parseHtmlGetTable:
             otherSum = 0
             allSum = 0
             res_field = []
-            field=[]
-            if res!={}:
+            field = []
+            if res != {}:
                 savename = html_file_path.split('/')[-1].split('.')[0]
-            f=res.get(savename)
+            f = res.get(savename)
             soup = BeautifulSoup(fp.read(), "html.parser")
             paragraphs = []
             for div in soup.find_all('div'):
@@ -221,10 +221,9 @@ class parseHtmlGetTable:
                 paragraph_div_type = paragraph_div.attrs
                 dingzengPara = ['发行', '发售']
 
-
                 if 'title' in paragraph_div_type.keys():
                     title = paragraph_div_type['title']
-                    if (('发行对象' in  title or '发售对象' in title ) and '前后' not in title) or res!={}:
+                    if (('发行对象' in title or '发售对象' in title) and '前后' not in title) or res != {}:
                         has_sub_paragraph = False
                         for div in paragraph_div.find_all('div'):
                             div_type = div.get('type')
@@ -335,13 +334,13 @@ class parseHtmlGetTable:
                     'otherdata': set(OtherSumSet),
                     'not_found': not_found,
                     'not_found_data': set(all_field)-set(tmp)}
-            print(series)
-            return series
-        # paragraphs = []
-        # for content_list in rs:
-        #     if len(content_list) > 0:
-        #         paragraphs.append(''.join(content_list))
-        # return paragraphs
+            # print(series)
+            # return series
+        paragraphs = []
+        for content_list in rs:
+            if len(content_list) > 0:
+                paragraphs.append(''.join(content_list))
+        return paragraphs
 
     @classmethod
     def parse_content(self, html_file_path):
@@ -381,11 +380,11 @@ class parseHtmlGetTable:
                                 for d in td:
                                     clean_text = (TextUtils.clean_text(
                                         TextUtils.normalize(d.text)))
-                                    if clean_text=='--':
+                                    if clean_text == '--':
                                         continue
                                     tableText += clean_text
                                     if not tableText[-1] in ',./;\'[]-=()_+{}:">?<':
-                                        tableText+=','
+                                        tableText += ','
                             rs[-1].append((tableText))
                         else:
                             rs[-1].append(TextUtils.clean_text(content_div.text))
@@ -399,4 +398,7 @@ class parseHtmlGetTable:
 if __name__ == "__main__":
     cl1 = parseHtmlGetTable(None, None, None, None, None, None, None)
     html_file_path = 'E:/实验/round1_train_20180518/round1_train_20180518/定增/html/11800.html'
-    print(cl1.html_to_json(html_file_path))
+    b = cl1.parse_content(html_file_path)
+    c = cl1.parse_content_statistics(html_file_path)
+    print(b)
+    print(c)

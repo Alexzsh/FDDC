@@ -187,6 +187,7 @@ class parseHtmlGetTable:
             if record.shareholderFullName == changeRecord.shareholderFullName:
                 changeRecord.shareNumAfterChg = record.shareNumAfterChg
                 changeRecord.sharePcntAfterChg = record.sharePcntAfterChg
+
     @classmethod
     def parse_content_statistics(self, html_file_path, res={}):
         """

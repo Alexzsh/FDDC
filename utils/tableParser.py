@@ -86,6 +86,31 @@ class parseHtmlGetTable:
                 col_index = cur_col_index
             row_index += 1
         return rs_dict, is_head_two_rowspan
+
+    @classmethod
+    def html_to_json(self, html_file_path):
+        rs_list = self.parse_table(html_file_path)
+        js_list = []
+        for table_dict in rs_list:
+            js_list.append(self.switch_to_json(table_dict))
+        return js_list
+
+    """将单个table的列表转换为json格式"""
+    @staticmethod
+    def switch_to_json(table_dict):
+        table_js_list = []
+        if table_dict is None or len(table_dict) <= 0:
+            return table_js_list
+        row_length = len(table_dict)
+        head_row = table_dict[0]
+        col_length = len(head_row)
+        for available_row in range(1, row_length):
+            row_dict = {}
+            for col in range(col_length):
+                row_dict[head_row[col]] = table_dict[available_row][col]
+                table_js_list.append(row_dict)
+        return table_js_list
+
     def extract_from_table_dict(self, table_dict):
         rs = []
         if table_dict is None or len(table_dict) <= 0:
@@ -361,3 +386,9 @@ class parseHtmlGetTable:
             if len(content_list) > 0:
                 paragraphs.append(''.join(content_list))
         return paragraphs
+
+
+if __name__ == "__main__":
+    cl1 = parseHtmlGetTable(None, None, None, None, None, None, None)
+    html_file_path = 'E:/实验/round1_train_20180518/round1_train_20180518/定增/html/11800.html'
+    print(cl1.html_to_json(html_file_path))

@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 """
 @version=1.0
 @author:zsh
@@ -9,6 +9,8 @@ import codecs
 import re
 from bs4 import BeautifulSoup
 import TextUtils
+
+
 class parseHtmlGetTable:
     def __init__(self, shareholderFullName, shareholderShortName, finishDate, sharePrice, shareNum, shareNumAfterChg, sharePcntAfterChg):
         # 股东
@@ -169,15 +171,16 @@ class parseHtmlGetTable:
                     pass
             rs.append(record)
         return rs
+
     def mergeRecord(self, changeRecords, changeAfterRecords):
         if len(changeRecords) == 0 or len(changeAfterRecords) == 0:
             return
         last_record = None
         for record in changeRecords:
-            if last_record != None and record.shareholderFullName != last_record.shareholderFullName:
-                self.mergeChangeAfterInfo(last_record,changeAfterRecords)
+            if last_record is not None and record.shareholderFullName != last_record.shareholderFullName:
+                self.mergeChangeAfterInfo(last_record, changeAfterRecords)
             last_record = record
-        self.mergeChangeAfterInfo(last_record,changeAfterRecords)
+        self.mergeChangeAfterInfo(last_record, changeAfterRecords)
 
     def mergeChangeAfterInfo(self, changeRecord, changeAfterRecords):
         for record in changeAfterRecords:
@@ -214,7 +217,7 @@ class parseHtmlGetTable:
                 if div_type is not None and div_type == 'paragraph':
                     paragraphs.append(div)
             for paragraph_div in paragraphs:
-                paragraph_div_type=paragraph_div.attrs
+                paragraph_div_type = paragraph_div.attrs
                 dingzengPara = ['发行', '发售']
 
 
@@ -235,8 +238,8 @@ class parseHtmlGetTable:
                             if div_type is not None and div_type == 'content':
                                 table = content_div.find_all('table')
 
-                                dingzeng = ['发行','对象','认购','限售期','锁定期','获配']
-                                dingzeng_num=0
+                                dingzeng = ['发行', '对象', '认购', '限售期', '锁定期', '获配']
+                                dingzeng_num = 0
                                 for word in dingzeng:
                                     if word in content_div.text:
                                         dingzeng_num += 1
@@ -244,12 +247,12 @@ class parseHtmlGetTable:
 
                                     if dingzeng_num < 4 and res == {}:
                                         continue
-                                    tableText=""
+                                    tableText = ""
                                     tr = soup.find_all('tr')
                                     for r in tr:
                                         td = r.find_all('td')
                                         for d in td:
-                                            tableText+=(TextUtils.normalize(d.text))+','
+                                            tableText += (TextUtils.normalize(d.text))+','
                                         tableText = tableText[:-2]+'。'
                                     sentence = tableText
                                     if savename in res.keys():
@@ -309,9 +312,9 @@ class parseHtmlGetTable:
                                                 OtherSumSet.append(v)
                                         # break
                             rs[-1].append(TextUtils.clean_text(content_div.text))
-        if res!={}:
+        if res != {}:
             print('!'*20)
-            print(savename,allSum,len(set(tableSumSet)),len(set(OtherSumSet)))
+            print(savename, allSum, len(set(tableSumSet)), len(set(OtherSumSet)))
             tmp = tableSumSet
             tmp.extend(OtherSumSet)
 
@@ -322,15 +325,15 @@ class parseHtmlGetTable:
             all_field = set(all_field)
 
             not_found = len(set(all_field))-len(set(tmp))
-            series={'filename':savename,
-                    'allSum':len(all_field),
-                    'field':all_field,
-                    'tableSum':len(set(tableSumSet)),
-                    'tabledata':set(tableSumSet),
-                    'otherSum':len(set(OtherSumSet)),
-                    'otherdata':set(OtherSumSet),
-                    'not_found':not_found,
-                    'not_found_data':set(all_field)-set(tmp)}
+            series={'filename': savename,
+                    'allSum': len(all_field),
+                    'field': all_field,
+                    'tableSum': len(set(tableSumSet)),
+                    'tabledata': set(tableSumSet),
+                    'otherSum': len(set(OtherSumSet)),
+                    'otherdata': set(OtherSumSet),
+                    'not_found': not_found,
+                    'not_found_data': set(all_field)-set(tmp)}
             print(series)
             return series
         # paragraphs = []

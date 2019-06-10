@@ -1,7 +1,7 @@
 # coding=utf8
 import os
 import re
-import tqdm
+# import tqdm
 import collections
 import TextUtils
 import bs4
@@ -13,8 +13,8 @@ import time
 import multiprocessing as mp
 import tableParser
 import asyncio
-from aiofile import AIOFile, Reader, Writer
-import aiofiles
+# from aiofile import AIOFile, Reader, Writer
+# import aiofiles
 jieba.initialize()
 dirname = '../FDDC/html'
 re_replace_blank = re.compile('\s+')
@@ -27,8 +27,8 @@ CommaCharInNumberSet1 = set([',', '.', '。', '，', '!', '?', ':', '：'])
 
 def getDingZeng(filename):
     # test function
-    with open(filename, 'r') as fr:
-        soup = BeautifulSoup(fr.read(),'html.parser')
+    with open(filename, 'r', encoding='utf-8') as fr:
+        soup = BeautifulSoup(fr.read(), 'html.parser')
         text = ""
         cutPage = False
         # print((list(soup.contents[0].contents)))
@@ -39,8 +39,8 @@ def getDingZeng(filename):
         for child in soup.descendants:
             sentence = ""
 
-            if cutPage and child.name=='hidden' and int(child['name'][1:]) >= last_hidden:
-                print('break in\t',child['name'], '\tall\t', hidden[-1]['name'])
+            if cutPage and child.name == 'hidden' and int(child['name'][1:]) >= last_hidden:
+                print('break in\t', child['name'], '\tall\t', hidden[-1]['name'])
                 break
             if child.name == 'tr' or child.name == 'td':
                 if not text[-1] in CommaCharInNumberSet1:
@@ -70,7 +70,7 @@ def getContentFromEveryDiv(filename):
         text -- result data
     """
     
-    with open(filename, 'r') as fr:
+    with open(filename, 'r', encoding='utf-8') as fr:
         soup = BeautifulSoup(fr.read(), 'html.parser')
         text = ""
         # print((list(soup.contents[0].contents)))
@@ -134,7 +134,7 @@ def getDataFromParserThread(filename, file, res):
 def getTableFromFaXing(filename, file):
     res = (tableParser.parseHtmlGetTable.parse_content(os.path.join(filename, file)))
     result = '。'.join(res)
-    with open('../FDDC/dingzeng/textWithPara/'+file.split('.')[0]+'.txt','w') as fw:
+    with open('../FDDC/dingzeng/textWithPara/'+file.split('.')[0]+'.txt', 'w') as fw:
         fw.write(result)
 
 
@@ -160,8 +160,8 @@ def getDataFromParser():
     with open(os.path.join(dirname, 'dingzeng.train'), 'r') as trainFr:
         trains = trainFr.readlines()
         for train in trains:
-            train = train.replace('\n','').split('\t')
-            train = [i for i in train if i!='']
+            train = train.replace('\n', '').split('\t')
+            train = [i for i in train if i != '']
             res[train[0]].append(train[1:])
     filename = '../FDDC/dingzeng/html'
     print(res['224128'])
@@ -252,7 +252,7 @@ def makeAfterFasttextData(docu_type):
 
     for root, _, files in os.walk(os.path.join(dirname, 'textWithPara')):
         for file in tqdm.tqdm(files[:]):
-            # pool.apply_async(process,(dirname,file,fasttext_model))
+            # pool.apply_async(process,(dirname, file, fasttext_model))
             process(dirname, file, fasttext_model)
         # print('<' * 20)
         # pool.close()
@@ -272,8 +272,8 @@ def getFasttextData(docu_type):
     with open(os.path.join(dirname, docu_type+'.train'), 'r') as trainFr:
         trains = trainFr.readlines()
         for train in trains:
-            train = train.replace('\n','').split('\t')
-            train = [i for i in train if i!='']
+            train = train.replace('\n', '').split('\t')
+            train = [i for i in train if i != '']
             res[train[0]].append(train[1:])
     for root, dir, files in os.walk(os.path.join(dirname, 'textWithPara')):
         for file in tqdm.tqdm(files):
@@ -290,7 +290,7 @@ def getFasttextData(docu_type):
                         f = res.get(filename)
                         for field in f:
                             for v in field[:]:
-                                if label == 0 and len(v)>1 and field[0] in sentence and v in sentence:
+                                if label == 0 and len(v) > 1 and field[0] in sentence and v in sentence:
                                     print('-'*10, v, sentence.find(field[0]), sentence.find(v), len(sentence))
                                     label = 1
                                     break
@@ -303,7 +303,7 @@ def getFasttextData(docu_type):
                     res_sentence = labelStr+res_sentence+'\n'
                     contents.append(res_sentence)
     trueContent = [i for i in contents if i.startswith('__label__'+docu_type)]
-    falseContent=[i for i in contents if i.startswith('__label__useless')]
+    falseContent = [i for i in contents if i.startswith('__label__useless')]
     random.shuffle(falseContent)
     trueContent.extend(falseContent)#[:len(trueContent)*2]
     random.shuffle(trueContent)
@@ -314,7 +314,7 @@ def getFasttextData(docu_type):
 def fasttextModel(docu_type):
     import fasttext
     filename = '../FDDC/'+docu_type+'/fasttext.train'
-    model = fasttext.supervised(filename,os.path.join('../FDDC/'+docu_type,'fasttext'),label_prefix='__label__')
+    model = fasttext.supervised(filename, os.path.join('../FDDC/'+docu_type, 'fasttext'), label_prefix='__label__')
     result = model.test('../FDDC/'+docu_type+'/fasttext.test')
     print('P@1:', result.precision)
     print('R@1:', result.recall)
@@ -333,7 +333,7 @@ def testFasttext():
     result = '。'.join(content)
     result = TextUtils.clean_text(TextUtils.normalize(result))
     sentence = result.split('。')
-    sentence = [i for i in sentence if len(i)>2]
+    sentence = [i for i in sentence if len(i) > 2]
     labels = model.predict_proba(sentence)
     print(Counter(labels))
     # for index,label in enumerate(labels):
@@ -375,6 +375,8 @@ class hetong():
         self.lookup.append(getDict(lookup))
         self.buyType = []
         self.buyType.append(getDict(buyType))
+
+
 def getHeTong():
     """get all entity object from docu_type dir
     
@@ -413,7 +415,7 @@ def makeDingZengBIOData():
         name = file.split('.')[0]
         ht_obj = []
         ht_tmp = ht[0]
-        while ht_tmp.__dict__['name'] == name and len(ht)>1:
+        while ht_tmp.__dict__['name'] == name and len(ht) > 1:
             ht_obj.append(ht_tmp)
             ht = ht[1:]
             try:
@@ -421,7 +423,7 @@ def makeDingZengBIOData():
             except IndexError:
                 print(ht)
                 input()
-        pool.apply_async(dingZengBIOThread, (file,ht_obj))
+        pool.apply_async(dingZengBIOThread, (file, ht_obj))
 
     print('<' * 20)
     pool.close()
@@ -429,7 +431,7 @@ def makeDingZengBIOData():
     print('>' * 20)
 
 
-def dingZengBIOThread(file,ht_obj):
+def dingZengBIOThread(file, ht_obj):
     '''use entity to get reverse labeled data
     
     Arguments:
@@ -505,7 +507,7 @@ def dingZengBIOThread(file,ht_obj):
                             i['addType'].append(
                                 getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
                                         num))
-                    if lookup_name != '' and lookup_start != -1 and (addObj_start != -1 ):
+                    if lookup_name != '' and lookup_start != -1 and (addObj_start != -1):
                         i['lookup'].append(
                             getDict(lookup_name, index + lookup_start, index + lookup_start + len(lookup_name), num))
                         if addObj_start != -1:
@@ -556,11 +558,11 @@ def dingZengBIOThread(file,ht_obj):
 
         commonRulu=re.compile(r',+[,|。]')
         sss = commonRulu.sub(lambda x: x.group()[0][-1], sss)
-        with open('../FDDC/dingzeng/data/'+name + '.txt','w') as fw:
+        with open('../FDDC/dingzeng/data/'+name + '.txt', 'w') as fw:
             fw.write(sss)
 
 
-def saveTrainData(docu_type,train_ratio,test_ratio):
+def saveTrainData(docu_type, train_ratio, test_ratio):
     '''save train\dev\test data
     '''
 
@@ -580,7 +582,7 @@ def saveTrainData(docu_type,train_ratio,test_ratio):
     }
 
     for key, value in saveData.items():
-        print(key,len(value))
+        print(key, len(value))
         with open(key, 'w') as fw:
             for file in value:
                 with open(os.path.join(dirname, file), 'r') as fr:
@@ -589,7 +591,7 @@ def saveTrainData(docu_type,train_ratio,test_ratio):
 
 
 @asyncio.coroutine
-async def writeFiles(txt,filename,dirname):
+async def writeFiles(txt, filename, dirname):
     '''async write files
     
     Arguments:
@@ -617,15 +619,17 @@ if __name__ == '__main__':
     #     res=pickle.load(fr)
     # print(res)
     # makeDingZengBIOData()
-    saveTrainData('dingzeng',0.9,0.95)
+    # saveTrainData('dingzeng', 0.9, 0.95)
     # res=test()
     # print(''.join(res))
-    dirname = '../FDDC/dingzeng/html'
-    filename = '7880.html'
+    dirname = 'E:/实验/round1_train_20180518/round1_train_20180518/增减持/html/'
+    filename = '12944.html'
+
     # saveTrainData('dingzeng',0.9,0.95)
+
     # print(getContentFromEveryDiv(''))
     # print(getTableFromFaXing(dirname, filename))
     # getDataFromParser()
 
-
-
+    print(getDingZeng(dirname+filename))
+    # print(getContentFromEveryDiv(dirname+filename))

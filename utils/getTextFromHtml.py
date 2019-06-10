@@ -16,49 +16,49 @@ import asyncio
 from aiofile import AIOFile, Reader, Writer
 import aiofiles
 jieba.initialize()
-dirname='../FDDC/html'
-re_replace_blank=re.compile('\s+')
+dirname = '../FDDC/html'
+re_replace_blank = re.compile('\s+')
 BlankCharSet = set([' ', '\n', '\t'])
 CommaNumberPattern = re.compile(u'\d{1,3}([,，]\d\d\d)+')
 CommaCharInNumberSet = set([',', '，'])
 NumberSet = set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'])
-CommaCharInNumberSet1 = set([',','.','。','，','!','?',':','：'])
-
+CommaCharInNumberSet1 = set([',', '.', '。', '，', '!', '?', ':', '：'])
 
 
 def getDingZeng(filename):
     # test function
-    with open(filename,'r') as fr:
-        soup=BeautifulSoup(fr.read(),'html.parser')
-        text=""
-        cutPage=False
+    with open(filename, 'r') as fr:
+        soup = BeautifulSoup(fr.read(),'html.parser')
+        text = ""
+        cutPage = False
         # print((list(soup.contents[0].contents)))
         hidden = soup.findAll('hidden')
-        if len(hidden)>3:
-            cutPage=True
+        if len(hidden) > 3:
+            cutPage = True
             last_hidden = int(int(hidden[-1]['name'][1:])*0.6)
         for child in soup.descendants:
-            sentence=""
+            sentence = ""
 
-            if cutPage and child.name=='hidden' and int(child['name'][1:])>=last_hidden:
-                print('break in\t',child['name'],'\tall\t',hidden[-1]['name'])
+            if cutPage and child.name=='hidden' and int(child['name'][1:]) >= last_hidden:
+                print('break in\t',child['name'], '\tall\t', hidden[-1]['name'])
                 break
-            if child.name=='tr' or child.name=='td':
+            if child.name == 'tr' or child.name == 'td':
                 if not text[-1] in CommaCharInNumberSet1:
-                    sentence+=','
+                    sentence += ','
             if child.name == 'img':
                 continue
-            if isinstance(child,bs4.element.Tag) and child.attrs.get('title'):
+            if isinstance(child, bs4.element.Tag) and child.attrs.get('title'):
                 if 'title' in child.attrs:
-                    sentence= TextUtils.clean_text(TextUtils.normalize(child['title']))
+                    sentence = TextUtils.clean_text(TextUtils.normalize(child['title']))
 
                     if not sentence.endswith(':'):
-                        sentence+=':'
-            elif isinstance(child,bs4.NavigableString) and len(child.string)>2:
-                sentence= TextUtils.clean_text(TextUtils.normalize(child.string))
+                        sentence += ':'
+            elif isinstance(child, bs4.NavigableString) and len(child.string) > 2:
+                sentence = TextUtils.clean_text(TextUtils.normalize(child.string))
 
-            text+=sentence
+            text += sentence
         return text
+
 
 def getContentFromEveryDiv(filename):
     """ignore table data,get data from every div
@@ -70,28 +70,29 @@ def getContentFromEveryDiv(filename):
         text -- result data
     """
     
-    with open(filename,'r') as fr:
-        soup=BeautifulSoup(fr.read(),'html.parser')
-        text=""
+    with open(filename, 'r') as fr:
+        soup = BeautifulSoup(fr.read(), 'html.parser')
+        text = ""
         # print((list(soup.contents[0].contents)))
         for child in soup.descendants:
-            sentence=""
-            if child.name=='tr' or child.name=='td':
+            sentence = ""
+            if child.name == 'tr' or child.name == 'td':
                 if not text[-1] in CommaCharInNumberSet1:
-                    sentence+=','
-            if isinstance(child,bs4.element.Tag) and child.attrs.get('title'):
+                    sentence += ','
+            if isinstance(child, bs4.element.Tag) and child.attrs.get('title'):
                 if 'title' in child.attrs:
-                    sentence= TextUtils.clean_text(TextUtils.normalize(child['title']))
+                    sentence = TextUtils.clean_text(TextUtils.normalize(child['title']))
 
                     if not sentence.endswith(':'):
-                        sentence+=':'
-            elif isinstance(child,bs4.NavigableString) and len(child.string)>2:
-                sentence= TextUtils.clean_text(TextUtils.normalize(child.string))
+                        sentence += ':'
+            elif isinstance(child, bs4.NavigableString) and len(child.string) > 2:
+                sentence = TextUtils.clean_text(TextUtils.normalize(child.string))
 
-            text+=sentence
+            text += sentence
         return text
 
-def getDataFromParserThread(filename,file,res):
+
+def getDataFromParserThread(filename, file, res):
     '''this function make fasttext data
     
     Arguments:
@@ -127,13 +128,15 @@ def getDataFromParserThread(filename,file,res):
         res_sentence = " ".join(res_sentence.split())
         res_sentence += '\t__label__dingzeng\n' if label else '\t__label__useless\n'
         contents.append(res_sentence)
-    print(file,' spend ',time.time()-start,'!'*10)
+    print(file, ' spend ', time.time()-start, '!'*10)
+
 
 def getTableFromFaXing(filename, file):
-    res=(tableParser.parseHtmlGetTable.parse_content(os.path.join(filename, file)))
+    res = (tableParser.parseHtmlGetTable.parse_content(os.path.join(filename, file)))
     result = '。'.join(res)
     with open('../FDDC/dingzeng/textWithPara/'+file.split('.')[0]+'.txt','w') as fw:
         fw.write(result)
+
 
 def getDataFromParser():
     """
@@ -149,7 +152,7 @@ def getDataFromParser():
         dataFrame.append(series)
     import pandas as pd
     import multiprocessing as mp
-    pool  = mp.Pool(processes=4)
+    pool = mp.Pool(processes=4)
     dirname = '../FDDC/dingzeng'
     output = 'fasttext.train'
     res = collections.defaultdict(list)
@@ -164,7 +167,7 @@ def getDataFromParser():
     print(res['224128'])
 
     start = time.time()
-    for root,dirs,files in os.walk(filename):
+    for root, dirs, files in os.walk(filename):
         for file in tqdm.tqdm(files[:]):
             if 'html' not in file:
                 continue
@@ -197,6 +200,8 @@ def getDataFromParser():
         # random.shuffle(trueContent)
         # with open(os.path.join(dirname, output), 'w') as fw:
         #     fw.writelines(trueContent)
+
+
 def test():
     filename = 'test.html'
     # pprint.pprint(tableParser.parseHtmlGetTable.parse_table(filename))
@@ -210,14 +215,16 @@ def test():
     #             td = r.find_all('td')
     #             for d in td:
     #                 print(TextUtils.clean_text(TextUtils.normalize(d.text)))
-def process(dirname,file,fasttext_model):
+
+
+def process(dirname, file, fasttext_model):
     """get data after fasttext model prediction
     
     Arguments:
         file {string} -- filename
         fasttext_model {object} -- fasttext model
     """
-    print(dirname,file)
+    print(dirname, file)
     with open(os.path.join(dirname, 'textWithPara', file), 'r') as fr:
         sentence = fr.read().split('。')
         sentence = [i for i in sentence if i != '']
@@ -227,6 +234,8 @@ def process(dirname,file,fasttext_model):
         print(Counter(label))
     with open(os.path.join(dirname, 'textWithFasttext', file), 'w') as fw:
         fw.writelines(res)
+
+
 def makeAfterFasttextData(docu_type):
     """multi processes to process different types documents
     
@@ -241,47 +250,49 @@ def makeAfterFasttextData(docu_type):
     save_dir = '../FDDC'+docu_type+'/textAfterFasttext'
     fasttext_model = fasttext.load_model('../FDDC/'+docu_type+'/fasttext.bin')
 
-    for root,_,files in os.walk(os.path.join(dirname,'textWithPara')):
+    for root, _, files in os.walk(os.path.join(dirname, 'textWithPara')):
         for file in tqdm.tqdm(files[:]):
             # pool.apply_async(process,(dirname,file,fasttext_model))
-            process(dirname,file,fasttext_model)
+            process(dirname, file, fasttext_model)
         # print('<' * 20)
         # pool.close()
         # pool.join()
         # print('>' * 20)
+
+
 def getFasttextData(docu_type):
     '''
 
     '''
-    dirname='../FDDC/'+docu_type
-    output='fasttext.train'
-    res=collections.defaultdict(list)
-    contents=[]
-    sum=0
+    dirname = '../FDDC/'+docu_type
+    output = 'fasttext.train'
+    res = collections.defaultdict(list)
+    contents = []
+    sum = 0
     with open(os.path.join(dirname, docu_type+'.train'), 'r') as trainFr:
         trains = trainFr.readlines()
         for train in trains:
             train = train.replace('\n','').split('\t')
             train = [i for i in train if i!='']
             res[train[0]].append(train[1:])
-    for root,dir,files in os.walk(os.path.join(dirname,'textWithPara')):
+    for root, dir, files in os.walk(os.path.join(dirname, 'textWithPara')):
         for file in tqdm.tqdm(files):
-            with open(os.path.join(dirname,'textWithPara',file),'r') as fr:
-                text=fr.read()
-                sentences=text.split('。')
-                filename=file.split('.')[0]
+            with open(os.path.join(dirname, 'textWithPara', file), 'r') as fr:
+                text = fr.read()
+                sentences = text.split('。')
+                filename = file.split('.')[0]
                 for sentence in sentences:
-                    if sentence=="":
+                    if sentence == "":
                         continue
-                    label=0
-                    sum+=1
+                    label = 0
+                    sum += 1
                     if filename in res.keys():
                         f = res.get(filename)
                         for field in f:
                             for v in field[:]:
-                                if label==0 and len(v)>1 and field[0] in sentence and v in sentence:
-                                    print('-'*10,v,sentence.find(field[0]),sentence.find(v),len(sentence))
-                                    label=1
+                                if label == 0 and len(v)>1 and field[0] in sentence and v in sentence:
+                                    print('-'*10, v, sentence.find(field[0]), sentence.find(v), len(sentence))
+                                    label = 1
                                     break
 
                     # seg=jieba.cut(sentence)
@@ -296,17 +307,20 @@ def getFasttextData(docu_type):
     random.shuffle(falseContent)
     trueContent.extend(falseContent)#[:len(trueContent)*2]
     random.shuffle(trueContent)
-    with open(os.path.join(dirname,output),'w') as fw:
+    with open(os.path.join(dirname, output), 'w') as fw:
         fw.writelines(trueContent)
+
 
 def fasttextModel(docu_type):
     import fasttext
     filename = '../FDDC/'+docu_type+'/fasttext.train'
-    model=fasttext.supervised(filename,os.path.join('../FDDC/'+docu_type,'fasttext'),label_prefix='__label__')
-    result=model.test('../FDDC/'+docu_type+'/fasttext.test')
+    model = fasttext.supervised(filename,os.path.join('../FDDC/'+docu_type,'fasttext'),label_prefix='__label__')
+    result = model.test('../FDDC/'+docu_type+'/fasttext.test')
     print('P@1:', result.precision)
     print('R@1:', result.recall)
     print('Number of examples:', result.nexamples)
+
+
 def testFasttext():
 
     import fasttext
@@ -325,8 +339,6 @@ def testFasttext():
     # for index,label in enumerate(labels):
     #     if 'dingzeng' in label:
     #         print(sentence[index],'----->',labels[index])
-
-
 
 
 def getDict(name, start=-1, end=-1, sentence=-1):
@@ -382,7 +394,6 @@ def getHeTong():
     return ht
 
 
-
 def makeDingZengBIOData():
     '''make labeled data via multi-process
     '''
@@ -416,6 +427,8 @@ def makeDingZengBIOData():
     pool.close()
     pool.join()
     print('>' * 20)
+
+
 def dingZengBIOThread(file,ht_obj):
     '''use entity to get reverse labeled data
     
@@ -545,10 +558,11 @@ def dingZengBIOThread(file,ht_obj):
         sss = commonRulu.sub(lambda x: x.group()[0][-1], sss)
         with open('../FDDC/dingzeng/data/'+name + '.txt','w') as fw:
             fw.write(sss)
+
+
 def saveTrainData(docu_type,train_ratio,test_ratio):
     '''save train\dev\test data
     '''
-
 
     import os
     import numpy as np
@@ -573,6 +587,7 @@ def saveTrainData(docu_type,train_ratio,test_ratio):
                     fw.writelines(fr.readlines())
                 fw.write('\n')
 
+
 @asyncio.coroutine
 async def writeFiles(txt,filename,dirname):
     '''async write files
@@ -584,12 +599,12 @@ async def writeFiles(txt,filename,dirname):
     '''
 
     async with AIOFile(os.path.join(dirname, filename), 'wb') as afp:
-        writer= Writer(afp)
+        writer = Writer(afp)
         await writer(txt)
         await afp.fsync()
 
 if __name__ == '__main__':
-    docu_type ='dingzeng'
+    docu_type = 'dingzeng'
     # getFasttextData(docu_type)
     # fasttextModel(docu_type)
     # testFasttext()

@@ -24,6 +24,144 @@ NumberSet = set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'])
 CommaCharInNumberSet1 = set([',', '.', '。', '，', '!', '?', ':', '：'])
 
 
+class hetong():
+    """docu class
+    """
+
+    def __init__(self, name, jiaFang, yiFang, projectName, heTong, topLimit, lowerLimit, combination):
+        self.name = name
+        self.jiaFang = []
+        self.jiaFang.append(getDict(jiaFang))
+        self.yiFang = []
+        self.yiFang.append(getDict(yiFang))
+        self.projectName = []
+        self.projectName.append(getDict(projectName))
+        self.heTong = []
+        self.heTong.append(getDict(heTong))
+        self.topLimit = []
+        self.topLimit.append(getDict(topLimit))
+        self.lowerLimit = []
+        self.lowerLimit.append(getDict(lowerLimit))
+        self.combination = []
+        self.combination.append(getDict(combination))
+
+
+class dingzeng():
+    """docu class
+    """
+
+    def __init__(self, name, addObj, addType, addNum, addPrice, lockup, buyType):
+        self.name = name
+        self.addObj = []
+        self.addObj.append(getDict(addObj))
+        self.addType = []
+        self.addType.append(getDict(addType))
+        self.addNum = []
+        self.addNum.append(getDict(addNum))
+        self.addPrice = []
+        self.addPrice.append(getDict(addPrice))
+        self.lockup = []
+        self.lockup.append(getDict(lockup))
+        self.buyType = []
+        self.buyType.append(getDict(buyType))
+
+
+class zengjianchi():
+    """docu class
+    """
+
+    def __init__(self, name, fullName, simpleName, changeDate, changePrice, changeNumber, afterChange, afterRate):
+        self.name = name
+        self.fullName = []
+        self.fullName.append(getDict(fullName))
+        self.simpleName = []
+        self.simpleName.append(getDict(simpleName))
+        self.changeDate = []
+        self.changeDate.append(getDict(changeDate))
+        self.changePrice = []
+        self.changePrice.append(getDict(changePrice))
+        self.changeNumber = []
+        self.changeNumber.append(getDict(changeNumber))
+        self.afterChange = []
+        self.afterChange.append(getDict(afterChange))
+        self.afterRate = []
+        self.afterRate.append(getDict(afterRate))
+
+
+def getHeTong():
+    """get all entity object from docu_type dir
+
+    Returns:
+        list -- [a list of the entity object]
+    """
+    filename = 'E:/实验/Label/ht/hetongtest1.train'
+    length, length2, ht = [], [], []
+    with open(filename, 'r', encoding='utf-8') as fr:
+        for line in fr.readlines():
+            a = line.split('\t')
+            length.append(len(a))
+            if len(a) < 8:
+                a.extend([''] * (8 - len(a)))
+            length2.append(len(a))
+            ht.append(hetong(*a))
+    return ht
+
+
+def getDingZengnew():
+    """get all entity object from docu_type dir
+
+    Returns:
+        list -- [a list of the entity object]
+    """
+    filename = '../FDDC/dingzeng/dingzeng.train'
+    length, length2, dz = [], [], []
+    with open(filename, 'r', encoding='utf-8') as fr:
+        for line in fr.readlines():
+            a = line.split('\t')
+            length.append(len(a))
+            if len(a) < 7:
+                a.extend([''] * (7 - len(a)))
+            length2.append(len(a))
+            dz.append(hetong(*a))
+    return dz
+
+
+def getZengJianChi():
+    """get all entity object from docu_type dir
+
+    Returns:
+        list -- [a list of the entity object]
+    """
+    filename = '../FDDC/dingzeng/dingzeng.train'
+    length, length2, zjc = [], [], []
+    with open(filename, 'r', encoding='utf-8') as fr:
+        for line in fr.readlines():
+            a = line.split('\t')
+            length.append(len(a))
+            if len(a) < 8:
+                a.extend([''] * (8 - len(a)))
+            length2.append(len(a))
+            zjc.append(hetong(*a))
+    return zjc
+
+
+def getDict(name, start=-1, end=-1, sentence=-1):
+    """entity struct
+
+    Arguments:
+        name {string} -- entity content
+
+    Keyword Arguments:
+        start {int} -- entity start position (default: {-1})
+        end {int} -- entity end position (default: {-1})
+        sentence {string} -- the index of entity in context  (default: {-1})
+
+    Returns:
+        [dict] -- [result dict about an entity]
+    """
+    return {'name': name, 'start': start, 'end': end, 'sentence': sentence}
+
+
 def getDingZeng(filename):
     # test function
     with open(filename, 'r', encoding='utf-8') as fr:
@@ -340,61 +478,6 @@ def testFasttext():
     #         print(sentence[index],'----->',labels[index])
 
 
-def getDict(name, start=-1, end=-1, sentence=-1):
-    """entity struct 
-    
-    Arguments:
-        name {string} -- entity content
-    
-    Keyword Arguments:
-        start {int} -- entity start position (default: {-1})
-        end {int} -- entity end position (default: {-1})
-        sentence {string} -- the index of entity in context  (default: {-1})
-    
-    Returns:
-        [dict] -- [result dict about an entity]
-    """
-    return {'name': name, 'start': start, 'end': end, 'sentence': sentence}
-
-    
-class hetong():
-    """docu class
-    """
-    def __init__(self, name, addObj, addType, addNum, addPrice, lookup, buyType):
-        self.name = name
-        self.addObj = []
-        self.addObj.append(getDict(addObj))
-        self.addType = []
-        self.addType.append(getDict(addType))
-        self.addNum = []
-        self.addNum.append(getDict(addNum))
-        self.addPrice = []
-        self.addPrice.append(getDict(addPrice))
-        self.lookup = []
-        self.lookup.append(getDict(lookup))
-        self.buyType = []
-        self.buyType.append(getDict(buyType))
-
-
-def getHeTong():
-    """get all entity object from docu_type dir
-    
-    Returns:
-        list -- [a list of the entity object]
-    """
-    filename = '../FDDC/dingzeng/dingzeng.train'
-    length, length2, ht = [], [], []
-    with open(filename, 'r') as fr:
-        for line in fr.readlines():
-            a = line.split('\t')
-            length.append(len(a))
-            if len(a) < 7:
-                a.extend([''] * (7 - len(a)))
-            length2.append(len(a))
-            ht.append(hetong(*a))
-    return ht
-
-
 def makeDingZengBIOData():
     '''make labeled data via multi-process
     '''
@@ -402,7 +485,7 @@ def makeDingZengBIOData():
     import os
     import tqdm
 
-    ht = getHeTong()
+    dz = getHeTong()
     pool = mp.Pool(processes=4)
     dirname = '../FDDC/dingzeng/data'
     if not os.path.exists(dirname):
@@ -412,17 +495,17 @@ def makeDingZengBIOData():
             sorted(list(os.walk('../FDDC/dingzeng/textWithFasttext'))[0][2], key=lambda x: int(x.split('.')[0]),
                    reverse=True)[:]):
         name = file.split('.')[0]
-        ht_obj = []
-        ht_tmp = ht[0]
-        while ht_tmp.__dict__['name'] == name and len(ht) > 1:
-            ht_obj.append(ht_tmp)
-            ht = ht[1:]
+        dz_obj = []
+        dz_tmp = dz[0]
+        while dz_tmp.__dict__['name'] == name and len(dz) > 1:
+            dz_obj.append(dz_tmp)
+            dz = dz[1:]
             try:
-                ht_tmp = ht[0]
+                dz_tmp = dz[0]
             except IndexError:
-                print(ht)
+                print(dz)
                 input()
-        pool.apply_async(dingZengBIOThread, (file, ht_obj))
+        pool.apply_async(dingZengBIOThread, (file, dz_obj))
 
     print('<' * 20)
     pool.close()
@@ -430,12 +513,12 @@ def makeDingZengBIOData():
     print('>' * 20)
 
 
-def dingZengBIOThread(file, ht_obj):
+def dingZengBIOThread(file, dz_obj):
     '''use entity to get reverse labeled data
     
     Arguments:
         file {string} -- filename
-        ht_obj {object} -- entity type
+        dz_obj {object} -- entity type
     '''
 
     with open('../FDDC/dingzeng/textWithFasttext/' + file, 'r') as fr:
@@ -443,19 +526,19 @@ def dingZengBIOThread(file, ht_obj):
         sss = ""
         text = fr.readline()
         sentence = text.split('。')
-        for index1, i in enumerate(ht_obj):
+        for index1, i in enumerate(dz_obj):
             i = i.__dict__
             if i['addObj'] == '' or i['addType'] == '':
                 continue
             name = i['name']
             i.pop('name')
 
-            addObj_name = i['addObj'][0]['name']
-            addType_name = i['addType'][0]['name']
-            addNum_name = i['addNum'][0]['name']
-            addPrice_name = i['addPrice'][0]['name']
-            lookup_name = i['lookup'][0]['name']
-            buyType_name = i['buyType'][0]['name']
+            addObj_name = i['addObj'][0]['name'] # 增发对象
+            addType_name = i['addType'][0]['name'] # 发行方式
+            addNum_name = i['addNum'][0]['name'] # 增发数量
+            addPrice_name = i['addPrice'][0]['name'] # 增发金额
+            lookup_name = i['lookup'][0]['name'] # 锁定期
+            buyType_name = i['buyType'][0]['name'] # 认购方式
 
             # index = 0
             # for num, sen in enumerate(sentence):
@@ -531,9 +614,9 @@ def dingZengBIOThread(file, ht_obj):
                                         num))
                     index_loop += len(addObj_name)
                 index += len(sen) + 1
-            ht_obj[index1] = i
+            dz_obj[index1] = i
         li = ['O' for i in text]
-        for i in ht_obj:
+        for i in dz_obj:
             for k, v in i.items():
                 for item in v:
                     if item['name'] != '' and item['start'] != -1:
@@ -624,7 +707,7 @@ if __name__ == '__main__':
     dirname = 'E:/实验/round1_train_20180518/round1_train_20180518/重大合同/html/'
     filename = '20594392'
     textdir = 'E:/实验/Label/ht/text/'
-
+    traindir = 'E:/实验/Label/ht/hetongtest1.train'
     # saveTrainData('dingzeng',0.9,0.95)
 
     # print(getContentFromEveryDiv(''))
@@ -632,12 +715,10 @@ if __name__ == '__main__':
     # getDataFromParser()
 
     print(getDingZeng(dirname+filename + '.html'))
-    print(getContentFromEveryDiv(dirname+filename + '.html'))
+    text = getContentFromEveryDiv(dirname+filename + '.html')
 
-    with open(textdir + filename + '1.txt', 'w', encoding='utf-8') as f:
-        f.write(getDingZeng(dirname+filename + '.html'))
+    with open(traindir, 'r', encoding='utf-8') as f:
+        for line in f.readlines():
+            inf = line.split('\t')
 
-    with open(textdir + filename + '2.txt', 'w', encoding='utf-8') as f:
-        f.write(getContentFromEveryDiv(dirname+filename + '.html'))
-
-    # print(getContentFromEveryDiv(dirname+filename))
+    # print(getContentFromEveryDiv(dirname+filename)

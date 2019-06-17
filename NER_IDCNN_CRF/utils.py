@@ -55,7 +55,7 @@ def test_ner(results, path):
     Run perl script to evaluate model
     """
     output_file = os.path.join(path, "ner_predict.utf8")
-    with open(output_file, "w",encoding='utf-8') as f:
+    with open(output_file, "w", encoding='utf-8') as f:
         to_write = []
         for block in results:
             for line in block:
@@ -193,7 +193,7 @@ def result_to_json(string, tags):
     idx = 0
     for char, tag in zip(string, tags):
         if tag[0] == "S":
-            item["entities"].append({"word": char, "start": idx, "end": idx+1, "type":tag[2:]})
+            item["entities"].append({"word": char, "start": idx, "end": idx+1, "type": tag[2:]})
         elif tag[0] == "B":
             entity_name += char
             entity_start = idx

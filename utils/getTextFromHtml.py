@@ -16,7 +16,6 @@ import asyncio
 # from aiofile import AIOFile, Reader, Writer
 # import aiofiles
 jieba.initialize()
-dirname = '../FDDC/html'
 re_replace_blank = re.compile('\s+')
 BlankCharSet = set([' ', '\n', '\t'])
 CommaNumberPattern = re.compile(u'\d{1,3}([,，]\d\d\d)+')
@@ -558,7 +557,7 @@ def dingZengBIOThread(file, ht_obj):
 
         commonRulu=re.compile(r',+[,|。]')
         sss = commonRulu.sub(lambda x: x.group()[0][-1], sss)
-        with open('../FDDC/dingzeng/data/'+name + '.txt', 'w') as fw:
+        with open('E:/实验/Label/dz/'+name + '.txt', 'w') as fw:
             fw.write(sss)
 
 
@@ -622,8 +621,9 @@ if __name__ == '__main__':
     # saveTrainData('dingzeng', 0.9, 0.95)
     # res=test()
     # print(''.join(res))
-    dirname = 'E:/实验/round1_train_20180518/round1_train_20180518/增减持/html/'
-    filename = '12944.html'
+    dirname = 'E:/实验/round1_train_20180518/round1_train_20180518/重大合同/html/'
+    filename = '20594392'
+    textdir = 'E:/实验/Label/ht/text/'
 
     # saveTrainData('dingzeng',0.9,0.95)
 
@@ -631,5 +631,13 @@ if __name__ == '__main__':
     # print(getTableFromFaXing(dirname, filename))
     # getDataFromParser()
 
-    print(getDingZeng(dirname+filename))
+    print(getDingZeng(dirname+filename + '.html'))
+    print(getContentFromEveryDiv(dirname+filename + '.html'))
+
+    with open(textdir + filename + '1.txt', 'w', encoding='utf-8') as f:
+        f.write(getDingZeng(dirname+filename + '.html'))
+
+    with open(textdir + filename + '2.txt', 'w', encoding='utf-8') as f:
+        f.write(getContentFromEveryDiv(dirname+filename + '.html'))
+
     # print(getContentFromEveryDiv(dirname+filename))

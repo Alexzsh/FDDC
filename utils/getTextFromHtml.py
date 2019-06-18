@@ -13,8 +13,8 @@ import time
 import multiprocessing as mp
 import tableParser
 import asyncio
-# from aiofile import AIOFile, Reader, Writer
-# import aiofiles
+from aiofile import AIOFile, Reader, Writer
+import aiofiles
 jieba.initialize()
 re_replace_blank = re.compile('\s+')
 BlankCharSet = set([' ', '\n', '\t'])
@@ -506,7 +506,7 @@ def dingZengBIOThread(file, dz_obj):
         dz_obj {object} -- entity type
     '''
 
-    with open('E:/实验/Label/dz/text' + file, 'r') as fr:
+    with open('E:/实验/Label/dz/text' + file, 'r', encoding='utf-8') as fr:
         name = file.split('.')[0]
         sss = ""
         text = fr.readline()
@@ -630,18 +630,23 @@ def dingZengBIOThread(file, dz_obj):
 
 
 def saveTrainData(docu_type, train_ratio, test_ratio):
-    '''save train\dev\test data
+    '''
+        save train\dev\test data
+        # 应该是存成BIO以后的 train 数据吧
     '''
 
     import os
     import numpy as np
     import random
-    dirname = '../FDDC/'+docu_type+'/data'
+
+    # dirname = '../FDDC/'+docu_type+'/data' # 原
+    dirname = 'E:/实验/Label/'+docu_type+'/BIOdata'
+
     files = list(os.walk(dirname))[0][2]
     random.shuffle(files)
-    train = "../FDDC/"+docu_type+"/example.train"
-    test = "../FDDC/"+docu_type+"/example.test"
-    dev = "../FDDC/"+docu_type+"/example.dev"
+    train = "E:/实验/Label/"+docu_type+"/example.train"
+    test = "E:/实验/Label/"+docu_type+"/example.test"
+    dev = "E:/实验/Label/"+docu_type+"/example.dev"
     saveData={
         train: files[:int(len(files) * train_ratio)],
         test: files[int(len(files) * train_ratio):int(len(files) * test_ratio)],
@@ -650,27 +655,27 @@ def saveTrainData(docu_type, train_ratio, test_ratio):
 
     for key, value in saveData.items():
         print(key, len(value))
-        with open(key, 'w') as fw:
+        with open(key, 'w', encoding='utf-8') as fw:
             for file in value:
-                with open(os.path.join(dirname, file), 'r') as fr:
+                with open(os.path.join(dirname, file), 'r', encoding='utf-8') as fr:
                     fw.writelines(fr.readlines())
                 fw.write('\n')
 
-#
-# @asyncio.coroutine
-# async def writeFiles(txt, filename, dirname):
-#     '''async write files
-#
-#     Arguments:
-#         txt {string} -- the content
-#         filename {string} -- filename
-#         dirname {string} -- dirname
-#     '''
-#
-#     async with AIOFile(os.path.join(dirname, filename), 'wb') as afp:
-#         writer = Writer(afp)
-#         await writer(txt)
-#         await afp.fsync()
+
+@asyncio.coroutine
+async def writeFiles(txt, filename, dirname):
+    '''async write files
+
+    Arguments:
+        txt {string} -- the content
+        filename {string} -- filename
+        dirname {string} -- dirname
+    '''
+
+    async with AIOFile(os.path.join(dirname, filename), 'wb') as afp:
+        writer = Writer(afp)
+        await writer(txt)
+        await afp.fsync()
 
 
 def test():
@@ -723,3 +728,19 @@ if __name__ == '__main__':
     #         inf = line.split('\t')
 
     # print(getContentFromEveryDiv(dirname+filename))
+    ht_obj = getHeTong()
+    print(ht_obj[1].item)
+    # with open('E:/实验/Label/ht/text/' + '205943921.txt', 'r',encoding='utf-8') as fr:
+    #     name = 205943921
+    #     sss = ""
+    #     text = fr.readline()
+    #     sentence = text.split('。')
+    #     for index1, i in enumerate(ht_obj):
+    #         i = i.__dict__
+    #         print(i)
+    #         if(i['projectName'] == ''):
+    #             print(1)
+            # if i['addObj'] == '' or i['addType'] == '':
+            #     continue
+            # name = i['name']
+            # i.pop('name')

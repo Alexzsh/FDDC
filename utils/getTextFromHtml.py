@@ -1,7 +1,7 @@
 # coding=utf8
 import os
 import re
-# import tqdm
+import tqdm
 import collections
 import TextUtils
 import bs4
@@ -339,21 +339,6 @@ def getDataFromParser():
         #     fw.writelines(trueContent)
 
 
-def test():
-    filename = 'test.html'
-    # pprint.pprint(tableParser.parseHtmlGetTable.parse_table(filename))
-    return tableParser.parseHtmlGetTable.parse_content(filename)
-    # with open(filename,'r') as fr:
-    #     soup = BeautifulSoup(fr.read(),'html.parser')
-    #     table = soup.find_all('table')
-    #     if table:
-    #         tr = soup.find_all('tr')
-    #         for r in tr:
-    #             td = r.find_all('td')
-    #             for d in td:
-    #                 print(TextUtils.clean_text(TextUtils.normalize(d.text)))
-
-
 def process(dirname, file, fasttext_model):
     """get data after fasttext model prediction
     
@@ -521,7 +506,7 @@ def dingZengBIOThread(file, dz_obj):
         dz_obj {object} -- entity type
     '''
 
-    with open('../FDDC/dingzeng/textWithFasttext/' + file, 'r') as fr:
+    with open('E:/实验/Label/dz/text' + file, 'r') as fr:
         name = file.split('.')[0]
         sss = ""
         text = fr.readline()
@@ -537,7 +522,7 @@ def dingZengBIOThread(file, dz_obj):
             addType_name = i['addType'][0]['name'] # 发行方式
             addNum_name = i['addNum'][0]['name'] # 增发数量
             addPrice_name = i['addPrice'][0]['name'] # 增发金额
-            lookup_name = i['lookup'][0]['name'] # 锁定期
+            lockup_name = i['lockup'][0]['name'] # 锁定期
             buyType_name = i['buyType'][0]['name'] # 认购方式
 
             # index = 0
@@ -564,7 +549,7 @@ def dingZengBIOThread(file, dz_obj):
                     addType_start = sen.find(addType_name)
                     addNum_start = sen.find(addNum_name)
                     addPrice_start = sen.find(addPrice_name)
-                    lookup_start = sen.find(lookup_name)
+                    lockup_start = sen.find(lockup_name)
                     buyType_start = sen.find(buyType_name)
 
                     if addNum_name != '' and addNum_start != -1 and (addObj_start != -1):
@@ -589,9 +574,9 @@ def dingZengBIOThread(file, dz_obj):
                             i['addType'].append(
                                 getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
                                         num))
-                    if lookup_name != '' and lookup_start != -1 and (addObj_start != -1):
+                    if lockup_name != '' and lockup_start != -1 and (addObj_start != -1):
                         i['lookup'].append(
-                            getDict(lookup_name, index + lookup_start, index + lookup_start + len(lookup_name), num))
+                            getDict(lockup_name, index + lockup_start, index + lockup_start + len(lockup_name), num))
                         if addObj_start != -1:
                             i['addObj'].append(
                                 getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name),
@@ -671,21 +656,37 @@ def saveTrainData(docu_type, train_ratio, test_ratio):
                     fw.writelines(fr.readlines())
                 fw.write('\n')
 
+#
+# @asyncio.coroutine
+# async def writeFiles(txt, filename, dirname):
+#     '''async write files
+#
+#     Arguments:
+#         txt {string} -- the content
+#         filename {string} -- filename
+#         dirname {string} -- dirname
+#     '''
+#
+#     async with AIOFile(os.path.join(dirname, filename), 'wb') as afp:
+#         writer = Writer(afp)
+#         await writer(txt)
+#         await afp.fsync()
 
-@asyncio.coroutine
-async def writeFiles(txt, filename, dirname):
-    '''async write files
-    
-    Arguments:
-        txt {string} -- the content
-        filename {string} -- filename
-        dirname {string} -- dirname
-    '''
 
-    async with AIOFile(os.path.join(dirname, filename), 'wb') as afp:
-        writer = Writer(afp)
-        await writer(txt)
-        await afp.fsync()
+def test():
+    filename = 'test.html'
+    # pprint.pprint(tableParser.parseHtmlGetTable.parse_table(filename))
+    return tableParser.parseHtmlGetTable.parse_content(filename)
+    # with open(filename,'r') as fr:
+    #     soup = BeautifulSoup(fr.read(),'html.parser')
+    #     table = soup.find_all('table')
+    #     if table:
+    #         tr = soup.find_all('tr')
+    #         for r in tr:
+    #             td = r.find_all('td')
+    #             for d in td:
+    #                 print(TextUtils.clean_text(TextUtils.normalize(d.text)))
+
 
 if __name__ == '__main__':
     docu_type = 'dingzeng'
@@ -714,11 +715,11 @@ if __name__ == '__main__':
     # print(getTableFromFaXing(dirname, filename))
     # getDataFromParser()
 
-    print(getDingZeng(dirname+filename + '.html'))
-    text = getContentFromEveryDiv(dirname+filename + '.html')
+    # print(getDingZeng(dirname+filename + '.html'))
+    # text = getContentFromEveryDiv(dirname+filename + '.html')
+    #
+    # with open(traindir, 'r', encoding='utf-8') as f:
+    #     for line in f.readlines():
+    #         inf = line.split('\t')
 
-    with open(traindir, 'r', encoding='utf-8') as f:
-        for line in f.readlines():
-            inf = line.split('\t')
-
-    # print(getContentFromEveryDiv(dirname+filename)
+    # print(getContentFromEveryDiv(dirname+filename))

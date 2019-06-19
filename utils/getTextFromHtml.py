@@ -24,6 +24,16 @@ NumberSet = set(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'])
 CommaCharInNumberSet1 = set([',', '.', '。', '，', '!', '?', ':', '：'])
 
 
+dir_glob = {'dz': 'E:/实验/round1_train_20180518/round1_train_20180518/定增/html/',
+       'ht': 'E:/实验/round1_train_20180518/round1_train_20180518/增减持/html/',
+       'zjc': 'E:/实验/round1_train_20180518/round1_train_20180518/重大合同/html/'}
+
+# docu_type = 'dz' # {'ht','dz','zjc'}
+# dir_name = dir_glob[doc_type]
+# text_dir = 'E:/实验/Label/' + doc_type + '/text/'
+# train_dir = 'E:/实验/Label/' + doc_type + '/' + doc_type + '.train' # 源数据给的train
+
+
 class hetong():
     """docu class
     """
@@ -107,13 +117,13 @@ def getHeTong():
     return ht
 
 
-def getDingZengnew():
+def getDingZeng():
     """get all entity object from docu_type dir
 
     Returns:
         list -- [a list of the entity object]
     """
-    filename = '../FDDC/dingzeng/dingzeng.train'
+    filename = 'E:/实验/Label/dz/dingzengtest1.train'
     length, length2, dz = [], [], []
     with open(filename, 'r', encoding='utf-8') as fr:
         for line in fr.readlines():
@@ -122,7 +132,7 @@ def getDingZengnew():
             if len(a) < 7:
                 a.extend([''] * (7 - len(a)))
             length2.append(len(a))
-            dz.append(hetong(*a))
+            dz.append(dingzeng(*a))
     return dz
 
 
@@ -132,7 +142,7 @@ def getZengJianChi():
     Returns:
         list -- [a list of the entity object]
     """
-    filename = '../FDDC/dingzeng/dingzeng.train'
+    filename = 'E:/实验/Label/zjc/zjctest1.train'
     length, length2, zjc = [], [], []
     with open(filename, 'r', encoding='utf-8') as fr:
         for line in fr.readlines():
@@ -141,7 +151,7 @@ def getZengJianChi():
             if len(a) < 8:
                 a.extend([''] * (8 - len(a)))
             length2.append(len(a))
-            zjc.append(hetong(*a))
+            zjc.append(zengjianchi(*a))
     return zjc
 
 
@@ -162,7 +172,7 @@ def getDict(name, start=-1, end=-1, sentence=-1):
     return {'name': name, 'start': start, 'end': end, 'sentence': sentence}
 
 
-def getDingZeng(filename):
+def getDingZeng_old(filename):
     # test function
     with open(filename, 'r', encoding='utf-8') as fr:
         soup = BeautifulSoup(fr.read(), 'html.parser')
@@ -339,7 +349,7 @@ def getDataFromParser():
         #     fw.writelines(trueContent)
 
 
-def process(dirname, file, fasttext_model):
+def process(dirname, file, fasttext_model, docu_type):
     """get data after fasttext model prediction
     
     Arguments:
@@ -362,7 +372,7 @@ def makeAfterFasttextData(docu_type):
     """multi processes to process different types documents
     
     Arguments:
-        docu_type {string} -- dizeng、hetong、zengjianchi
+        docu_type {string} -- dz、ht、zjc
     """ 
     import fasttext
     import multiprocessing as mp
@@ -375,7 +385,7 @@ def makeAfterFasttextData(docu_type):
     for root, _, files in os.walk(os.path.join(dirname, 'textWithPara')):
         for file in tqdm.tqdm(files[:]):
             # pool.apply_async(process,(dirname, file, fasttext_model))
-            process(dirname, file, fasttext_model)
+            process(dirname, file, fasttext_model, docu_type)
         # print('<' * 20)
         # pool.close()
         # pool.join()
@@ -470,14 +480,19 @@ def makeDingZengBIOData():
     import os
     import tqdm
 
-    dz = getHeTong()
+    dz = getDingZeng()
     pool = mp.Pool(processes=4)
-    dirname = '../FDDC/dingzeng/data'
-    if not os.path.exists(dirname):
-        os.makedirs(dirname)
+    # dirname = '../FDDC/dingzeng/data' #原
+    docu_type = 'dz'
+    text_dir = 'E:/实验/Label/' + docu_type + '/text' # new
+
+    # if not os.path.exists(dirname): # 原
+    #     os.makedirs(dirname)
+    if not os.path.exists(text_dir):
+        os.makedirs(text_dir)
 
     for file in tqdm.tqdm(
-            sorted(list(os.walk('../FDDC/dingzeng/textWithFasttext'))[0][2], key=lambda x: int(x.split('.')[0]),
+            sorted(list(os.walk(text_dir))[0][2], key=lambda x: int(x.split('.')[0]),
                    reverse=True)[:]):
         name = file.split('.')[0]
         dz_obj = []
@@ -506,7 +521,7 @@ def dingZengBIOThread(file, dz_obj):
         dz_obj {object} -- entity type
     '''
 
-    with open('E:/实验/Label/dz/text' + file, 'r', encoding='utf-8') as fr:
+    with open('E:/实验/Label/dz/text/' + file, 'r', encoding='utf-8') as fr:
         name = file.split('.')[0]
         sss = ""
         text = fr.readline()
@@ -575,7 +590,7 @@ def dingZengBIOThread(file, dz_obj):
                                 getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
                                         num))
                     if lockup_name != '' and lockup_start != -1 and (addObj_start != -1):
-                        i['lookup'].append(
+                        i['lockup'].append(
                             getDict(lockup_name, index + lockup_start, index + lockup_start + len(lockup_name), num))
                         if addObj_start != -1:
                             i['addObj'].append(
@@ -625,14 +640,13 @@ def dingZengBIOThread(file, dz_obj):
 
         commonRulu=re.compile(r',+[,|。]')
         sss = commonRulu.sub(lambda x: x.group()[0][-1], sss)
-        with open('E:/实验/Label/dz/'+name + '.txt', 'w') as fw:
+        with open('E:/实验/Label/dz/BIOdata/'+name + '.txt', 'w', encoding='utf-8') as fw:
             fw.write(sss)
 
 
 def saveTrainData(docu_type, train_ratio, test_ratio):
     '''
         save train\dev\test data
-        # 应该是存成BIO以后的 train 数据吧
     '''
 
     import os
@@ -678,8 +692,8 @@ async def writeFiles(txt, filename, dirname):
         await afp.fsync()
 
 
-def test():
-    filename = 'test.html'
+def test(filename):
+    # filename = 'test.html'
     # pprint.pprint(tableParser.parseHtmlGetTable.parse_table(filename))
     return tableParser.parseHtmlGetTable.parse_content(filename)
     # with open(filename,'r') as fr:
@@ -694,7 +708,7 @@ def test():
 
 
 if __name__ == '__main__':
-    docu_type = 'dingzeng'
+    # docu_type = 'dingzeng'
     # getFasttextData(docu_type)
     # fasttextModel(docu_type)
     # testFasttext()
@@ -710,10 +724,6 @@ if __name__ == '__main__':
     # saveTrainData('dingzeng', 0.9, 0.95)
     # res=test()
     # print(''.join(res))
-    dirname = 'E:/实验/round1_train_20180518/round1_train_20180518/重大合同/html/'
-    filename = '20594392'
-    textdir = 'E:/实验/Label/ht/text/'
-    traindir = 'E:/实验/Label/ht/hetongtest1.train'
     # saveTrainData('dingzeng',0.9,0.95)
 
     # print(getContentFromEveryDiv(''))
@@ -726,21 +736,4 @@ if __name__ == '__main__':
     # with open(traindir, 'r', encoding='utf-8') as f:
     #     for line in f.readlines():
     #         inf = line.split('\t')
-
-    # print(getContentFromEveryDiv(dirname+filename))
-    ht_obj = getHeTong()
-    print(ht_obj[1].item)
-    # with open('E:/实验/Label/ht/text/' + '205943921.txt', 'r',encoding='utf-8') as fr:
-    #     name = 205943921
-    #     sss = ""
-    #     text = fr.readline()
-    #     sentence = text.split('。')
-    #     for index1, i in enumerate(ht_obj):
-    #         i = i.__dict__
-    #         print(i)
-    #         if(i['projectName'] == ''):
-    #             print(1)
-            # if i['addObj'] == '' or i['addType'] == '':
-            #     continue
-            # name = i['name']
-            # i.pop('name')
+    print('o')

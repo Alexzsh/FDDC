@@ -122,10 +122,10 @@ def normalize_num_continue(text):
 
     text = text.group(0)
     try:
-        l,i,r = text.split('.')
-        k =1 if len(i)==3 else 2
-        i=i[:k]+','+i[k:]
-        return '.'.join([l,i,r])
+        l, i, r = text.split('.')
+        k = 1 if len(i) == 3 else 2
+        i = i[:k]+','+i[k:]
+        return '.'.join([l, i, r])
     except:
         print('normalize_num:\t',text)
         return text

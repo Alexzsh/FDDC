@@ -3,13 +3,19 @@ import tableParser
 import os
 
 docu_type = 'dz' # {'ht','dz','zjc'}
+train_name = {'dz': 'dingzeng',
+              'ht': 'hetong',
+              'zjc': 'zengjianchi'}
 
-dir = {'dz': 'E:/实验/round1_train_20180518/round1_train_20180518/定增/html/',
-       'ht': 'E:/实验/round1_train_20180518/round1_train_20180518/增减持/html/',
-       'zjc': 'E:/实验/round1_train_20180518/round1_train_20180518/重大合同/html/'}
-dir_name = dir[docu_type]
-text_dir = 'E:/实验/Label/' + docu_type + '/text3/'
-train_dir = 'E:/实验/Label/' + docu_type + '/hetongtest1.train'
+html_dir = {'dz': 'E:/实验/round1_train_20180518/round1_train_20180518/定增/html/',
+            'ht': 'E:/实验/round1_train_20180518/round1_train_20180518/增减持/html/',
+            'zjc': 'E:/实验/round1_train_20180518/round1_train_20180518/重大合同/html/'}
+
+dir_name = html_dir[docu_type] # html文件所在位置
+text_dir = 'E:/实验/Label/' + docu_type + '/text/'
+BIO_dir = 'E:/实验/Label/' + docu_type + '/BIOdata/'
+example_dir = "E:/实验/Label/"+docu_type+"/example2/"
+train_dir = 'E:/实验/Label/' + docu_type + '/' + train_name[docu_type] + '.train'
 
 
 def step1():
@@ -17,7 +23,7 @@ def step1():
     将html文件转化为text
     '''
     file_list = list(os.walk(dir_name))
-    cl1 = tableParser.parseHtmlGetTable(None, None, None, None, None, None, None)
+    # cl1 = tableParser.parseHtmlGetTable(None, None, None, None, None, None, None)
 
     # print(file_list[0][2])
     for f in file_list[0][2]:
@@ -26,9 +32,9 @@ def step1():
             print('start')
             # text = getTextFromHtml.getDingZeng_old(dir_name + filename + '.html')
 
-            # text = getTextFromHtml.getContentFromEveryDiv(dir_name + filename + '.html')
+            text = getTextFromHtml.getContentFromEveryDiv(dir_name + filename + '.html')
             # text = '。'.join(cl1.parse_content_statistics(dir_name + filename + '.html'))
-            text = '。'.join(cl1.parse_content(dir_name + filename + '.html'))
+            # text = '。'.join(cl1.parse_content(dir_name + filename + '.html'))
 
             txtf.write(text)
 
@@ -40,7 +46,8 @@ def step2():
     根据源数据的.train文件获得BIOtext
     :return:
     '''
-    getTextFromHtml.makeDingZengBIOData(docu_type)
+    getTextFromHtml.makeDingZengBIOData(docu_type, train_dir)
+    getTextFromHtml.makeObjBIOData(docu_type, text_dir, BIO_dir, train_dir)
 
 
 def step3():
@@ -51,12 +58,11 @@ def step3():
         example.dev
     :return:
     '''
-    getTextFromHtml.saveTrainData(docu_type, train_ratio=0.9, test_ratio=0.95)
+    getTextFromHtml.saveTrainData(0.9, 0.95, BIO_dir, example_dir)
 
 
 if __name__ == '__main__':
     print('-------run-------')
-    step1()
+    # step1()
     # step2()
     # step3()
-

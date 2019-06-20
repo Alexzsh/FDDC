@@ -123,7 +123,7 @@ def getDingZeng():
     Returns:
         list -- [a list of the entity object]
     """
-    filename = 'E:/实验/Label/dz/dingzengtest1.train'
+    filename = 'E:/实验/Label/dz/dingzeng.train'
     length, length2, dz = [], [], []
     with open(filename, 'r', encoding='utf-8') as fr:
         for line in fr.readlines():
@@ -473,21 +473,17 @@ def testFasttext():
     #         print(sentence[index],'----->',labels[index])
 
 
-def makeDingZengBIOData():
+def makeDingZengBIOData(docu_type):
     '''make labeled data via multi-process
     '''
 
-    import os
-    import tqdm
-
     dz = getDingZeng()
     pool = mp.Pool(processes=4)
-    # dirname = '../FDDC/dingzeng/data' #原
-    docu_type = 'dz'
-    text_dir = 'E:/实验/Label/' + docu_type + '/text' # new
+    # dir_name = '../FDDC/dingzeng/data' #原
+    text_dir = 'E:/实验/Label/' + docu_type + '/text3' # new
 
-    # if not os.path.exists(dirname): # 原
-    #     os.makedirs(dirname)
+    # if not os.path.exists(dir_name): # 原
+    #     os.makedirs(dir_name)
     if not os.path.exists(text_dir):
         os.makedirs(text_dir)
 
@@ -505,7 +501,7 @@ def makeDingZengBIOData():
             except IndexError:
                 print(dz)
                 input()
-        pool.apply_async(dingZengBIOThread, (file, dz_obj))
+        pool.apply_async(dingZengBIOThread(file, dz_obj))
 
     print('<' * 20)
     pool.close()
@@ -521,7 +517,7 @@ def dingZengBIOThread(file, dz_obj):
         dz_obj {object} -- entity type
     '''
 
-    with open('E:/实验/Label/dz/text/' + file, 'r', encoding='utf-8') as fr:
+    with open('E:/实验/Label/dz/text2/' + file, 'r', encoding='utf-8') as fr:
         name = file.split('.')[0]
         sss = ""
         text = fr.readline()
@@ -640,8 +636,51 @@ def dingZengBIOThread(file, dz_obj):
 
         commonRulu=re.compile(r',+[,|。]')
         sss = commonRulu.sub(lambda x: x.group()[0][-1], sss)
-        with open('E:/实验/Label/dz/BIOdata/'+name + '.txt', 'w', encoding='utf-8') as fw:
+        with open('E:/实验/Label/dz/BIOdata3/'+name + '.txt', 'w', encoding='utf-8') as fw:
             fw.write(sss)
+
+
+
+def makeObjBIOData(docu_type):
+    '''make labeled data via multi-process
+    '''
+
+    if(docu_type == 'dz'):
+        obj = getDingZeng()
+    elif(docu_type == 'ht'):
+        obj =getHeTong()
+    elif(docu_type == 'zjc'):
+        obj = getZengJianChi()
+
+    pool = mp.Pool(processes=4)
+    # dir_name = '../FDDC/dingzeng/data' #原
+    text_dir = 'E:/实验/Label/' + docu_type + '/text2'  # new
+
+    # if not os.path.exists(dir_name): # 原
+    #     os.makedirs(dir_name)
+    if not os.path.exists(text_dir):
+        os.makedirs(text_dir)
+
+    for file in tqdm.tqdm(
+            sorted(list(os.walk(text_dir))[0][2], key=lambda x: int(x.split('.')[0]),
+                   reverse=True)[:]):
+        name = file.split('.')[0]
+        new_obj = []
+        obj_tmp = obj[0]
+        while obj_tmp.__dict__['name'] == name and len(obj) > 1:
+            new_obj.append(obj_tmp)
+            obj = obj[1:]
+            try:
+                obj_tmp = obj[0]
+            except IndexError:
+                print(obj)
+                input()
+        pool.apply_async(dingZengBIOThread(file, new_obj))
+
+    print('<' * 20)
+    pool.close()
+    pool.join()
+    print('>' * 20)
 
 
 def saveTrainData(docu_type, train_ratio, test_ratio):
@@ -730,10 +769,4 @@ if __name__ == '__main__':
     # print(getTableFromFaXing(dirname, filename))
     # getDataFromParser()
 
-    # print(getDingZeng(dirname+filename + '.html'))
-    # text = getContentFromEveryDiv(dirname+filename + '.html')
-    #
-    # with open(traindir, 'r', encoding='utf-8') as f:
-    #     for line in f.readlines():
-    #         inf = line.split('\t')
-    print('o')
+    print('oo')

@@ -613,6 +613,9 @@ def dingZengBIOThread(file, dz_obj):
                     index_loop += len(addObj_name)
                 index += len(sen) + 1
             dz_obj[index1] = i
+            '''
+            index1 是打错了还是什么的写法？
+            '''
         li = ['O' for i in text]
         for i in dz_obj:
             for k, v in i.items():
@@ -677,7 +680,7 @@ def makeObjBIOData(docu_type, text_dir, BIO_dir, train_dir):
             except IndexError:
                 print(obj)
                 input()
-        pool.apply_async(objBIOThread(file, new_obj, BIO_dir, text_dir))
+        pool.apply_async(objBIOThread(file, docu_type, new_obj, BIO_dir, text_dir))
 
     print('<' * 20)
     pool.close()
@@ -685,13 +688,24 @@ def makeObjBIOData(docu_type, text_dir, BIO_dir, train_dir):
     print('>' * 20)
 
 
-def objBIOThread(file, new_obj, BIO_dir, text_dir):
+def objBIOThread(file, docu_type, new_obj, BIO_dir, text_dir):
     '''use entity to get reverse labeled data
 
     Arguments:
         file {string} -- filename
         dz_obj {object} -- entity type
     '''
+
+    htlist = ['jiaFang', 'yiFang', 'projectName', 'heTong', 'topLimit', 'lowerLimit', 'combination']
+    dzlist = ['addObj', 'addType', 'addNum', 'addPrice', 'lockup', 'buyType']
+    zjclist = ['fullName', 'simpleName', 'changeDate', 'changePrice', 'changeNumber', 'afterChange', 'afterRate']
+    htNotNull = ['yifang']
+    dzNotNull = ['addObj']
+    zjcNotNull = ['fullName', 'changeNumber']
+
+    objlist = {'ht': htlist,
+               'dz': dzlist,
+               'zjc': zjclist}
 
     with open(text_dir + file, 'r', encoding='utf-8') as fr:
         name = file.split('.')[0]
@@ -711,6 +725,15 @@ def objBIOThread(file, new_obj, BIO_dir, text_dir):
             addPrice_name = i['addPrice'][0]['name']  # 增发金额
             lockup_name = i['lockup'][0]['name']  # 锁定期
             buyType_name = i['buyType'][0]['name']  # 认购方式
+
+            attr1 = i[objlist[docu_type][0]][0]['name']
+            attr2 = i[objlist[docu_type][1]][0]['name']
+            attr3 = i[objlist[docu_type][2]][0]['name']
+            attr4 = i[objlist[docu_type][3]][0]['name']
+            attr5 = i[objlist[docu_type][4]][0]['name']
+            attr6 = i[objlist[docu_type][5]][0]['name']
+            if(docu_type != 'dz'):
+                attr7 = i[objlist[docu_type][6]][0]['name']
 
             # index = 0
             # for num, sen in enumerate(sentence):
@@ -738,6 +761,15 @@ def objBIOThread(file, new_obj, BIO_dir, text_dir):
                     addPrice_start = sen.find(addPrice_name)
                     lockup_start = sen.find(lockup_name)
                     buyType_start = sen.find(buyType_name)
+
+                    attr1_start = sen.find(attr1)
+                    attr2_start = sen.find(attr2)
+                    attr3_start = sen.find(attr3)
+                    attr4_start = sen.find(attr4)
+                    attr5_start = sen.find(attr5)
+                    attr6_start = sen.find(attr6)
+                    if (docu_type != 'dz'):
+                        attr7_start = sen.find(attr7)
 
                     if addNum_name != '' and addNum_start != -1 and (addObj_start != -1):
                         i['addNum'].append(
@@ -784,9 +816,13 @@ def objBIOThread(file, new_obj, BIO_dir, text_dir):
                             i['addType'].append(
                                 getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
                                         num))
+
                     index_loop += len(addObj_name)
                 index += len(sen) + 1
             new_obj[index1] = i
+            '''
+            ！！！！-----index1 是打错了还是什么的写法？-----！！！！
+            '''
         li = ['O' for i in text]
         for i in new_obj:
             for k, v in i.items():
@@ -918,6 +954,9 @@ def htBIOThread(file, new_obj, BIO_dir, text_dir):
                     index_loop += len(addObj_name)
                 index += len(sen) + 1
             new_obj[index1] = i
+            '''
+            index1 是打错了还是什么的写法？
+            '''
         li = ['O' for i in text]
         for i in new_obj:
             for k, v in i.items():

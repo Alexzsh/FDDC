@@ -513,7 +513,7 @@ def makeDingZengBIOData(docu_type, train_dir):
 
 def dingZengBIOThread(file, dz_obj):
     '''use entity to get reverse labeled data
-    
+
     Arguments:
         file {string} -- filename
         dz_obj {object} -- entity type
@@ -613,9 +613,6 @@ def dingZengBIOThread(file, dz_obj):
                     index_loop += len(addObj_name)
                 index += len(sen) + 1
             dz_obj[index1] = i
-            '''
-            index1 是打错了还是什么的写法？
-            '''
         li = ['O' for i in text]
         for i in dz_obj:
             for k, v in i.items():
@@ -699,14 +696,18 @@ def objBIOThread(file, docu_type, new_obj, BIO_dir, text_dir):
     htlist = ['jiaFang', 'yiFang', 'projectName', 'heTong', 'topLimit', 'lowerLimit', 'combination']
     dzlist = ['addObj', 'addType', 'addNum', 'addPrice', 'lockup', 'buyType']
     zjclist = ['fullName', 'simpleName', 'changeDate', 'changePrice', 'changeNumber', 'afterChange', 'afterRate']
-    htNotNull = ['yifang']
-    dzNotNull = ['addObj']
-    zjcNotNull = ['fullName', 'changeNumber']
+    htNotNull = [1]
+    dzNotNull = [0]
+    zjcNotNull = [0, 4] # exist questions
 
     objlist = {'ht': htlist,
                'dz': dzlist,
                'zjc': zjclist}
 
+    notNull_list = {'ht': htNotNull,
+               'dz': dzNotNull,
+               'zjc': zjcNotNull}
+
     with open(text_dir + file, 'r', encoding='utf-8') as fr:
         name = file.split('.')[0]
         sss = ""
@@ -714,27 +715,27 @@ def objBIOThread(file, docu_type, new_obj, BIO_dir, text_dir):
         sentence = text.split('。')
         for index1, i in enumerate(new_obj):
             i = i.__dict__
-            if i['addObj'] == '' or i['addType'] == '':
+
+            '''
+            # if i['addObj'] == '' or i['addType'] == '': # addType 为空应该不影响吧
+            #     continue
+            '''
+            flag = False
+            for notnull in notNull_list[docu_type]:
+                if i[objlist[docu_type][notnull]] == '':
+                    flag = True
+            if flag:
                 continue
+
             name = i['name']
             i.pop('name')
 
-            addObj_name = i['addObj'][0]['name']  # 增发对象
-            addType_name = i['addType'][0]['name']  # 发行方式
-            addNum_name = i['addNum'][0]['name']  # 增发数量
-            addPrice_name = i['addPrice'][0]['name']  # 增发金额
-            lockup_name = i['lockup'][0]['name']  # 锁定期
-            buyType_name = i['buyType'][0]['name']  # 认购方式
+            attrs = []
 
-            attr1 = i[objlist[docu_type][0]][0]['name']
-            attr2 = i[objlist[docu_type][1]][0]['name']
-            attr3 = i[objlist[docu_type][2]][0]['name']
-            attr4 = i[objlist[docu_type][3]][0]['name']
-            attr5 = i[objlist[docu_type][4]][0]['name']
-            attr6 = i[objlist[docu_type][5]][0]['name']
-            if(docu_type != 'dz'):
-                attr7 = i[objlist[docu_type][6]][0]['name']
-
+            for k in range(6):
+                attrs.append(i[objlist[docu_type][k]][0]['name'])
+            if docu_type != 'dz':
+                attrs.append(i[objlist[docu_type][6]][0]['name'])
             # index = 0
             # for num, sen in enumerate(sentence):
             #     addObj_start = sen.find(addObj_name)
@@ -751,212 +752,36 @@ def objBIOThread(file, docu_type, new_obj, BIO_dir, text_dir):
             for num, sen in enumerate(sentence):
                 index_loop = 0
                 while index_loop < len(sen):
-                    index_loop = sen.find(addObj_name, index_loop)
+
+                    index_loop = sen.find(attrs[notNull_list[docu_type][0]], index_loop) # exit questions
+
                     if index_loop == -1:
                         break
 
-                    addObj_start = sen.find(addObj_name)
-                    addType_start = sen.find(addType_name)
-                    addNum_start = sen.find(addNum_name)
-                    addPrice_start = sen.find(addPrice_name)
-                    lockup_start = sen.find(lockup_name)
-                    buyType_start = sen.find(buyType_name)
+                    attr_start_list = []
+                    for attr in attrs:
+                        attr_start_list.append(sen.find(attr))
 
-                    attr1_start = sen.find(attr1)
-                    attr2_start = sen.find(attr2)
-                    attr3_start = sen.find(attr3)
-                    attr4_start = sen.find(attr4)
-                    attr5_start = sen.find(attr5)
-                    attr6_start = sen.find(attr6)
-                    if (docu_type != 'dz'):
-                        attr7_start = sen.find(attr7)
+                    if docu_type != 'dz':
+                        attr_start_list.append(sen.find(attrs[6]))
 
-                    if addNum_name != '' and addNum_start != -1 and (addObj_start != -1):
-                        i['addNum'].append(
-                            getDict(addNum_name, index + addNum_start, index + addNum_start + len(addNum_name),
-                                    num))
-                        i['addObj'].append(
-                            getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name),
-                                    num))
-                        if addType_start != -1:
-                            i['addType'].append(
-                                getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
-                                        num))
-                    if addPrice_name != '' and addPrice_start != -1 and (addObj_start != -1):
-                        i['addPrice'].append(
-                            getDict(addPrice_name, index + addPrice_start, index + addPrice_start + len(addPrice_name),
-                                    num))
-                        i['addObj'].append(
-                            getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name),
-                                    num))
-                        if addType_start != -1:
-                            i['addType'].append(
-                                getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
-                                        num))
-                    if lockup_name != '' and lockup_start != -1 and (addObj_start != -1):
-                        i['lockup'].append(
-                            getDict(lockup_name, index + lockup_start, index + lockup_start + len(lockup_name), num))
-                        if addObj_start != -1:
-                            i['addObj'].append(
-                                getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name),
-                                        num))
-                        if addType_start != -1:
-                            i['addType'].append(
-                                getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
-                                        num))
-                    if buyType_name != '' and buyType_start != -1 and (addObj_start != -1 or addType_start != -1):
-                        i['buyType'].append(
-                            getDict(buyType_name, index + buyType_start, index + buyType_start + len(buyType_name),
-                                    num))
-                        if addObj_start != -1:
-                            i['addObj'].append(
-                                getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name),
-                                        num))
-                        if addType_start != -1:
-                            i['addType'].append(
-                                getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
+                    for k in range(len(attrs)):
+                        if k == notNull_list[docu_type][0]:
+                            continue
+                        if attrs[k] != '' and attr_start_list[k] != -1 and attr_start_list[notNull_list[docu_type][0]] != -1:
+                            i[objlist[docu_type][k]].append(
+                                getDict(attrs[k], index + attr_start_list[k], index + attr_start_list[k] + len(attrs[k]),
                                         num))
 
-                    index_loop += len(addObj_name)
+                            i[objlist[docu_type][notNull_list[docu_type][0]]].append(
+                                getDict(attrs[notNull_list[docu_type][0]],
+                                        index + attr_start_list[notNull_list[docu_type][0]],
+                                        index + attr_start_list[notNull_list[docu_type][0]] + len(attrs[notNull_list[docu_type][0]]),
+                                        num))
+
+                    index_loop += len(attrs[notNull_list[docu_type][0]])
                 index += len(sen) + 1
             new_obj[index1] = i
-            '''
-            ！！！！-----index1 是打错了还是什么的写法？-----！！！！
-            '''
-        li = ['O' for i in text]
-        for i in new_obj:
-            for k, v in i.items():
-                for item in v:
-                    if item['name'] != '' and item['start'] != -1:
-                        li[item['start']] = 'B-' + k
-                        for i in range(item['start'] + 1, item['end']):
-                            li[i] = 'I-' + k
-        for j, con in enumerate(li):
-            if con != 'O':
-                sub_start = j
-                break
-
-        for j, con in enumerate(li):
-            if li[len(li) - j - 1] != 'O':
-                sub_end = len(li) - j - 1
-                break
-        # li = li[sub_start - 10:sub_end + 10]
-        # text = text[sub_start - 10:sub_end + 10]
-
-        for j, con in enumerate(li):
-            sss += text[j] + ' ' + con + '\n'
-
-        commonRulu = re.compile(r',+[,|。]')
-        sss = commonRulu.sub(lambda x: x.group()[0][-1], sss)
-        with open(BIO_dir + name + '.txt', 'w', encoding='utf-8') as fw:
-            fw.write(sss)
-
-
-def htBIOThread(file, new_obj, BIO_dir, text_dir):
-    '''use entity to get reverse labeled data
-
-    Arguments:
-        file {string} -- filename
-        dz_obj {object} -- entity type
-    '''
-
-    with open(text_dir + file, 'r', encoding='utf-8') as fr:
-        name = file.split('.')[0]
-        sss = ""
-        text = fr.readline()
-        sentence = text.split('。')
-        for index1, i in enumerate(new_obj):
-            i = i.__dict__
-            if i['addObj'] == '' or i['addType'] == '':
-                continue
-            name = i['name']
-            i.pop('name')
-
-            addObj_name = i['addObj'][0]['name']  # 增发对象
-            addType_name = i['addType'][0]['name']  # 发行方式
-            addNum_name = i['addNum'][0]['name']  # 增发数量
-            addPrice_name = i['addPrice'][0]['name']  # 增发金额
-            lockup_name = i['lockup'][0]['name']  # 锁定期
-            buyType_name = i['buyType'][0]['name']  # 认购方式
-
-            # index = 0
-            # for num, sen in enumerate(sentence):
-            #     addObj_start = sen.find(addObj_name)
-            #     # addType_start = sen.find(addType_name)
-            #     if addObj_start != -1 :
-            #         i['addObj'].append(
-            #             getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name), num)
-            #         )
-            #         # i['addType'].append(
-            #         #     getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
-            #         #             num))
-            #     index += len(sen) + 1
-            index = 0
-            for num, sen in enumerate(sentence):
-                index_loop = 0
-                while index_loop < len(sen):
-                    index_loop = sen.find(addObj_name, index_loop)
-                    if index_loop == -1:
-                        break
-
-                    addObj_start = sen.find(addObj_name)
-                    addType_start = sen.find(addType_name)
-                    addNum_start = sen.find(addNum_name)
-                    addPrice_start = sen.find(addPrice_name)
-                    lockup_start = sen.find(lockup_name)
-                    buyType_start = sen.find(buyType_name)
-
-                    if addNum_name != '' and addNum_start != -1 and (addObj_start != -1):
-                        i['addNum'].append(
-                            getDict(addNum_name, index + addNum_start, index + addNum_start + len(addNum_name),
-                                    num))
-                        i['addObj'].append(
-                            getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name),
-                                    num))
-                        if addType_start != -1:
-                            i['addType'].append(
-                                getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
-                                        num))
-                    if addPrice_name != '' and addPrice_start != -1 and (addObj_start != -1):
-                        i['addPrice'].append(
-                            getDict(addPrice_name, index + addPrice_start, index + addPrice_start + len(addPrice_name),
-                                    num))
-                        i['addObj'].append(
-                            getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name),
-                                    num))
-                        if addType_start != -1:
-                            i['addType'].append(
-                                getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
-                                        num))
-                    if lockup_name != '' and lockup_start != -1 and (addObj_start != -1):
-                        i['lockup'].append(
-                            getDict(lockup_name, index + lockup_start, index + lockup_start + len(lockup_name), num))
-                        if addObj_start != -1:
-                            i['addObj'].append(
-                                getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name),
-                                        num))
-                        if addType_start != -1:
-                            i['addType'].append(
-                                getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
-                                        num))
-                    if buyType_name != '' and buyType_start != -1 and (addObj_start != -1 or addType_start != -1):
-                        i['buyType'].append(
-                            getDict(buyType_name, index + buyType_start, index + buyType_start + len(buyType_name),
-                                    num))
-                        if addObj_start != -1:
-                            i['addObj'].append(
-                                getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name),
-                                        num))
-                        if addType_start != -1:
-                            i['addType'].append(
-                                getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
-                                        num))
-                    index_loop += len(addObj_name)
-                index += len(sen) + 1
-            new_obj[index1] = i
-            '''
-            index1 是打错了还是什么的写法？
-            '''
         li = ['O' for i in text]
         for i in new_obj:
             for k, v in i.items():
@@ -1070,4 +895,4 @@ if __name__ == '__main__':
     # print(getTableFromFaXing(dirname, filename))
     # getDataFromParser()
 
-    print('oo')
+    print('ooo')

@@ -2,7 +2,7 @@ import getTextFromHtml
 import tableParser
 import os
 
-docu_type = 'zjc' # {'ht','dz','zjc'}
+docu_type = 'ht' # {'ht','dz','zjc'}
 train_name = {'dz': 'dingzeng',
               'ht': 'hetong',
               'zjc': 'zengjianchi'}
@@ -13,7 +13,7 @@ html_dir = {'dz': 'E:/实验/round1_train_20180518/round1_train_20180518/定增/
 
 dir_name = html_dir[docu_type] # html文件所在位置
 text_dir = 'E:/实验/Label/' + docu_type + '/text/'
-BIO_dir = 'E:/实验/Label/' + docu_type + '/BIOdata/'
+BIO_dir = 'E:/实验/Label/' + docu_type + '/BIOdata_new/'
 example_dir = "E:/实验/Label/"+docu_type+"/example/"
 train_dir = 'E:/实验/Label/' + docu_type + '/' + train_name[docu_type] + '.train'
 
@@ -46,8 +46,8 @@ def step2():
     :return:
     '''
     # getTextFromHtml.makeDingZengBIOData(docu_type, train_dir)
-    getTextFromHtml.makeObjBIOData(docu_type, text_dir, BIO_dir, train_dir)
-
+    # getTextFromHtml.makeObjBIOData(docu_type, text_dir, BIO_dir, train_dir)
+    getTextFromHtml.makehtBIOData(docu_type, text_dir, BIO_dir, train_dir)
 
 def step3():
     '''
@@ -63,6 +63,6 @@ def step3():
 if __name__ == '__main__':
     print('-------run-------')
     # step1()
-    # step2()
+    step2()
     # step3()
 

@@ -2,7 +2,6 @@
 
 import re
 
-
 BlankCharSet = set([' ', '\n', '\t'])
 CommaNumberPattern = re.compile(u'\d{1,3}([,，]\d\d\d)+')
 CommaCharInNumberSet = set(list(',，.。、？》《：”；’-+'))
@@ -11,6 +10,7 @@ NumberSet = set(list('0123456789.'))
 
 def clean_text(text):
     return clean_number_in_text(strQ2B(remove_blank_chars(text)))
+
 
 def strQ2B(ustring):
     ss = []
@@ -25,6 +25,8 @@ def strQ2B(ustring):
             rstring += chr(inside_code)
         ss.append(rstring)
     return ''.join(ss)
+
+
 def clean_number_in_text(text):
     comma_numbers = CommaNumberPattern.finditer(text)
     new_text, start = [], 0
@@ -53,12 +55,14 @@ def remove_comma_in_number(text):
                 new_text.append(ch)
     return ''.join(new_text)
 
+
 def extract_number(text):
     new_text = []
     for ch in text:
         if ch in NumberSet:
             new_text.append(ch)
     return ''.join(new_text)
+
 
 def normalize_num(text):
     """normalized number
@@ -101,6 +105,8 @@ def normalize_num(text):
             return number_text
     except:
         return text
+
+
 def normalize_date(date):
     """normalze date
     
@@ -108,11 +114,13 @@ def normalize_date(date):
         [string] -- [normalized result date]
     """
     char = re.compile('[年月./]')
-    date=date.group(0)
-    date = char.sub('-',date)
+    date = date.group(0)
+    date = char.sub('-', date)
     if '日' in date:
-        date=date.replace('日','')
+        date = date.replace('日', '')
     return date
+
+
 def normalize_num_continue(text):
     """normalize number
     
@@ -127,8 +135,10 @@ def normalize_num_continue(text):
         i = i[:k]+','+i[k:]
         return '.'.join([l, i, r])
     except:
-        print('normalize_num:\t',text)
+        print('normalize_num:\t', text)
         return text
+
+
 def normalize_per(text):
     """normalize percentage 
 
@@ -142,25 +152,28 @@ def normalize_per(text):
         print('normalize_per:\t',text)
         changeNumSeq = re.compile(r'([0-9]+\.[0-9]{3,5}\.[0-9]+)')
         text = changeNumSeq.sub(normalize_num_continue, text)
-        print('change:\t',text)
+        print('change:\t', text)
         return text
+
 
 def matchPunc(content):
     res = re.search(r'(^[,，。、？》《：”；’-]*[,，。、？》《：”；’-]$)', content)
     return res
+
+
 def normalize(content):
     """normalize content's date, number and money data
     
     Returns:
         string -- origin content
     """
-    content=clean_text(content)
+    content = clean_text(content)
 
     date = re.compile(r'\d{4}[-.年](\d{1,2})[-.月](\d{1,2})日?')
     content = date.sub(normalize_date, content)
 
     money = re.compile(r'\d[\\.|\d]*[亿|万|千|百|元]*')
-    content=money.sub(normalize_num,content)
+    content = money.sub(normalize_num,content)
 
     per = re.compile(r'([0-9\.]+\%)')
     content = per.sub(normalize_per, content)
@@ -172,11 +185,11 @@ def normalize(content):
 
 
 if __name__ == "__main__":
-    text = "Re2014年29月12日gEx总股2000000总价300000000000rwas200067.80100.00%cre12321321.1221.312atedb4868046.4539.20%ygskinner.c----+-;‘,。oeqw__=--m,a"
-    # print(text)
-    # print(clean_number_in_text(text))
+    text = "Re2014年29月12日gEx总股200万总价300000000000rwas200067.80100.00%" \
+           "cre12321321.1221.312atedb4868046.4539.20%ygskinner.c----+-;‘,。oeqw__=--m,a"
 
-    print(normalize(text))
+    # print(clean_number_in_text(text))
+    # print(normalize(text))
     # changeNumSeq = re.compile(r'([0-9]+\.[0-9]{3,4}\.[0-9]+)')
     # text = changeNumSeq.sub(normalize_num_continue, text)
     # money = re.compile(r'\d[\\.|\d]*[亿|万|千|百|元]*')

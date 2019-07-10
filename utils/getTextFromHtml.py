@@ -98,15 +98,15 @@ class zengjianchi():
         self.afterRate.append(getDict(afterRate))
 
 
-def getHeTong():
+def getHeTong(train_dir):
     """get all entity object from docu_type dir
 
     Returns:
         list -- [a list of the entity object]
     """
-    filename = 'E:/实验/Label/ht/hetongtest1.train'
+    # filename = 'E:/实验/Label/ht/hetongtest1.train'
     length, length2, ht = [], [], []
-    with open(filename, 'r', encoding='utf-8') as fr:
+    with open(train_dir, 'r', encoding='utf-8') as fr:
         for line in fr.readlines():
             a = line.split('\t')
             length.append(len(a))
@@ -117,15 +117,16 @@ def getHeTong():
     return ht
 
 
-def getDingZeng():
+def getDingZeng(train_dir):
     """get all entity object from docu_type dir
 
     Returns:
         list -- [a list of the entity object]
     """
-    filename = 'E:/实验/Label/dz/dingzengtest1.train'
+    # filename = 'E:/实验/Label/dz/dingzeng.train'
+
     length, length2, dz = [], [], []
-    with open(filename, 'r', encoding='utf-8') as fr:
+    with open(train_dir, 'r', encoding='utf-8') as fr:
         for line in fr.readlines():
             a = line.split('\t')
             length.append(len(a))
@@ -136,15 +137,15 @@ def getDingZeng():
     return dz
 
 
-def getZengJianChi():
+def getZengJianChi(train_dir):
     """get all entity object from docu_type dir
 
     Returns:
         list -- [a list of the entity object]
     """
-    filename = 'E:/实验/Label/zjc/zjctest1.train'
+    # filename = 'E:/实验/Label/zjc/zjctest1.train'
     length, length2, zjc = [], [], []
-    with open(filename, 'r', encoding='utf-8') as fr:
+    with open(train_dir, 'r', encoding='utf-8') as fr:
         for line in fr.readlines():
             a = line.split('\t')
             length.append(len(a))
@@ -473,21 +474,18 @@ def testFasttext():
     #         print(sentence[index],'----->',labels[index])
 
 
-def makeDingZengBIOData():
-    '''make labeled data via multi-process
+def makeDingZengBIOData(docu_type, train_dir):
+    '''
+    make labeled data via multi-process
     '''
 
-    import os
-    import tqdm
-
-    dz = getDingZeng()
+    dz = getDingZeng(train_dir)
     pool = mp.Pool(processes=4)
-    # dirname = '../FDDC/dingzeng/data' #原
-    docu_type = 'dz'
-    text_dir = 'E:/实验/Label/' + docu_type + '/text' # new
+    # dir_name = '../FDDC/dingzeng/data' #原
+    text_dir = 'E:/实验/Label/' + docu_type + '/text3' # new
 
-    # if not os.path.exists(dirname): # 原
-    #     os.makedirs(dirname)
+    # if not os.path.exists(dir_name): # 原
+    #     os.makedirs(dir_name)
     if not os.path.exists(text_dir):
         os.makedirs(text_dir)
 
@@ -505,7 +503,7 @@ def makeDingZengBIOData():
             except IndexError:
                 print(dz)
                 input()
-        pool.apply_async(dingZengBIOThread, (file, dz_obj))
+        pool.apply_async(dingZengBIOThread(file, dz_obj))
 
     print('<' * 20)
     pool.close()
@@ -515,13 +513,13 @@ def makeDingZengBIOData():
 
 def dingZengBIOThread(file, dz_obj):
     '''use entity to get reverse labeled data
-    
+
     Arguments:
         file {string} -- filename
         dz_obj {object} -- entity type
     '''
 
-    with open('E:/实验/Label/dz/text/' + file, 'r', encoding='utf-8') as fr:
+    with open('E:/实验/Label/dz/text2/' + file, 'r', encoding='utf-8') as fr:
         name = file.split('.')[0]
         sss = ""
         text = fr.readline()
@@ -640,38 +638,366 @@ def dingZengBIOThread(file, dz_obj):
 
         commonRulu=re.compile(r',+[,|。]')
         sss = commonRulu.sub(lambda x: x.group()[0][-1], sss)
-        with open('E:/实验/Label/dz/BIOdata/'+name + '.txt', 'w', encoding='utf-8') as fw:
+        with open('E:/实验/Label/dz/BIOdata3/'+name + '.txt', 'w', encoding='utf-8') as fw:
             fw.write(sss)
 
 
-def saveTrainData(docu_type, train_ratio, test_ratio):
+def makeObjBIOData(docu_type, text_dir, BIO_dir, train_dir):
+    '''
+    make labeled data via multi-process
+    '''
+
+    if(docu_type == 'dz'):
+        obj = getDingZeng(train_dir)
+    elif(docu_type == 'ht'):
+        obj =getHeTong(train_dir)
+    elif(docu_type == 'zjc'):
+        obj = getZengJianChi(train_dir)
+
+    pool = mp.Pool(processes=4)
+    # dir_name = '../FDDC/dingzeng/data' #原
+    # text_dir = 'E:/实验/Label/' + docu_type + '/text2'  # new
+
+    # if not os.path.exists(dir_name): # 原
+    #     os.makedirs(dir_name)
+    if not os.path.exists(BIO_dir):
+        os.makedirs(BIO_dir)
+
+    for file in tqdm.tqdm(
+            sorted(list(os.walk(text_dir))[0][2], key=lambda x: int(x.split('.')[0]),
+                   reverse=True)[:]):
+        name = file.split('.')[0]
+        new_obj = []
+        obj_tmp = obj[0]
+        while obj_tmp.__dict__['name'] == name and len(obj) > 1:
+            new_obj.append(obj_tmp)
+            obj = obj[1:]
+            try:
+                obj_tmp = obj[0]
+            except IndexError:
+                print(obj)
+                input()
+        pool.apply_async(objBIOThread(file, docu_type, new_obj, BIO_dir, text_dir))
+
+    print('<' * 20)
+    pool.close()
+    pool.join()
+    print('>' * 20)
+
+
+def objBIOThread(file, docu_type, new_obj, BIO_dir, text_dir):
+    '''use entity to get reverse labeled data
+
+    Arguments:
+        file {string} -- filename
+        dz_obj {object} -- entity type
+    '''
+
+    htlist = ['jiaFang', 'yiFang', 'projectName', 'heTong', 'topLimit', 'lowerLimit', 'combination']
+    dzlist = ['addObj', 'addType', 'addNum', 'addPrice', 'lockup', 'buyType']
+    zjclist = ['fullName', 'simpleName', 'changeDate', 'changePrice', 'changeNumber', 'afterChange', 'afterRate']
+    htNotNull = [1]
+    dzNotNull = [0]
+    zjcNotNull = [0, 4] # exist questions
+
+    objlist = {'ht': htlist,
+               'dz': dzlist,
+               'zjc': zjclist}
+
+    notNull_list = {'ht': htNotNull,
+               'dz': dzNotNull,
+               'zjc': zjcNotNull}
+
+    with open(text_dir + file, 'r', encoding='utf-8') as fr:
+        name = file.split('.')[0]
+        sss = ""
+        text = fr.readline()
+        sentence = text.split('。')
+        for index1, i in enumerate(new_obj):
+            i = i.__dict__
+
+            '''
+            # if i['addObj'] == '' or i['addType'] == '': # addType 为空应该不影响吧
+            #     continue
+            '''
+            flag = False
+            for notnull in notNull_list[docu_type]:
+                if i[objlist[docu_type][notnull]] == '':
+                    flag = True
+            if flag:
+                continue
+
+            name = i['name']
+            i.pop('name')
+
+            attrs = []
+
+            for k in range(6):
+                attrs.append(i[objlist[docu_type][k]][0]['name'])
+            if docu_type != 'dz':
+                attrs.append(i[objlist[docu_type][6]][0]['name'])
+            # index = 0
+            # for num, sen in enumerate(sentence):
+            #     addObj_start = sen.find(addObj_name)
+            #     # addType_start = sen.find(addType_name)
+            #     if addObj_start != -1 :
+            #         i['addObj'].append(
+            #             getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name), num)
+            #         )
+            #         # i['addType'].append(
+            #         #     getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
+            #         #             num))
+            #     index += len(sen) + 1
+            index = 0
+            for num, sen in enumerate(sentence):
+                index_loop = 0
+                while index_loop < len(sen):
+
+                    index_loop = sen.find(attrs[notNull_list[docu_type][0]], index_loop) # exit questions
+
+                    if index_loop == -1:
+                        break
+
+                    attr_start_list = []
+                    for attr in attrs:
+                        attr_start_list.append(sen.find(attr))
+
+                    if docu_type != 'dz':
+                        attr_start_list.append(sen.find(attrs[6]))
+
+                    for k in range(len(attrs)):
+                        if k == notNull_list[docu_type][0]:
+                            continue
+                        if attrs[k] != '' and attr_start_list[k] != -1 and attr_start_list[notNull_list[docu_type][0]] != -1:
+                            i[objlist[docu_type][k]].append(
+                                getDict(attrs[k], index + attr_start_list[k], index + attr_start_list[k] + len(attrs[k]),
+                                        num))
+
+                            i[objlist[docu_type][notNull_list[docu_type][0]]].append(
+                                getDict(attrs[notNull_list[docu_type][0]],
+                                        index + attr_start_list[notNull_list[docu_type][0]],
+                                        index + attr_start_list[notNull_list[docu_type][0]] + len(attrs[notNull_list[docu_type][0]]),
+                                        num))
+
+                    index_loop += len(attrs[notNull_list[docu_type][0]])
+                index += len(sen) + 1
+            new_obj[index1] = i
+        li = ['O' for i in text]
+        for i in new_obj:
+            for k, v in i.items():
+                for item in v:
+                    if item['name'] != '' and item['start'] != -1:
+                        li[item['start']] = 'B-' + k
+                        for i in range(item['start'] + 1, item['end']):
+                            li[i] = 'I-' + k
+        for j, con in enumerate(li):
+            if con != 'O':
+                sub_start = j
+                break
+
+        for j, con in enumerate(li):
+            if li[len(li) - j - 1] != 'O':
+                sub_end = len(li) - j - 1
+                break
+        # li = li[sub_start - 10:sub_end + 10]
+        # text = text[sub_start - 10:sub_end + 10]
+
+        for j, con in enumerate(li):
+            sss += text[j] + ' ' + con + '\n'
+
+        commonRulu = re.compile(r',+[,|。]')
+        sss = commonRulu.sub(lambda x: x.group()[0][-1], sss)
+        with open(BIO_dir + name + '.txt', 'w', encoding='utf-8') as fw:
+            fw.write(sss)
+
+
+def makehtBIOData(docu_type, text_dir, BIO_dir, train_dir):
+    '''
+    make labeled data via multi-process
+    '''
+
+    if(docu_type == 'dz'):
+        obj = getDingZeng(train_dir)
+    elif(docu_type == 'ht'):
+        obj =getHeTong(train_dir)
+    elif(docu_type == 'zjc'):
+        obj = getZengJianChi(train_dir)
+
+    pool = mp.Pool(processes=4)
+    # dir_name = '../FDDC/dingzeng/data' #原
+    # text_dir = 'E:/实验/Label/' + docu_type + '/text2'  # new
+
+    # if not os.path.exists(dir_name): # 原
+    #     os.makedirs(dir_name)
+    if not os.path.exists(BIO_dir):
+        os.makedirs(BIO_dir)
+
+    for file in tqdm.tqdm(
+            sorted(list(os.walk(text_dir))[0][2], key=lambda x: int(x.split('.')[0]),
+                   reverse=True)[:]):
+        name = file.split('.')[0]
+        new_obj = []
+        obj_tmp = obj[0]
+        while obj_tmp.__dict__['name'] == name and len(obj) > 1:
+            new_obj.append(obj_tmp)
+            obj = obj[1:]
+            try:
+                obj_tmp = obj[0]
+            except IndexError:
+                print(obj)
+                input()
+        pool.apply_async(htBIOThread(file, docu_type, new_obj, BIO_dir, text_dir))
+
+    print('<' * 20)
+    pool.close()
+    pool.join()
+    print('>' * 20)
+
+
+def htBIOThread(file, docu_type, new_obj, BIO_dir, text_dir):
+    '''use entity to get reverse labeled data
+
+    Arguments:
+        file {string} -- filename
+        dz_obj {object} -- entity type
+    '''
+
+    htlist = ['jiaFang', 'yiFang', 'projectName', 'heTong', 'topLimit', 'lowerLimit', 'combination']
+    dzlist = ['addObj', 'addType', 'addNum', 'addPrice', 'lockup', 'buyType']
+    zjclist = ['fullName', 'simpleName', 'changeDate', 'changePrice', 'changeNumber', 'afterChange', 'afterRate']
+    htNotNull = [1]
+    dzNotNull = [0]
+    zjcNotNull = [0, 4] # exist questions
+
+    objlist = {'ht': htlist,
+               'dz': dzlist,
+               'zjc': zjclist}
+
+    notNull_list = {'ht': htNotNull,
+               'dz': dzNotNull,
+               'zjc': zjcNotNull}
+
+    with open(text_dir + file, 'r', encoding='utf-8') as fr:
+        name = file.split('.')[0]
+        sss = ""
+        text = fr.readline()
+        sentence = text.split('。')
+        for index1, i in enumerate(new_obj):
+            i = i.__dict__
+
+            '''
+            # if i['addObj'] == '' or i['addType'] == '': # addType 为空应该不影响吧
+            #     continue
+            '''
+            flag = False
+            for notnull in notNull_list[docu_type]:
+                if i[objlist[docu_type][notnull]] == '':
+                    flag = True
+            if flag:
+                continue
+
+            name = i['name']
+            i.pop('name')
+
+            attrs = []
+
+            for k in range(6):
+                attrs.append(i[objlist[docu_type][k]][0]['name'])
+            if docu_type != 'dz':
+                attrs.append(i[objlist[docu_type][6]][0]['name'])
+            # index = 0
+            # for num, sen in enumerate(sentence):
+            #     addObj_start = sen.find(addObj_name)
+            #     # addType_start = sen.find(addType_name)
+            #     if addObj_start != -1 :
+            #         i['addObj'].append(
+            #             getDict(addObj_name, index + addObj_start, index + addObj_start + len(addObj_name), num)
+            #         )
+            #         # i['addType'].append(
+            #         #     getDict(addType_name, index + addType_start, index + addType_start + len(addType_name),
+            #         #             num))
+            #     index += len(sen) + 1
+            index = 0
+            for num, sen in enumerate(sentence):
+                index_loop = 0
+                while index_loop < len(sen):
+
+                    index_loop = sen.find(attrs[notNull_list[docu_type][0]], index_loop) # exit questions
+
+                    if index_loop == -1:
+                        break
+
+                    attr_start_list = []
+                    for attr in attrs:
+                        attr_start_list.append(sen.find(attr))
+
+                    if docu_type != 'dz':
+                        attr_start_list.append(sen.find(attrs[6]))
+
+                    for k in range(len(attrs)):
+                        if attrs[k] != '' and attr_start_list[k] != -1:
+                            i[objlist[docu_type][k]].append(
+                                getDict(attrs[k], index + attr_start_list[k], index + attr_start_list[k] + len(attrs[k]),
+                                        num))
+
+                    index_loop += len(attrs[notNull_list[docu_type][0]])
+                index += len(sen) + 1
+            new_obj[index1] = i
+        li = ['O' for i in text]
+        for i in new_obj:
+            for k, v in i.items():
+                for item in v:
+                    if item['name'] != '' and item['start'] != -1:
+                        li[item['start']] = 'B-' + k
+                        for i in range(item['start'] + 1, item['end']):
+                            li[i] = 'I-' + k
+        for j, con in enumerate(li):
+            if con != 'O':
+                sub_start = j
+                break
+
+        for j, con in enumerate(li):
+            if li[len(li) - j - 1] != 'O':
+                sub_end = len(li) - j - 1
+                break
+        # li = li[sub_start - 10:sub_end + 10]
+        # text = text[sub_start - 10:sub_end + 10]
+
+        for j, con in enumerate(li):
+            sss += text[j] + ' ' + con + '\n'
+
+        commonRulu = re.compile(r',+[,|。]')
+        sss = commonRulu.sub(lambda x: x.group()[0][-1], sss)
+        with open(BIO_dir + name + '.txt', 'w', encoding='utf-8') as fw:
+            fw.write(sss)
+
+
+def saveTrainData(train_ratio, test_ratio, BIO_dir, example_dir):
     '''
         save train\dev\test data
     '''
 
-    import os
-    import numpy as np
-    import random
-
     # dirname = '../FDDC/'+docu_type+'/data' # 原
-    dirname = 'E:/实验/Label/'+docu_type+'/BIOdata'
+    # dirname = 'E:/实验/Label/'+docu_type+'/BIOdata'
+    # BIO_dir = 'E:/实验/Label/'+docu_type+'/BIOdata'
 
-    files = list(os.walk(dirname))[0][2]
+    files = list(os.walk(BIO_dir))[0][2]
     random.shuffle(files)
-    train = "E:/实验/Label/"+docu_type+"/example.train"
-    test = "E:/实验/Label/"+docu_type+"/example.test"
-    dev = "E:/实验/Label/"+docu_type+"/example.dev"
-    saveData={
+    train = example_dir + 'example.train'
+    test = example_dir + 'example.test'
+    dev = example_dir + 'example.dev'
+
+    saveData = {
         train: files[:int(len(files) * train_ratio)],
         test: files[int(len(files) * train_ratio):int(len(files) * test_ratio)],
-        dev: files[int(len(files) * test_ratio):]
+        dev: files[int(len(files) * test_ratio):] # 应该先再打乱一次
     }
 
     for key, value in saveData.items():
         print(key, len(value))
         with open(key, 'w', encoding='utf-8') as fw:
             for file in value:
-                with open(os.path.join(dirname, file), 'r', encoding='utf-8') as fr:
+                with open(os.path.join(BIO_dir, file), 'r', encoding='utf-8') as fr:
                     fw.writelines(fr.readlines())
                 fw.write('\n')
 
@@ -730,10 +1056,4 @@ if __name__ == '__main__':
     # print(getTableFromFaXing(dirname, filename))
     # getDataFromParser()
 
-    # print(getDingZeng(dirname+filename + '.html'))
-    # text = getContentFromEveryDiv(dirname+filename + '.html')
-    #
-    # with open(traindir, 'r', encoding='utf-8') as f:
-    #     for line in f.readlines():
-    #         inf = line.split('\t')
-    print('o')
+    print('ooo')

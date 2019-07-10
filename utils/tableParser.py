@@ -397,7 +397,8 @@ class parseHtmlGetTable:
 
 if __name__ == "__main__":
     cl1 = parseHtmlGetTable(None, None, None, None, None, None, None)
-    html_file_path = 'E:/实验/round1_train_20180518/round1_train_20180518/定增/html/11800.html'
+    filename = '7880'
+    html_file_path = 'E:/实验/round1_train_20180518/round1_train_20180518/定增/html/' + filename + '.html'
     b = cl1.parse_content(html_file_path)
     c = cl1.parse_content_statistics(html_file_path)
     print(b)
